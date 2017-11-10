@@ -15,7 +15,7 @@
 function formu($rut,$clavee)
 {
 	require 'conexion.php';
-	$sql="INSERT INTO secretaria (rut,clave) VALUES(?,?)";
+	$sql="INSERT INTO profe (rut,clave) VALUES(?,?)";
 	$smt = $conn->prepare($sql);
 	$smt->bindParam(1, $rut);
 	$smt->bindParam(2, $clavee);
