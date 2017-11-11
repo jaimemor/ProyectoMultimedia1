@@ -15,7 +15,6 @@ $conn=null;
 
 if ($_SESSION['usuario']==$resultado[0]['rut'] && $clave==$resultado[0]['clave'])
  {
-
 header("location:panel.php");
 } else {
 echo "Usuario o clave invalida";

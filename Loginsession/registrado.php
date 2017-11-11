@@ -11,22 +11,34 @@
 <center>
 <h1>
 		<?php
-
-function formu($rut,$clavee)
+error_reporting(0);
+function formu($rut,$clavee,$dvv)
 {
+	
+$r=$_REQUEST['rut'];
+$s=1;
+     for($m=0;$r!=0;$r/=10)
+         $s=($s+$r%10*(9-$m++%6))%11;
+     //echo 'El digito verificador es: '.chr($s?$s+47:75);
+     $dvv=chr($s?$s+47:75);
+     //echo "div dv:".$dv;
+     
+
 	require 'conexion.php';
-	$sql="INSERT INTO profe (rut,clave) VALUES(?,?)";
+	$sql="INSERT INTO profe (rut,clave,dv) VALUES(?,?,?)";
 	$smt = $conn->prepare($sql);
 	$smt->bindParam(1, $rut);
 	$smt->bindParam(2, $clavee);
+	$smt->bindParam(3,$dvv);
 	$smt->execute(); 
 	$conn=null;
 }
 	if(isset($_REQUEST['formu'])){
+
 $rut=$_REQUEST['rut'];
 $clave=$_REQUEST['clave'];
 
-formu($rut,$clave);
+formu($rut,$clave,$dvv);
 echo "Señor(a):"." ".$_REQUEST['nombre'].". "."Usted fue registrado exitosamente!";
 }else{
 echo "Error al Registrar";
