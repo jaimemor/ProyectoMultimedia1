@@ -1,14 +1,9 @@
-secretaria
-->mostrar
-listado de salas con su informacion correspondiente
-
-(capacidad, implementos,profesores que la ocupan, agregar comentarios y mostrar)
-desplegar horarios de salas en otra pestaña
 
 
 
 <?php 
  
+  /*
   session_start();
   error_reporting(0);  
   $varsesion=$_SESSION['login'];
@@ -18,7 +13,7 @@ desplegar horarios de salas en otra pestaña
     die();
   }
   
-
+*/
 
  ?>
 
@@ -32,8 +27,16 @@ desplegar horarios de salas en otra pestaña
  	
  </head>
  <body>
- 	<h1>SISTEMA DE ACCESO</h1>
-<div>Usuario: <?php echo $_SESSION['login']; ?></div>
+
+
+<div class="container-fluid">
+  
+    <h1>VISTA echo=$secretaria o mayordomo </h1>
+         <div class="row">
+<div class="col-md-12 " style="background: #fff ;">
+
+ 	
+<div>Usuario: <?php // echo $_SESSION['login']; ?></div>
 <div>
 	
 	Año:<select name="ano">
@@ -59,42 +62,94 @@ desplegar horarios de salas en otra pestaña
 		
 
     Seleccione piso:  <select name="piso" id="">
-      	<option value="piso1">piso 1</option>
-      	<option value="piso2">piso 2</option>
+      	<option name="" value="piso">piso 1</option>
+      	<option value="piso">piso 2</option>
       </select>
       
 
+  </div>
+  </div>
+  </div>
 	</div>
 
-		 
+		 <h1>salas</h1>
+
+<div class="container-fluid">
+  
+         <div class="row">
+
+          <div class="col-md-1 " style="background: #fff ;"></div>
+<div class="col-md-10 " style="background: #fff ;">
 
 
 
 
 
-<table class="table table-hover">
-  <tr>
-  	
-    <td>lunes</td>
-    <td>martes</td>
-  	<td>miercos</td>
-  </tr><td></td>
-</table>
+<?php
+  //Creamos los parametros iniciales
+  //estos podrían proceder de un formulario, sql, etc...
+  $filas = 5;
+  $columnas = 5;
+  $texto = "texto";
+  $mostrar = true;
+  
+  ?>                                                   
+     
+ 
+
+  
+  
+<!-- Creamos el inicio de la tabla manualmente-->
+<table  border-color="#ffffff" border="12" class="table table-hover">
+ 
+ <?php
+
+ //Iniciamos el bucle de las filas
+ for($t=0;$t<$filas;$t++){
+  
+  echo "<tr>";
+  //Iniciamos el bucle de las columnas
+  for($y=0;$y<$columnas;$y++){
+   
+   if($mostrar){
+    //Pintamos el cuadro
+             echo "<td style=padding:10px; 
+
+        background-color:#000000;>".$texto."</td>";
+    //El próximo no será pintado
+    $mostrar=false;
+    $texto++;
+   }else{
+    //Dejamos cuadro en blanco
 
 
+    echo "<td style=padding:10px;>".$texto."</td>";
+    //El próximo será pintado
+    $grey=true;
+    $texto++;
+    }
+   }
+   //Cerramos columna
+   echo "</tr>";
+  }
+ ?>
+ <!-- Cerramos tabla -->
+ </table>
+</div>
+  
 
 
+          <div class="col-md-1 " style="background: #fff ;"></div>
 
 
-
-
-
+ 
 
  </body>
 
  <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8" async defer></script>
 		<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8" async defer></script>
  </html>
+
 
 
 
