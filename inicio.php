@@ -31,7 +31,7 @@
 
 <div class="container-fluid">
   
-    <h1>VISTA echo=$secretaria o mayordomo </h1>
+    <h1>VISTA echo=$secretaria o mayordomo Y PROFESOR(DEBE VER LAS SALAS QUE TIENE PEDIDAS)</h1>
          <div class="row">
 <div class="col-md-12 " style="background: #fff ;">
 

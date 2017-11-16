@@ -71,6 +71,7 @@ IMPLEMENTOS DE SALA
   $texto = "texto".'<br>'.'$codigosala';
   $grey = true;
   $codigosala="b404";
+
   ?>                                                   
      
  
@@ -79,9 +80,29 @@ IMPLEMENTOS DE SALA
   
 <!-- Creamos el inicio de la tabla manualmente-->
 <table border="0,5" class="table table-hover">
- 
- <?php
 
+  
+  <div>mostrar en tabla periodos de cada sala</div>
+ Año:<select name="ano">
+        <?php
+        for($i=date('o'); $i>=2010; $i--){
+            if ($i == date('o'))
+                echo '<option value="'.$i.'" selected>'.$i.'</option>';
+            else
+                echo '<option value="'.$i.'">'.$i.'</option>';
+        }
+        ?>
+</select>
+</div>
+
+<div>
+  Semestre:<br>
+  <input type="radio" name="semestre" value="primersemenstre" required="">Primer Semestre <br>
+  <input type="radio" name="semestre" value="segundosemestre" required="">Segundo Semestre<br>
+    
+</div>
+ <?php
+echo "la fecha actual es " . date("d") . " del " . date("m") . " de " . date("Y");
  //Iniciamos el bucle de las filas
  for($t=0;$t<$filas;$t++){
   
@@ -116,7 +137,7 @@ IMPLEMENTOS DE SALA
  </table>
 </div>
   
-
+<div>mostrar informacion de encargado de sala</div>
 <div class="col-md-2 well" style="background: #fff ;">
  HACER CAJA DE COMENTARIOS
 
