@@ -12,23 +12,90 @@
  <body>
 
 
-<div class="container-fluid">
+
   
 <div class="col-md-12 " style="background: #4682B4 ;">
 
   
-  <div class="left">SISTEMA</div>
+  <div class="left">SISTEMA SALAS</div>
 
-  <div class="right"><button >login</button></div>
+  <div class="right"><button type="button" class="btn btn-primary">Login</button></div>
 
 
 
 
 </div>
 
+<div class="container-fluid" class="left">
+  <div class="row" class="left">
+
+
+
+
+  </div></div>
+
+
+
+
+
+<div class="row">
+  <div class="col-md-9 col-md-push-3"><div class="left"><button type="button" class="btn btn-primary">otro boton</button></div>
+  <div class="left"><button type="button" class="btn btn-primary">ejemplo de boton</button></div>
+
+ </div>
+  
+
+  <div class="col-md-3 col-md-pull-9">
+    
+
+<div>Usuario: <?php // echo $_SESSION['login']; ?></div>
+<div>
+  
+  Año:<select name="ano">
+        <?php
+        for($i=date('o'); $i>=2010; $i--){
+            if ($i == date('o'))
+                echo '<option value="'.$i.'" selected>'.$i.'</option>';
+            else
+                echo '<option value="'.$i.'">'.$i.'</option>';
+        }
+        ?>
+</select>
+</div>
+
+<div>
+  Semestre:<br>
+  <input type="radio" name="semestre" value="primersemenstre" required="">Primer Semestre <br>
+  <input type="radio" name="semestre" value="segundosemestre" required="">Segundo Semestre<br>
+    
+</div>
+  
+  <div>
+    
+
+    Seleccione piso:  <select name="piso" id="">
+        <option name="" value="piso">piso 1</option>
+        <option value="piso">piso 2</option>
+      </select>
+      
+
+  </div>
+
+  </div>
+</div>
+
+
+
+
+<div class="container-fluid">
     
          <div class="row">
-<div class="col-md-12 " style="background: #fff ;">
+
+       
+
+
+
+<div class="col-md-12 " class="center" style="background: #fff ;">
 
  	
 <div>Usuario: <?php // echo $_SESSION['login']; ?></div>
