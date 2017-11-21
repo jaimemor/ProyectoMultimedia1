@@ -1,22 +1,5 @@
 
 
-
-<?php 
- 
-  /*
-  session_start();
-  error_reporting(0);  
-  $varsesion=$_SESSION['login'];
-
-  if ($varsesion == null || $varsesion = '') { //para que la pagina tenga acceso solo quien inicio session
-    echo "acceso denegado";
-    die();
-  }
-  
-*/
-
- ?>
-
  <!DOCTYPE html>
  <html>
  <head>
@@ -31,7 +14,19 @@
 
 <div class="container-fluid">
   
-    <h1>VISTA echo=$secretaria o mayordomo Y PROFESOR(DEBE VER LAS SALAS QUE TIENE PEDIDAS)</h1>
+<div class="col-md-12 " style="background: #4682B4 ;">
+
+  
+  <div class="left">SISTEMA</div>
+
+  <div class="right"><button >login</button></div>
+
+
+
+
+</div>
+
+    
          <div class="row">
 <div class="col-md-12 " style="background: #fff ;">
 
@@ -86,12 +81,19 @@
 
 
 <?php
-  //Creamos los parametros iniciales
-  //estos podrían proceder de un formulario, sql, etc...
-  $filas = 5;
-  $columnas = 5;
-  $texto = "texto";
-  $mostrar = true;
+  
+
+
+    include "conec.php";
+
+  $sql="select * from sala ";
+  $smt=$conn->prepare($sql);
+  $smt->execute();
+  $resultado=$smt->fetchall ();
+  $conn =null;
+  $var= count ($resultado);
+ 
+  
   
   ?>                                                   
      
@@ -99,41 +101,36 @@
 
   
   
-<!-- Creamos el inicio de la tabla manualmente-->
-<table  border-color="#ffffff" border="12" class="table table-hover">
+
+<table  border-color="#ffffff" border="1" class="table table-hover">
  
  <?php
 
- //Iniciamos el bucle de las filas
- for($t=0;$t<$filas;$t++){
-  
-  echo "<tr>";
-  //Iniciamos el bucle de las columnas
-  for($y=0;$y<$columnas;$y++){
-   
-   if($mostrar){
-    //Pintamos el cuadro
-             echo "<td style=padding:10px; 
+  include "conec.php";
 
-        background-color:#000000;>".$texto."</td>";
-    //El próximo no será pintado
-    $mostrar=false;
-    $texto++;
-   }else{
-    //Dejamos cuadro en blanco
+  $sql="select * from sala ";
+  $smt=$conn->prepare($sql);
+  $smt->execute();
+  $resultado=$smt->fetchall ();
+  $conn =null;
+  $var= count ($resultado);
+ 
+
+    for ($i=0; $i < $var; $i++) { 
+      echo "<table 
+       border-color='#cccccc' border='1' >
+       <tr><th>sala<td>".$resultado[$i]['codsala']."</td></th></tr>
+       <tr><th>implemento<td>".$resultado[$i]['implemento']."</td></th></tr>
 
 
-    echo "<td style=padding:10px;>".$texto."</td>";
-    //El próximo será pintado
-    $grey=true;
-    $texto++;
+
+
+
+      </table>";
     }
-   }
-   //Cerramos columna
-   echo "</tr>";
-  }
+
+
  ?>
- <!-- Cerramos tabla -->
  </table>
 </div>
   
@@ -142,7 +139,7 @@
           <div class="col-md-1 " style="background: #fff ;"></div>
 
 
- 
+     
 
  </body>
 

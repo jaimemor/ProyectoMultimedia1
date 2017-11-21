@@ -1,18 +1,4 @@
 
-<?php 
-  //require_once "conec.php";
-  
-
- // $sql="SELECT codigo FROM piso  where ";
-  //$smt=$conn->prepare($sql);
-    //$smt->execute();
-    //$resultado= $smt->fetchall();
-    //$conn=null;
-
-  //if () {
-    //  }
-  
- ?>
   <html>
  <head>
  	<meta charset="utf-8">
@@ -64,21 +50,36 @@ IMPLEMENTOS DE SALA
 
 <div class="col-md-8 well" style="background: #fff ;">
  <?php
-  //Creamos los parametros iniciales
-  //estos podrían proceder de un formulario, sql, etc...
-  $filas = 12;
-  $columnas = 7;
-  $texto = "texto".'<br>'.'$codigosala';
-  $grey = true;
-  $codigosala="b404";
 
-  ?>                                                   
-     
+  include "conec.php";
+
+  $sql="select * from sala ";
+  $smt=$conn->prepare($sql);
+  $smt->execute();
+  $resultado=$smt->fetchall ();
+  $conn =null;
+  $var= count ($resultado);
  
 
+    for ($i=0; $i < $var; $i++) { 
+      echo "<table 
+       border-color='#cccccc' border='1' >
+       <tr><th>sala<td>".$resultado[$i]['codsala']."</td></th></tr>
+       <tr><th>implemento<td>".$resultado[$i]['implemento']."</td></th></tr>
+
+
+
+
+
+      </table>";
+    }
+
+
+ ?>
+
   
   
-<!-- Creamos el inicio de la tabla manualmente-->
+</div>
 <table border="0,5" class="table table-hover">
 
   
@@ -103,37 +104,10 @@ IMPLEMENTOS DE SALA
 </div>
  <?php
 echo "la fecha actual es " . date("d") . " del " . date("m") . " de " . date("Y");
- //Iniciamos el bucle de las filas
- for($t=0;$t<$filas;$t++){
-  
-  echo "<tr>";
-  //Iniciamos el bucle de las columnas
-  for($y=0;$y<$columnas;$y++){
-
-   if($grey){
-    //Pintamos el cuadro
-
-             echo "<td style=padding:3px; 
-
-        background-color:#000000;>".$texto."</td>";
-    //El próximo no será pintado
-    $grey=false;
-    $texto++;
-   }else{
-    //Dejamos cuadro en blanco
-
-
-    echo "<td style=padding:3px;>".$texto."</td>";
-    //El próximo será pintado
-    $grey=true;
-    $texto++;
-    }
-   }
-   //Cerramos columna
-   echo "</tr>";
-  }
+ 
+ 
  ?>
- <!-- Cerramos tabla --> 
+
  </table>
 </div>
   
