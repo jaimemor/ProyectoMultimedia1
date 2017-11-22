@@ -19,7 +19,7 @@
   
   <div class="left">SISTEMA SALAS</div>
 
-  <div class="right"><button type="button" class="btn btn-primary">Login</button></div>
+  <div class="pull-right"><button type="button" class="btn btn-primary">Login</button></div>
 </div>
 
 
@@ -40,31 +40,17 @@
 
 
 
-<div class="btn-group" style="border:0px solid #fff">
 
-  <button type="button" class="btn btn-default"><h3>inicio</h3></button>
-  <button type="button" class="btn btn-default">otro boton</button>
-  <button type="button" class="btn btn-default">solicitar sala</button>
- 
- 
-  
-
-
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle"
-          data-toggle="dropdown">
-    Título del botón <span class="caret"></span>
-  </button>
- 
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="#">Acción #1</a></li>
-    <li><a href="#">Acción #2</a></li>
-    <li><a href="#">Acción #3</a></li>
-    <li class="divider"></li>
-    <li><a href="#">Acción #4</a></li>
+<div class="container" style="width: 200px" >
+  <h2>menu</h2>
+                  
+  <ul class="nav nav-pills nav-stacked" role="tablist">
+    <li class="active"><a href="#">Inicio</a></li>
+    <li><a href=sala.php>sala</a></li>
+    <li><a href="#">CSS</a></li>
+    <li><a href="#">About</a></li>        
   </ul>
 </div>
-
 
 
 
@@ -77,8 +63,11 @@
   </div>
 
 
-        </div>
-    </div>
+      
+     </div>
+
+
+
 
 <div class="col-xs-6 col-md-8 col-lg-10 vcenter" >
         <div style="height:10em;border:10px solid #fff">
@@ -149,6 +138,15 @@
     </div>
 
 </div>
+
+
+
+
+
+
+
+
+
 
  </body>
 

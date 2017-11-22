@@ -1,39 +1,166 @@
-
-  <html>
+<!DOCTYPE html>
+ <html>
  <head>
- 	<meta charset="utf-8">
- 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
- 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <title></title>
 
 
-<div class="container-fluid">
+<div class="col-md-12 " style="background: #87CEEB ;">
 
-         <div class="row">
-<div class="col-md-6 well" style="background: #fff ;">
   
-  <div><h1>vista echo=$sala</h1></div>
-</div>
-<div class="col-md-6 well" style="background: #fff ;">
+  <div class="left">SISTEMA SALAS</div>
 
-
-<div><h1>mostrar rut de profesor o secretaria o mayordomo</h1></div>
-
-
-</div>
-
-
-</div>
+  <div class="pull-right"><button type="button" class="btn btn-primary">Login</button></div>
 </div>
 
 
 
 
+<div class="row">
 
-  <div class="container-fluid">
-  
+
+  <!--
+        botonera
+
+    -->
+    <div class="col-xs-6 col-md-4 col-lg-2 vcenter">
+        <div style="height:30em;border:10px solid #FFF">
+          
+<div><h4>ADMINISTRACION</h4></div>
+<div class="btn-group-vertical " style="border:0px solid #fff" >
+
+
+
+
+<div class="container" style="width: 200px" >
+  <h2>menu</h2>
+                  
+  <ul class="nav nav-pills nav-stacked" role="tablist">
+    <li class="active"><a href=inicio.php>Inicio</a></li>
+    <li><a href=sala.php>sala</a></li>
+    <li><a href="#">Solicitar Sala</a></li>
+    <li><a href="#">About</a></li>        
+  </ul>
+</div>
+
+</div>
+ </div>
+ </div>
+
+
+
+<!--
+       informacion que esta sobre el calendario de la sala
+
+    -->
+<div class="col-xs-6 col-md-8 col-lg-10 vcenter" >
+        <div style="height:15em;border:10px solid #fff">
+          <h1>salas</h1>
+          <div>
+ Año:<select name="ano">
+        <?php
+        for($i=date('o'); $i>=2010; $i--){
+            if ($i == date('o'))
+                echo '<option value="'.$i.'" selected>'.$i.'</option>';
+            else
+                echo '<option value="'.$i.'">'.$i.'</option>';
+        }
+        ?>
+</select></div>
+
+
+<div>
+  Semestre:<br>
+  <input type="radio" name="semestre" value="primersemenstre" required="">Primer Semestre <br>
+  <input type="radio" name="semestre" value="segundosemestre" required="">Segundo Semestre<br>
+    
+</div>
+<div>
+ <?php
+echo "la fecha actual es " . date("d") . " del " . date("m") . " de " . date("Y");
+ 
+ 
+ ?>
+
+        </div>
+        </div></div>
+
+
+<!--
+        aqui se muestran la informacion de las salas + calendario
+
+    -->
+
+
+<div class="col-xs-4 col-md-4 col-lg-10 vcenter" style="background: #F8F8FF ;">
+        <div style="height:20em;border:10px solid #fff">
+   
+         <div class="container-fluid">
     
          <div class="row">
-<div class="col-md-2 well" style="background: #fff ;">
+<div class="col-md-9 well" ;">
+<?php
+  
+    include "conec.php";
+
+  $sql="select * from sala ";
+  $smt=$conn->prepare($sql);
+  $smt->execute();
+  $resultado=$smt->fetchall ();
+  $conn =null;
+  $var= count ($resultado);
+   ?>                                                   
+     
+<table style="border:10px solid "  class="table table-hover">
+ 
+ <?php
+
+  include "conec.php";
+
+  $sql="select * from sala ";
+  $smt=$conn->prepare($sql);
+  $smt->execute();
+  $resultado=$smt->fetchall ();
+  $conn =null;
+  $var= count ($resultado);
+ 
+
+    for ($i=0; $i < $var; $i++) { 
+      echo "<table style='border:1px '  class='table table-hover'>
+
+       <tr><th>".$resultado[$i]['codsala']."</th></tr>
+       <tr><th>".$resultado[$i]['implemento']."</th></tr>
+       
+       
+
+
+
+
+
+      </table>";
+    }
+
+
+ ?>
+ </table>
+
+</div>
+
+
+<div class="col-md-3 well" style="background: #fff ;">
+
+  <div class="container-fluid">
+    
+         <div class="row">
+
+        
+
+<div class="col-md-12 well" ;">
+
+
+<div>
 IMPLEMENTOS DE SALA
 
 <tr>
@@ -43,13 +170,22 @@ IMPLEMENTOS DE SALA
 </tr>
 </div>
 
+</div>
+         </div>
+         </div>
 
+         
+<div class="container-fluid">
+    
+         <div class="row">
 
+        
 
+<div class="col-md-12 well" ;">
+  <div>
+    HACER CAJA DE COMENTARIOS
 
-
-<div class="col-md-8 well" style="background: #fff ;">
- <?php
+<?php
 
   include "conec.php";
 
@@ -64,8 +200,8 @@ IMPLEMENTOS DE SALA
     for ($i=0; $i < $var; $i++) { 
       echo "<table 
        border-color='#cccccc' border='1' >
-       <tr><th>sala<td>".$resultado[$i]['codsala']."</td></th></tr>
-       <tr><th>implemento<td>".$resultado[$i]['implemento']."</td></th></tr>
+       
+       <tr><th>COMENTARIO<td>".$resultado[$i]['implemento']."</td></th></tr>
 
 
 
@@ -78,53 +214,29 @@ IMPLEMENTOS DE SALA
  ?>
 
   
-  
-</div>
-<table border="0,5" class="table table-hover">
-
-  
-  <div>mostrar en tabla periodos de cada sala</div>
- Año:<select name="ano">
-        <?php
-        for($i=date('o'); $i>=2010; $i--){
-            if ($i == date('o'))
-                echo '<option value="'.$i.'" selected>'.$i.'</option>';
-            else
-                echo '<option value="'.$i.'">'.$i.'</option>';
-        }
-        ?>
-</select>
 </div>
 
-<div>
-  Semestre:<br>
-  <input type="radio" name="semestre" value="primersemenstre" required="">Primer Semestre <br>
-  <input type="radio" name="semestre" value="segundosemestre" required="">Segundo Semestre<br>
-    
+ </div>
+         </div>
+         </div>
+</div>---
+
+
 </div>
- <?php
-echo "la fecha actual es " . date("d") . " del " . date("m") . " de " . date("Y");
  
- 
- ?>
 
- </table>
+  
+  
 </div>
-  
-<div>mostrar informacion de encargado de sala</div>
-<div class="col-md-2 well" style="background: #fff ;">
- HACER CAJA DE COMENTARIOS
-
-<tr>
-  
-   <td>comentario de sala1</td><br>
-    <td>comentario de sala2</td><br>
-</tr>
-
 
 
 
 </div>
+</div>
+</div>
+
+
+
  </body>                                                                 
  
 <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8" async defer></script>
