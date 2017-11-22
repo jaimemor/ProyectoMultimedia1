@@ -32,7 +32,7 @@
         botonera
 
     -->
-    <div class="col-xs-6 col-md-4 col-lg-2 vcenter">
+    <div class="col-md-6 col-md-4 col-lg-2 vcenter">
         <div style="height:30em;border:10px solid #FFF">
           
 <div><h4>ADMINISTRACION</h4></div>
@@ -69,7 +69,7 @@
 
 
 
-<div class="col-xs-6 col-md-8 col-lg-10 vcenter" >
+<div class="col-md-6 col-md-8 col-lg-10 vcenter" >
         <div style="height:10em;border:10px solid #fff">
           <h1>salas</h1>
         </div>
@@ -79,7 +79,7 @@
 
     -->
 
-<div class="col-xs-6 col-md-8 col-lg-10 vcenter" style="background: #F8F8FF ;">
+<div class="col-md-6 col-md-8 col-lg-10 vcenter" style="background: #F8F8FF ;">
         <div style="height:20em;border:10px solid #fff">
    
 
@@ -95,6 +95,8 @@
   $resultado=$smt->fetchall ();
   $conn =null;
   $var= count ($resultado);
+
+ 
    ?>                                                   
      
 <table style="border:10px solid #ccc"  class="table table-hover">
@@ -103,25 +105,24 @@
 
   include "conec.php";
 
-  $sql="select * from sala ";
+  $sql="SELECT * FROM sala ";
   $smt=$conn->prepare($sql);
   $smt->execute();
   $resultado=$smt->fetchall ();
   $conn =null;
   $var= count ($resultado);
- 
+
+    $varlink="http://localhost/ProyectoMultimedia1/sala.php?codsala=". $_REQUEST['codsala'];
 
     for ($i=0; $i < $var; $i++) { 
       echo "<table style='border:1px solid #ccc'  class='table table-hover'>
 
-       <tr><th>".$resultado[$i]['codsala']."</th></tr>
+       <tr><th>" .'<a href='.$varlink.'><u>Sala </u></a>' .$resultado[$i]['codsala']."</th></tr>
        
 
-
-
-
-
       </table>";
+    
+
     }
 
 

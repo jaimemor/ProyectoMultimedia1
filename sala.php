@@ -1,3 +1,50 @@
+<?php 
+
+
+if (isset($_GET['codsala']) ) {
+    $rut = (String) $_GET['codsala'];
+
+} else {
+
+    $rut = "sala no existe";
+    echo "rut no valido";
+}
+
+if ($rut!='distintoderut') {
+
+    
+
+  try{
+
+     // $conn = new PDO('mysql:host=localhost;dbname=basededatos', $usuario, $contra);
+    require "conec.php";
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   
+      $sql = $conn->prepare('SELECT * FROM sala WHERE codsala = :codsala');
+      $sql->execute(array('codsala' => $rut));
+    $resultado = $sql->fetchAll();
+
+   
+
+      foreach ($resultado as $row) {
+
+          
+      }
+
+  }catch(PDOException $e){
+
+      echo "ERROR: " . $e->getMessage();
+
+  }
+           
+
+
+        }
+          
+?>
+
+
+
 <!DOCTYPE html>
  <html>
  <head>
@@ -25,7 +72,7 @@
         botonera
 
     -->
-    <div class="col-xs-6 col-md-4 col-lg-2 vcenter">
+    <div class="col-md-6 col-md-4 col-lg-2 vcenter">
         <div style="height:30em;border:10px solid #FFF">
           
 <div><h4>ADMINISTRACION</h4></div>
@@ -55,7 +102,7 @@
        informacion que esta sobre el calendario de la sala
 
     -->
-<div class="col-xs-6 col-md-8 col-lg-10 vcenter" >
+<div class="col-md-6 col-md-8 col-lg-10 vcenter" >
         <div style="height:15em;border:10px solid #fff">
           <h1>salas</h1>
           <div>
@@ -94,7 +141,7 @@ echo "la fecha actual es " . date("d") . " del " . date("m") . " de " . date("Y"
     -->
 
 
-<div class="col-xs-4 col-md-4 col-lg-10 vcenter" style="background: #F8F8FF ;">
+<div class="col-md-4 col-md-4 col-lg-10 vcenter" style="background: #F8F8FF ;">
         <div style="height:20em;border:10px solid #fff">
    
          <div class="container-fluid">
@@ -115,6 +162,7 @@ echo "la fecha actual es " . date("d") . " del " . date("m") . " de " . date("Y"
      
 <table style="border:10px solid "  class="table table-hover">
  
+ 
  <?php
 
   include "conec.php";
@@ -125,25 +173,42 @@ echo "la fecha actual es " . date("d") . " del " . date("m") . " de " . date("Y"
   $resultado=$smt->fetchall ();
   $conn =null;
   $var= count ($resultado);
- 
+  $lunes;
+  $martes;
+  $miercoles;
+  $jueves;
+  $viernes;
+  $sabado;
+ $semana = array("Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+
+
+   echo '<table><tr>';
+    foreach ($semana as $dia) {
+          echo "<td>$dia</td>";
+    }
+    echo '</tr></table>';
 
     for ($i=0; $i < $var; $i++) { 
+
+       
+
       echo "<table style='border:1px '  class='table table-hover'>
 
        <tr><th>".$resultado[$i]['codsala']."</th></tr>
        <tr><th>".$resultado[$i]['implemento']."</th></tr>
+       <tr><th>".$resultado[$i]['periodo']."</th></tr>
+       <tr><th>".$resultado[$i]['dia']."</th></tr>
        
-       
-
-
-
-
-
       </table>";
     }
-
+    
+   
+     
+  
 
  ?>
+
+
  </table>
 
 </div>
@@ -189,7 +254,7 @@ IMPLEMENTOS DE SALA
 
   include "conec.php";
 
-  $sql="select * from sala ";
+  $sql="SELECT * FROM sala ";
   $smt=$conn->prepare($sql);
   $smt->execute();
   $resultado=$smt->fetchall ();
@@ -202,11 +267,7 @@ IMPLEMENTOS DE SALA
        border-color='#cccccc' border='1' >
        
        <tr><th>COMENTARIO<td>".$resultado[$i]['implemento']."</td></th></tr>
-
-
-
-
-
+      
       </table>";
     }
 
@@ -236,10 +297,22 @@ IMPLEMENTOS DE SALA
 </div>
 
 
+tabla prueba
+
+
+
+
+
+
+
+
+
 
  </body>                                                                 
  
 <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8" async defer></script>
     <script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8" async defer></script>
  </html>
+
+
 

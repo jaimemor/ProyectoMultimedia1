@@ -6,7 +6,7 @@
 
     include "conec.php";
 
-  $sql="select * from ramos ";
+  $sql="select * from sala ";
   $smt=$conn->prepare($sql);
   $smt->execute();
   $resultado=$smt->fetchall ();
