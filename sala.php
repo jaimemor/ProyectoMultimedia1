@@ -76,7 +76,7 @@
 
 
 <div class="col-md-4 col-md-4 col-lg-10 vcenter" style="background: #F8F8FF ;">
-        <div style="height:20em;border:10px solid #fff">
+        <div style="height:20em">
    
          <div class="container-fluid">
     
@@ -85,24 +85,68 @@
                                                  
      
  <?php 
+  
+
+
+
+  include "conec.php";
+
+  $sql="SELECT * FROM solicitud ";
+  $smt=$conn->prepare($sql);
+  $smt->execute();
+  $resultado=$smt->fetchall ();
+  $conn =null;
+  $var= count ($resultado);
+ 
+for ($i=0; $i < $var; $i++) { 
+      echo "<table 
+       border-color='#cccccc' border='1' >
+       
+       <tr><th>COMENTARIO<td>".$resultado[$i]['profesor']."</td></th></tr>
+      
+      </table>";
+    }
+  
+for ($i=0; $i < $var; $i++) { 
+  
+
+      
+    
+ 
+
+       $var=$resultado[$i]['codsol'];
+      echo $var;
+      $var2=$resultado[$i]['codsala'];
+      $var3=$resultado[$i]['profesor'];
+      $var4=$resultado[$i]['dia'];
+      echo $var4;
+      $var5=$resultado[$i]['periodo'];
+ 
+      
+    
+
+    }
+
 
 $usuarios=array(
 
-' 1.-(08:00 -09:20)' =>array(true,false,true,false,true,true,false),
-'2.-(09:25-10:45)' =>array(false,false,true,false,true,true,false),
-'periodo 3' =>array(false,false,true,false,true,true,false),
-'periodo 4' =>array(false,false,true,false,true,true,false),
-'periodo 5' =>array(false,false,false,false,true,true,false),
-'periodo 6' =>array(false,false,true,false,false,true,false),
-'periodo 7' =>array(false,false,true,false,true,true,false),
-'periodo 8' =>array(false,true,true,false,true,true,false),
-'periodo 9' =>array(false,false,true,false,true,true,false),
-'periodo 10' =>array(true,false,true,false,true,false,false),
-'periodo 11' =>array(false,false,true,false,true,true,false),
-'periodo 12' =>array(false,false,true,false,true,true,true)
+      
+' 1.-(08:00 -09:20)' =>array('L','M','X','J','V','S','D'),
+'2.-(09:25-10:45)' =>array('L','M','X','J','V','S','D'),
+'periodo 3' =>array('L','M','X','J','V','S','D'),
+'periodo 4' =>array('L','M','X','J','V','S','D'),
+'periodo 5' =>array('L','M','X','J','V','S','D'),
+'periodo 6' =>array('L','M','X','J','V','S','D'),
+'periodo 7' =>array('L','M','X','J','V','S','D'),
+'periodo 8' =>array('L','M','X','J','V','S','D'),
+'periodo 9' =>array('L','M','X','J','V','S','D'),
+'periodo 10' =>array('L','M','X','J','V','S','D'),
+'periodo 11' =>array('L','M','X','J','V','S','D'),
+'periodo 12' =>array('L','M','X','J','V','S','D')
 
 
 );
+
 
 
     
@@ -122,6 +166,9 @@ $usuarios=array(
   </tr>
 <?php 
 
+
+
+
 foreach($usuarios as $periodo => $datos)
 {
 
@@ -130,18 +177,23 @@ echo '<td>'.$periodo.'</td>';
 
      foreach($datos as $disponible){
 
-if ($disponible==true) {
-                 $texto= "horario disponile";
+if ($disponible==$var4) {
+
+                $texto= $var.'<br>'.$var2.'<br>'.$var3.'<br>'.$var4.'<br>'.$var5;
+
+                
                   $css='color:  #58d68d ';
 
                }else {
-                $texto= "no disponible";
+                $texto= "";
                 $css='color:  #e74c3c ';
                }
 
                   echo '<th style="'.$css.'" >';
 
-          echo $texto;     
+          echo $texto;
+
+          
 
 echo '</th>';
 
@@ -150,6 +202,7 @@ echo '</th>';
 echo '</tr>';
 
 }
+
 
  ?>
 
