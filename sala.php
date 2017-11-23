@@ -1,47 +1,4 @@
-<?php 
 
-
-if (isset($_GET['codsala']) ) {
-    $rut = (String) $_GET['codsala'];
-
-} else {
-
-    $rut = "sala no existe";
-    echo "rut no valido";
-}
-
-if ($rut!='distintoderut') {
-
-    
-
-  try{
-
-     // $conn = new PDO('mysql:host=localhost;dbname=basededatos', $usuario, $contra);
-    require "conec.php";
-      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   
-      $sql = $conn->prepare('SELECT * FROM sala WHERE codsala = :codsala');
-      $sql->execute(array('codsala' => $rut));
-    $resultado = $sql->fetchAll();
-
-   
-
-      foreach ($resultado as $row) {
-
-          
-      }
-
-  }catch(PDOException $e){
-
-      echo "ERROR: " . $e->getMessage();
-
-  }
-           
-
-
-        }
-          
-?>
 
 
 
@@ -103,33 +60,10 @@ if ($rut!='distintoderut') {
 
     -->
 <div class="col-md-6 col-md-8 col-lg-10 vcenter" >
-        <div style="height:15em;border:10px solid #fff">
+        <div style="height:5em;border:10px solid #fff">
           <h1>salas</h1>
           <div>
- Año:<select name="ano">
-        <?php
-        for($i=date('o'); $i>=2010; $i--){
-            if ($i == date('o'))
-                echo '<option value="'.$i.'" selected>'.$i.'</option>';
-            else
-                echo '<option value="'.$i.'">'.$i.'</option>';
-        }
-        ?>
-</select></div>
-
-
-<div>
-  Semestre:<br>
-  <input type="radio" name="semestre" value="primersemenstre" required="">Primer Semestre <br>
-  <input type="radio" name="semestre" value="segundosemestre" required="">Segundo Semestre<br>
-    
-</div>
-<div>
- <?php
-echo "la fecha actual es " . date("d") . " del " . date("m") . " de " . date("Y");
  
- 
- ?>
 
         </div>
         </div></div>
@@ -147,70 +81,82 @@ echo "la fecha actual es " . date("d") . " del " . date("m") . " de " . date("Y"
          <div class="container-fluid">
     
          <div class="row">
-<div class="col-md-9 well" ;">
-<?php
-  
-    include "conec.php";
-
-  $sql="select * from sala ";
-  $smt=$conn->prepare($sql);
-  $smt->execute();
-  $resultado=$smt->fetchall ();
-  $conn =null;
-  $var= count ($resultado);
-   ?>                                                   
+<div class="col-md-9 " ;">
+                                                 
      
-<table style="border:10px solid "  class="table table-hover">
- 
- 
- <?php
+ <?php 
 
-  include "conec.php";
+$usuarios=array(
 
-  $sql="select * from sala ";
-  $smt=$conn->prepare($sql);
-  $smt->execute();
-  $resultado=$smt->fetchall ();
-  $conn =null;
-  $var= count ($resultado);
-  $lunes;
-  $martes;
-  $miercoles;
-  $jueves;
-  $viernes;
-  $sabado;
- $semana = array("Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+' 1.-(08:00 -09:20)' =>array(true,false,true,false,true,true,false),
+'2.-(09:25-10:45)' =>array(false,false,true,false,true,true,false),
+'periodo 3' =>array(false,false,true,false,true,true,false),
+'periodo 4' =>array(false,false,true,false,true,true,false),
+'periodo 5' =>array(false,false,false,false,true,true,false),
+'periodo 6' =>array(false,false,true,false,false,true,false),
+'periodo 7' =>array(false,false,true,false,true,true,false),
+'periodo 8' =>array(false,true,true,false,true,true,false),
+'periodo 9' =>array(false,false,true,false,true,true,false),
+'periodo 10' =>array(true,false,true,false,true,false,false),
+'periodo 11' =>array(false,false,true,false,true,true,false),
+'periodo 12' =>array(false,false,true,false,true,true,true)
 
 
-   echo '<table><tr>';
-    foreach ($semana as $dia) {
-          echo "<td>$dia</td>";
-    }
-    echo '</tr></table>';
+);
 
-    for ($i=0; $i < $var; $i++) { 
 
-       
-
-      echo "<table style='border:1px '  class='table table-hover'>
-
-       <tr><th>".$resultado[$i]['codsala']."</th></tr>
-       <tr><th>".$resultado[$i]['implemento']."</th></tr>
-       <tr><th>".$resultado[$i]['periodo']."</th></tr>
-       <tr><th>".$resultado[$i]['dia']."</th></tr>
-       
-      </table>";
-    }
     
-   
-     
-  
+ ?>
+
+ <table style="border:10px solid #ccc"  class="table table-hover">
+   <tr>
+  <th>periodo</th>
+  <th>Lunes</th>
+  <th>Martes</th>
+  <th>Miercoles</th>
+  <th>Jueves</th>
+  <th>Viernes</th>
+  <th>Sábado</th>
+  <th>Domingo</th>
+
+  </tr>
+<?php 
+
+foreach($usuarios as $periodo => $datos)
+{
+
+echo '<tr>';
+echo '<td>'.$periodo.'</td>';
+
+     foreach($datos as $disponible){
+
+if ($disponible==true) {
+                 $texto= "horario disponile";
+                  $css='color:  #58d68d ';
+
+               }else {
+                $texto= "no disponible";
+                $css='color:  #e74c3c ';
+               }
+
+                  echo '<th style="'.$css.'" >';
+
+          echo $texto;     
+
+echo '</th>';
+
+
+}
+echo '</tr>';
+
+}
 
  ?>
 
-
  </table>
-
+ 
+ 
+ 
 </div>
 
 
@@ -297,7 +243,7 @@ IMPLEMENTOS DE SALA
 </div>
 
 
-tabla prueba
+
 
 
 
