@@ -1,5 +1,31 @@
 
+<?php 
 
+
+
+
+
+  include "conec.php";
+
+  $sql="SELECT * FROM solicitud ";
+  $smt=$conn->prepare($sql);
+  $smt->execute();
+  $resultado=$smt->fetchall ();
+  $conn =null;
+  $var= count ($resultado);
+ 
+
+for ($i=0; $i < $var; $i++) { 
+  
+
+       $var3=$resultado[$i]['codsala'];
+       $var1=$resultado[$i]['CODSOL'];
+       $var2=$resultado[$i]['DIA'];
+     
+
+
+    }
+ ?>
 
 
 <!DOCTYPE html>
@@ -11,12 +37,15 @@
   <title></title>
 
 
-<div class="col-md-12 " style="background: #87CEEB ;">
+<div class="col-md-12 " style="background:     #bedddb         ;">
 
   
-  <div class="left">SISTEMA SALAS</div>
+  <div class="left" ><p class="lead"><h3>SISTEMA GESTION SALAS</h3></div>
 
-  <div class="pull-right"><button type="button" class="btn btn-primary">Login</button></div>
+  <div class="pull-right" style="background:  #e0f2f1  ;">
+<button type="button" class="btn btn-primary">Login</button>
+
+  </div>
 </div>
 
 
@@ -60,8 +89,8 @@
 
     -->
 <div class="col-md-6 col-md-8 col-lg-10 vcenter" >
-        <div style="height:5em;border:10px solid #fff">
-          <h1>salas</h1>
+        <div style="height:5em;">
+         <h3>INFORMACION SALA <?php echo $var3; ?></h3>
           <div>
  
 
@@ -75,13 +104,13 @@
     -->
 
 
-<div class="col-md-4 col-md-4 col-lg-10 vcenter" style="background: #F8F8FF ;">
+<div class="col-md-4 col-md-4 col-lg-10 vcenter" >
         <div style="height:20em">
    
          <div class="container-fluid">
     
          <div class="row">
-<div class="col-md-9 " ;">
+<div class="col-md-9 " style="background:   #e0f2f1   ;">
                                                  
      
  <?php 
@@ -98,51 +127,38 @@
   $conn =null;
   $var= count ($resultado);
  
+
 for ($i=0; $i < $var; $i++) { 
-      echo "<table 
-       border-color='#cccccc' border='1' >
+  
+
+       $var3=$resultado[$i]['codsala'];
+       $var1=$resultado[$i]['CODSOL'];
+       $var2=$resultado[$i]['DIA'];
        
-       <tr><th>COMENTARIO<td>".$resultado[$i]['profesor']."</td></th></tr>
-      
-      </table>";
-    }
-  
-for ($i=0; $i < $var; $i++) { 
-  
+     
 
-      
-    
- 
-
-       $var=$resultado[$i]['codsol'];
-      echo $var;
-      $var2=$resultado[$i]['codsala'];
-      $var3=$resultado[$i]['profesor'];
-      $var4=$resultado[$i]['dia'];
-      echo $var4;
-      $var5=$resultado[$i]['periodo'];
- 
-      
-    
 
     }
+
+
 
 
 $usuarios=array(
 
       
-' 1.-(08:00 -09:20)' =>array('L','M','X','J','V','S','D'),
-'2.-(09:25-10:45)' =>array('L','M','X','J','V','S','D'),
-'periodo 3' =>array('L','M','X','J','V','S','D'),
-'periodo 4' =>array('L','M','X','J','V','S','D'),
-'periodo 5' =>array('L','M','X','J','V','S','D'),
-'periodo 6' =>array('L','M','X','J','V','S','D'),
-'periodo 7' =>array('L','M','X','J','V','S','D'),
-'periodo 8' =>array('L','M','X','J','V','S','D'),
-'periodo 9' =>array('L','M','X','J','V','S','D'),
-'periodo 10' =>array('L','M','X','J','V','S','D'),
-'periodo 11' =>array('L','M','X','J','V','S','D'),
-'periodo 12' =>array('L','M','X','J','V','S','D')
+' 1.-(08:00 -09:20)' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
+'2.-(09:25-10:45)' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
+$periodo='09:25-10:45' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
+'periodo 4' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
+'periodo 5' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
+'periodo 6' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
+'periodo 7' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
+'periodo 8' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
+'periodo 9' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
+'periodo 10' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
+'periodo 11' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
+'periodo 12' =>array('lunes','martes','miercoles','jueves','viernes','sabado')
+
 
 
 );
@@ -152,7 +168,7 @@ $usuarios=array(
     
  ?>
 
- <table style="border:10px solid #ccc"  class="table table-hover">
+ <table style="border:10px solid #e0f2f1"  class="table table-hover">
    <tr>
   <th>periodo</th>
   <th>Lunes</th>
@@ -177,12 +193,12 @@ echo '<td>'.$periodo.'</td>';
 
      foreach($datos as $disponible){
 
-if ($disponible==$var4) {
+if ($disponible==$var2) {
 
-                $texto= $var.'<br>'.$var2.'<br>'.$var3.'<br>'.$var4.'<br>'.$var5;
+                $texto= $var3.'<br>'.$var2.'<br>'.$var1.'<br>';
 
                 
-                  $css='color:  #58d68d ';
+                  $css='color:  #000 ';
 
                }else {
                 $texto= "";
@@ -213,7 +229,7 @@ echo '</tr>';
 </div>
 
 
-<div class="col-md-3 well" style="background: #fff ;">
+<div class="col-md-3 " style="background: #fff ;">
 
   <div class="container-fluid">
     
@@ -221,16 +237,35 @@ echo '</tr>';
 
         
 
-<div class="col-md-12 well" ;">
+<div class="col-md-12 " ;" style="border:10px solid #fff" >
+<?php  
+include "conec.php";
+
+  $sql="SELECT implemento,codsala,codim FROM sala inner join implemento on 'implemento.codim'='sala.codim'";
+  $smt=$conn->prepare($sql);
+  $smt->execute();
+  $resultado=$smt->fetchall ();
+  $conn =null;
+  $var= count ($resultado);
+ 
+
+for ($i=0; $i < $var; $i++) { 
+  
+
+       $var=$resultado[$i]['implemento'];
+       
+       
+     
 
 
+    }?>
 <div>
 IMPLEMENTOS DE SALA
 
 <tr>
-  <td>echo=$implemento1=1</td>
-  <td>echo=$implemento2=0</td>
-  <td>echo=$implemento3=1</td>
+  <td><br><?php  echo $var;?></td>
+
+  
 </tr>
 </div>
 
@@ -245,7 +280,7 @@ IMPLEMENTOS DE SALA
 
         
 
-<div class="col-md-12 well" ;">
+<div class="col-md-12 " ;" style="border:10px solid #fff" >
   <div>
     HACER CAJA DE COMENTARIOS
 
@@ -263,7 +298,7 @@ IMPLEMENTOS DE SALA
 
     for ($i=0; $i < $var; $i++) { 
       echo "<table 
-       border-color='#cccccc' border='1' >
+       border-color='#e0f2f1 ' border='1' >
        
        <tr><th>COMENTARIO<td>".$resultado[$i]['implemento']."</td></th></tr>
       

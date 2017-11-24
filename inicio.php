@@ -1,5 +1,6 @@
 
 
+
  <!DOCTYPE html>
  <html>
  <head>
@@ -14,10 +15,10 @@
 
 
 
-<div class="col-md-12 " style="background: #87CEEB ;">
+<div class="col-md-12 " style="background:    #bedddb     ;"> 
 
   
-  <div class="left">SISTEMA SALAS</div>
+  <div class="left"><p class="lead"><h3>SISTEMA GESTION SALAS</h3></div>
 
   <div class="pull-right"><button type="button" class="btn btn-primary">Login</button></div>
 </div>
@@ -79,7 +80,7 @@
 
     -->
 
-<div class="col-md-6 col-md-8 col-lg-10 vcenter" style="background: #F8F8FF ;">
+<div class="col-md-6 col-md-8 col-lg-10 vcenter" style="background: #e0f2f1 ;">
         <div style="height:20em;border:10px solid #fff">
    
 
@@ -95,6 +96,7 @@
   $resultado=$smt->fetchall ();
   $conn =null;
   $var= count ($resultado);
+
 
  
    ?>                                                   
@@ -112,12 +114,12 @@
   $conn =null;
   $var= count ($resultado);
 
-    $varlink="http://localhost/ProyectoMultimedia1/sala.php?codsala=". $_REQUEST['codsala'];
+   // $varlink="http://localhost/ProyectoMultimedia1/sala.php?codsala=". $_REQUEST['codsala'];
 
     for ($i=0; $i < $var; $i++) { 
       echo "<table style='border:1px solid #ccc'  class='table table-hover'>
 
-       <tr><th>" .'<a href='.$varlink.'><u>Sala </u></a>' .$resultado[$i]['codsala']."</th></tr>
+       <tr><th>" .'<a href=#><u>Sala </u></a>' .$resultado[$i]['CODSALA']."</th></tr>
        
 
       </table>";
