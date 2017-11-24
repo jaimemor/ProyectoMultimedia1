@@ -37,7 +37,7 @@ for ($i=0; $i < $var; $i++) {
   <title></title>
 
 
-<div class="col-md-12 " style="background:     #bedddb         ;">
+<div class="col-md-12 " style="background:     #bedddb;">
 
   
   <div class="left" ><p class="lead"><h3>SISTEMA GESTION SALAS</h3></div>
@@ -61,21 +61,62 @@ for ($i=0; $i < $var; $i++) {
     <div class="col-md-6 col-md-4 col-lg-2 vcenter">
         <div style="height:30em;border:10px solid #FFF">
           
-<div><h4>ADMINISTRACION</h4></div>
+
 <div class="btn-group-vertical " style="border:0px solid #fff" >
 
 
 
 
 <div class="container" style="width: 200px" >
-  <h2>menu</h2>
-                  
+ 
+                 
+
   <ul class="nav nav-pills nav-stacked" role="tablist">
     <li class="active"><a href=inicio.php>Inicio</a></li>
-    <li><a href=sala.php>sala</a></li>
+
+    
     <li><a href="#">Solicitar Sala</a></li>
-    <li><a href="#">About</a></li>        
-  </ul>
+    <li><a href="#">seleccion de piso</a></li>
+             
+<div class="radio">
+  <label>
+    <input type="radio" name="opciones" id="opciones_1" value="opcion_1" checked>
+   <a href="">Primer Semestre </a>
+   
+  </label>
+</div>
+<div class="radio">
+  <label>
+    <input type="radio" name="opciones" id="opciones_2" value="opcion_2">
+    <a href="">Segundo Semestre </a>
+  </label>
+</div>
+
+    <li><a href="#">Generar Codigo QR</a></li>        
+    <li><a href="#">Ver Estadisticas</a></li>        
+  
+ 
+ <li><a href="#">Buscar Por Profesor</a></li> </ul>
+  <nav class="navbar navbar-light bg-faded">
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+
+  </form>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 
 </div>
@@ -177,7 +218,7 @@ $periodo='09:25-10:45' =>array('lunes','martes','miercoles','jueves','viernes','
   <th>Jueves</th>
   <th>Viernes</th>
   <th>Sábado</th>
-  <th>Domingo</th>
+ 
 
   </tr>
 <?php 
@@ -343,7 +384,22 @@ IMPLEMENTOS DE SALA
 
 
  </body>                                                                 
- 
+ <footer>
+   
+
+<div class="container-fluid">
+    
+         <div class="row">
+
+        
+
+<div class="col-md-12 " ;" style="background:#000000;">
+<div style="width: 100%; height:65px ;"></div>infomracion del footer
+</div>
+</div>
+</div>
+
+ </footer>
 <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8" async defer></script>
     <script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8" async defer></script>
  </html>

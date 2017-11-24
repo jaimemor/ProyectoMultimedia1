@@ -51,6 +51,8 @@
     <li><a href="#">CSS</a></li>
     <li><a href="#">About</a></li>        
   </ul>
+
+  
 </div>
 
 
@@ -152,6 +154,18 @@
 
 
  </body>
+
+ <div class="container-fluid">
+    
+         <div class="row">
+
+        
+
+<div class="col-md-12 " ;" style="background:#000000;">
+<div style="width: 100%; height:65px ;"></div>infomracion del footer
+</div>
+</div>
+</div>
 
  <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8" async defer></script>
 		<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8" async defer></script>
