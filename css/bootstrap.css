@@ -4,11 +4,34 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+@media [tipo-de-pantalla] [(restricción-adicional)] {
+
+    /* estilos que se aplicarán sólo para esa pantalla si cumple al restricción de tamaño*/
+
+div div { border: solid;
+              width: 30%; 
+              height: 400px;
+              margin: 1%;
+              float: left; }
+
+    @media screen and (max-width: 720px) {
+        div div { border: solid;
+                  width: 90%; 
+                  height: 400px;
+                  margin: 5%; }
+                }
+
+}
+
+
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
+
+
 body {
   margin: 0;
 }
@@ -260,6 +283,8 @@ th {
     border: 1px solid #ddd !important;
   }
 }
+
+
 @font-face {
   font-family: 'Glyphicons Halflings';
 

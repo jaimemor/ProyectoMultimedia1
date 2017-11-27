@@ -82,7 +82,7 @@ echo '</tr>';
 
 
 texto 
-
+<div>
 Año:<select name="ano">
         <?php
         for($i=date('o'); $i>=2010; $i--){

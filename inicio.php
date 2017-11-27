@@ -47,9 +47,10 @@
                   
   <ul class="nav nav-pills nav-stacked" role="tablist">
     <li class="active"><a href="#">Inicio</a></li>
+        <li><a href="#">Edificio</a></li>
+    <li><a href="#">Piso</a></li> 
     <li><a href=sala.php>sala</a></li>
-    <li><a href="#">CSS</a></li>
-    <li><a href="#">About</a></li>        
+       
   </ul>
 
   
@@ -116,15 +117,21 @@
   $conn =null;
   $var= count ($resultado);
 
+
+  
    // $varlink="http://localhost/ProyectoMultimedia1/sala.php?codsala=". $_REQUEST['codsala'];
 
     for ($i=0; $i < $var; $i++) { 
-      echo "<table style='border:1px solid #ccc'  class='table table-hover'>
-
-       <tr><th>" .'<a href=#><u>Sala </u></a>' .$resultado[$i]['CODSALA']."</th></tr>
-       
+      echo "<table class='table table-bordered' style='border:1px solid #ccc'  class='table table-hover' >
+      
+       <tr><th> 
+       <span style='cursor: pointer;' data-toggle='modal' data-target='#myModal1'>
+                    ".'<a href=#><u>Sala </u></a>'.$resultado[$i]['CODSALA']."
+        </span></td>
+</th></tr>
 
       </table>";
+
     
 
     }
