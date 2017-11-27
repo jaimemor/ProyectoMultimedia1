@@ -8,19 +8,19 @@ require 'conexion.php';
 	
 	
 
-$smt = $conn->prepare("SELECT* FROM usuario WHERE rut=".$_SESSION['usuario'] ); 
+$smt = $conn->prepare("SELECT* FROM usuario WHERE RUT=".$_SESSION['usuario'] ); 
 $smt -> execute(); 
 $resultado= $smt->fetchall();
 $conn=null;
  
 
 
-if ($_SESSION['usuario']==$resultado[0]['rut'] && $clave==$resultado[0]['clave'])
+if ($_SESSION['usuario']==$resultado[0]['RUT'] && $clave==$resultado[0]['PASS'])
  {
- 	if ($resultado[0]['tipousuario']=='profesor') {
+ 	if ($resultado[0]['TIPOUSUARIO']=='profesor') {
  		
  		header("location:profe.php");
- 	} else if ($resultado[0]['tipousuario']=='secretaria') {
+ 	} else if ($resultado[0]['TIPOUSUARIO']=='secretaria') {
  		$_SESSION['name']=$resultado[0]['nombre'];
  		header("location:secre.php");
  	} else {
@@ -30,7 +30,7 @@ if ($_SESSION['usuario']==$resultado[0]['rut'] && $clave==$resultado[0]['clave']
 
 }else{
 
- 		header("location:index.php? a=1");
+ 		header("location:login.php? a=1");
 
 
 

@@ -8,7 +8,7 @@ if($varsesion == null || $varsesion=''){
 }
 
 require 'conexion.php';
-$smt = $conn->prepare("SELECT* FROM usuario WHERE rut=".$_SESSION['usuario'] ); 
+$smt = $conn->prepare("SELECT* FROM usuario WHERE RUT=".$_SESSION['usuario'] ); 
 $smt -> execute(); 
 $resultado= $smt->fetchall();
 $conn=null;
@@ -22,7 +22,7 @@ $conn=null;
 <body>
 <h1>Vista profe</h1>
 <h2>bienvenido(a): <?php echo $resultado[0]['nombre'];?></h2>
-<h2>Rut: <?php echo $_SESSION['usuario']."-".$resultado[0]['dv']; ?></h2>
+<h2>Rut: <?php echo $_SESSION['usuario']."-".$resultado[0]['DV']; ?></h2>
 
 
 <a href="cerrar_session.php">cerrar sesion</a>

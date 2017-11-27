@@ -15,12 +15,18 @@
 
 
 
-<div class="col-md-12 " style="background:    #bedddb     ;"> 
+<div class="col-md-12 " style="background:#bedddb  ;"> 
 
   
   <div class="left"><p class="lead"><h3>SISTEMA GESTION SALAS</h3></div>
 
-  <div class="pull-right"><button type="button" class="btn btn-primary">Login</button></div>
+  <div class="pull-right">
+    <a type="button" class="btn btn-primary" href="Loginsession/login.php">LOGIN</a>
+
+  </div>
+
+
+
 </div>
 
 
