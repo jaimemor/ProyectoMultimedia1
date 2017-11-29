@@ -42,7 +42,9 @@
 
 
 
-
+   echo "<pre>";
+                        print_r($resultado);
+                      echo "</pre>";
 
 
 <?php 

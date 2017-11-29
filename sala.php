@@ -18,7 +18,7 @@
 for ($i=0; $i < $var; $i++) { 
   
 
-       $var3=$resultado[$i]['codsala'];
+       $var3=$resultado[$i]['CODSALA'];
        $var1=$resultado[$i]['CODSOL'];
        $var2=$resultado[$i]['DIA'];
      
@@ -33,10 +33,60 @@ for ($i=0; $i < $var; $i++) {
  <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  
 
- <script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8" async defer></script>
+ 
 <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8" async defer></script>
+ <script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8" async defer></script>
+
+
+ <script>
+    /******** Load jQuery if not present *********/
+    if (window.jQuery === undefined || window.jQuery.fn.jquery !== '3.1.1') {
+        console.log("jQuery LOADED");
+        var script_tag = document.createElement('script');
+        script_tag.setAttribute("type", "text/javascript");
+        script_tag.setAttribute("src", "http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js");
+
+        // Try to find the head, otherwise default to the documentElement
+        (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag);
+
+        if (script_tag.readyState) {
+            script_tag.onreadystatechange = function () { // For old versions of IE
+                if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                    console.log(window.jQuery.fn.jquery);
+                    scriptLoadHandler();
+                }
+            };
+        } else {
+            console.log("ONLOAD STATE");
+            script_tag.onload = scriptLoadHandler;
+        }
+    } else {
+        // The jQuery version on the window is the one we want to use
+        jQuery = window.jQuery;
+        main();
+    }
+
+    function scriptLoadHandler() {
+        // Restore $ and window.jQuery to their previous values and store the
+        // new jQuery in our local jQuery variable
+        jQuery = window.jQuery.noConflict(true);
+        // Call our main function
+        main();
+    }
+
+    function main() {
+        jQuery(document).ready(function ($) {
+        var bootstrap_script = document.createElement('script');
+            bootstrap_script.setAttribute("type", "text/javascript");
+            bootstrap_script.setAttribute("src",
+        "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js");
+
+            (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(bootstrap_script);
+        })
+    }
+  </script>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 
 
@@ -44,7 +94,12 @@ for ($i=0; $i < $var; $i++) {
 
 
 
-  <title></title>
+
+
+
+
+
+  <title>SISTEMA SOLICITD DE SALA</title>
 
 
 <div class="col-md-12 " style="background:#bedddb;">
@@ -52,7 +107,7 @@ for ($i=0; $i < $var; $i++) {
   
   <div class="left" ><p class="lead"><h3>SISTEMA GESTION SALAS</h3></div>
 
-  <div class="pull-right" style="background:  #e0f2f1  ;">
+  <div class="pull-right" style="background:  #2D7C79  ;">
 <button type="button" class="btn btn-primary">Login</button>
 
   </div>
@@ -85,10 +140,61 @@ for ($i=0; $i < $var; $i++) {
     <li class="active"><a href=inicio.php>Inicio</a></li>
 
     
-    <li><a href="#">Solicitar Sala</a></li>
+    
+
+<div class="container">
+  
+  <li><a data-toggle="modal" data-target="#myModal">Solicitar Sala</a></li>
+   <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>This is a small modal.</p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Enviar Comentario</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
     <li><a href="#">seleccion de piso</a></li>
+
+<button type="button" class="btn btn-" data-toggle="modal" data-target=".bd-example-modal-sm">Small modal</button>
+
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+     <button type="button" class="btn btn-default" data-dismiss="modal">Close2</button>
+    </div>
+  </div>
+</div>
+
+
+
+
              
 <div class="radio">
+
+
   <label>
     <input type="radio" name="opciones" id="opciones_1" value="opcion_1" checked>
    <a href="">Primer Semestre </a>
@@ -168,130 +274,13 @@ for ($i=0; $i < $var; $i++) {
          <div class="container-fluid">
     
          <div class="row">
-<div class="col-md-9 " style="background:   #e0f2f1 ;">
+<div class="col-md-9 " style="background:   #fff ;">
                                                  
-     
- <?php 
-  
+         
 
+<?php
 
-
-  include "conec.php";
-
-  $sql="SELECT * FROM solicitud ";
-  $smt=$conn->prepare($sql);
-  $smt->execute();
-  $resultado=$smt->fetchall ();
-  $conn =null;
-  $var= count ($resultado);
- 
-
-for ($i=0; $i < $var; $i++) { 
-  
-
-       $var3=$resultado[$i]['codsala'];
-       $var1=$resultado[$i]['CODSOL'];
-       $var2=$resultado[$i]['DIA'];
-       
-     
-
-
-    }
-
-
-
-
-$usuarios=array(
-
-      
-'08:00-09:20' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
-'09:25-10:45' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
-'09:25-10:35' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
-'10:45-12:00' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
-'12:05-13:20' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
-'13:25-14:45' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
-'14:45-16:00' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
-'16:05-17:20' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
-'17:25-18:40' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
-'18:40-19:55' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
-'19:55-21:10' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
-'21:10-22:25' =>array('lunes','martes','miercoles','jueves','viernes','sabado'),
-'22:25-23:40' =>array('lunes','martes','miercoles','jueves','viernes','sabado')
-
-
-
-
-);
-
-
-    
- ?>
-
- <table style="border:10px solid #e0f2f1"  class="table table-bordered">
-   <tr>
-  
-  
-                    <th style="width:5%">Periodo</th>
-                    <th style="width:15%"> LUNES</th>
-                    <th style="width:15%"> MARTES</th>
-                    <th style="width:15%"> MIÉRCOLES</th>
-                    <th style="width:15%"> JUEVES</th>
-                    <th style="width:15%"> VIERNES</th>
-                    <th style="width:15%"> SÁBADO</th>
- 
-
-  </tr>
-<?php 
-
-
-
-
-foreach($usuarios as $periodo => $datos)
-{
-
-echo '<tr>';
-echo '<td>'.$periodo.'</td>';
-
-     foreach($datos as $disponible){
-
-if ($disponible==$var2) {
-
-                $texto= $var3.'<br>'.$var2.'<br>'.$var1.'<br>';
-
-                
-                 // $css= ;
-
-               }else {
-                $texto= "";
-                
-               }
-
-                  echo '<th style="style="background:#ccc ; color:#3498db " style="width:5%" "';
-
-  echo $texto;
-
-
-          
-       
-
-echo '</th>';
-
-
-}
-echo '</tr>';
-
-}
-
-
- ?>
-
-
-
-
- </table>
- 
- 
-  
+include('horario.php');  ?>
 
 </div>
 
@@ -308,7 +297,7 @@ echo '</tr>';
 <?php  
 include "conec.php";
 
-  $sql="SELECT implemento,codsala,codim FROM sala inner join implemento on 'implemento.codim'='sala.codim'";
+  $sql="SELECT implemento,codsala,codim FROM sala ";
   $smt=$conn->prepare($sql);
   $smt->execute();
   $resultado=$smt->fetchall ();
@@ -359,33 +348,35 @@ for ($i=0; $i < $var; $i++) {
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
+      
+    <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
+            <label for="message-text" class="col-form-label">Ingresa Comentario</label>
             <textarea class="form-control" id="message-text"></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button type="button" class="btn btn-primary">Enviar Comentario</button>
       </div>
     </div>
   </div>
 </div>
   
 </div>
+
+
+TABLA PARA MOSTRAR COMENTARIOS
+  
+  <table>
+    
+    <tr>otor
+      <td>nombre</td>
+
+    </tr>
+  </table>
 
  </div>
          </div>

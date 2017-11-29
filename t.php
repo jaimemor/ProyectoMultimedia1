@@ -5,8 +5,9 @@
 
  $sql="SELECT * FROM solicitud where DIA=? and PERIODO=?";
   $smt=$conn->prepare($sql);
-  $smt->bindParam(1,$DIA);
-  $smt->bindParam(2,$PERIODO);
+  
+  $smt->bindParam(1,$PERIODO);
+  $smt->bindParam(2,$DIA);
   $smt->execute();
   $resultado=$smt->fetchall ();
   $conn =null;
@@ -22,58 +23,71 @@
 
 $datos=array();
 
-for ($i=0; $i < 6; $i++) { 
-  
-  $datos['periodo1'][$i]=selecdia(1,$i+1);
-}
-for ($i=0; $i < 6; $i++) { 
-  
-  $datos['periodo2'][$i]=selecdia('2',$i+1);
-}
-for ($i=0; $i < 6; $i++) { 
-  
-  $datos['3'][$i]=selecdia('3',$i+1);
-}
-for ($i=0; $i < 6; $i++) { 
-  
-  $datos['4'][$i]=selecdia('4',$i+1);
-}
-for ($i=0; $i < 6; $i++) { 
-  
-  $datos['5'][$i]=selecdia('5',$i+1);
-}
 
 
-for ($i=0; $i < 13; $i++) { 
+for ($i=0; $i < 7; $i++) { 
   
-  $datos['lunes'][$i]=selecdia('lunes',$i+1);
+  $datos['PERIODO1'][$i]=selecdia(1,$i+1);
 }
 
-for ($i=0; $i < 13; $i++) { 
+for ($i=0; $i < 7; $i++) { 
   
-  $datos['martes'][$i]=selecdia('martes',$i+1);
+  $datos['PERIODO2'][$i]=selecdia(2,$i+1);
 }
 
-for ($i=0; $i < 13; $i++) { 
+for ($i=0; $i < 7; $i++) { 
   
-  $datos['miercoles'][$i]=selecdia('miercoles',$i+1);
+  $datos['PERIODO3'][$i]=selecdia(3,$i+1);
 }
 
-for ($i=0; $i < 13; $i++) { 
+for ($i=0; $i < 7; $i++) { 
   
-  $datos['jueves'][$i]=selecdia('jueves',$i+1);
+  $datos['PERIODO4'][$i]=selecdia(4,$i+1);
 }
 
-for ($i=0; $i < 13; $i++) { 
+for ($i=0; $i < 7; $i++) { 
   
-  $datos['viernes'][$i]=selecdia('viernes',$i+1);
+  $datos['PERIODO5'][$i]=selecdia(5,$i+1);
 }
 
-for ($i=0; $i < 13; $i++) { 
+for ($i=0; $i < 7; $i++) { 
   
-  $datos['sabado'][$i]=selecdia('sabado',$i+1);
+  $datos['PERIODO6'][$i]=selecdia(6,$i+1);
 }
 
+for ($i=0; $i < 7; $i++) { 
+  
+  $datos['PERIODO7'][$i]=selecdia(7,$i+1);
+}
+
+for ($i=0; $i < 7; $i++) { 
+  
+  $datos['PERIODO8'][$i]=selecdia(8,$i+1);
+}
+
+for ($i=0; $i < 7; $i++) { 
+  
+  $datos['PERIODO9'][$i]=selecdia(9,$i+1);
+}
+
+for ($i=0; $i < 7; $i++) { 
+  
+  $datos['PERIODO10'][$i]=selecdia(10,$i+1);
+}
+for ($i=0; $i < 7; $i++) { 
+  
+  $datos['PERIODO11'][$i]=selecdia(11,$i+1);
+}
+
+for ($i=0; $i < 7; $i++) { 
+  
+  $datos['PERIODO12'][$i]=selecdia(12,$i+1);
+}
+
+for ($i=0; $i < 7; $i++) { 
+  
+  $datos['PERIODO13'][$i]=selecdia(13,$i+1);
+}
 
 /*foreach ($datos['lunes'] as $key => $value) {
   if (!empty($value)) {
@@ -106,27 +120,20 @@ echo "</pre>";
 
     <table class="table table-bordered" border="1" >
             
-             <th style="width:5%">PERIODO</th>
-                    <th style="width:15%"> 08:00-09:20</th>
-                    <th style="width:15%"> 09:20 10:35</th>
-                    <th style="width:15%"> 10:45 12:05</th>
-                    <th style="width:15%">  12:05 13:20</th>
-                    <th style="width:15%"> 13:25 14:40</th>
-                    <th style="width:15%"> 14:45 16:00</th>
-                    <th style="width:15%"> 16:05 17:20</th>
-                    <th style="width:15%"> 17:25 18:40</th>
-                    <th style="width:15%"> 18:40 19:55</th>
-                    <th style="width:15%"> 19:55 21:10</th>
-                    <th style="width:15%"> 21:10 22:25</th>
-                    <th style="width:15%"> 22:25 23:40</th>
+                   
+                    <th style="width:15%"> PERIODO</th>
+                    <th style="width:15%"> LUNES</th>
+                    <th style="width:15%"> MARTES</th>
+                    <th style="width:15%"> MIÉRCOLES</th>
+                    <th style="width:15%"> JUEVES</th>
+                    <th style="width:15%"> VIERNES</th>
+                    <th style="width:15%"> SÁBADO</th>
 
 
-
-            <tr>
 
             <?php foreach ($datos as $key => $value): ?>
                                 
-                                <tr>
+                                <tr >
                             <?php foreach ($value as $key => $periodo): ?>
 
                              <td class="text-center"> 
@@ -138,13 +145,25 @@ echo "</pre>";
                               echo $periodo[0]['CODSOL'];
                                         } ?>
                                 </td>
-
+                           
                             <?php endforeach ?>
 
                             </tr>
 
                         <?php endforeach ?>
-</tr>
+
 
         </table>
 
+'08:00-09:20' 
+'09:25-10:35' 
+'10:45-12:00' 
+'12:05-13:20' 
+'13:25-14:45' 
+'14:45-16:00' 
+'16:05-17:20' 
+'17:25-18:40' 
+'18:40-19:55'
+'19:55-21:10' 
+'21:10-22:25'
+'22:25-23:40' 
