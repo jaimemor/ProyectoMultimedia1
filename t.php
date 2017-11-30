@@ -57,36 +57,36 @@ for ($i=0; $i < 7; $i++) {
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO7'][$i]=selecdia(7,$i+1);
+  $datos['PERIODO7'][$i]=selecdia(7,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO8'][$i]=selecdia(8,$i+1);
+  $datos['PERIODO8'][$i]=selecdia(8,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO9'][$i]=selecdia(9,$i+1);
+  $datos['PERIODO9'][$i]=selecdia(9,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO10'][$i]=selecdia(10,$i+1);
+  $datos['PERIODO10'][$i]=selecdia(10,$i);
 }
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO11'][$i]=selecdia(11,$i+1);
-}
-
-for ($i=0; $i < 7; $i++) { 
-  
-  $datos['PERIODO12'][$i]=selecdia(12,$i+1);
+  $datos['PERIODO11'][$i]=selecdia(11,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO13'][$i]=selecdia(13,$i+1);
+  $datos['PERIODO12'][$i]=selecdia(12,$i);
+}
+
+for ($i=0; $i < 7; $i++) { 
+  
+  $datos['PERIODO13'][$i]=selecdia(13,$i);
 }
 
  ?>

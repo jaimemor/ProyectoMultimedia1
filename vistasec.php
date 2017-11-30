@@ -229,7 +229,40 @@
   <div>
     <h4 style="color: #000;">COMENTARIOS</h4>
     
- 
+<?php 
+
+    
+
+  try{
+
+     // $conn = new PDO('mysql:host=localhost;dbname=basededatos', $usuario, $contra);
+    require "conec.php";
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   
+      $sql = $conn->prepare('SELECT * FROM COMENTARIO WHERE CODSALA ="B404"');
+      $sql->execute();
+    $resultado = $sql->fetchAll();
+
+   
+
+      foreach ($resultado as $row) {
+
+         
+      }
+
+  }catch(PDOException $e){
+
+      echo "ERROR: " . $e->getMessage();
+
+  }
+           
+
+
+        
+          
+?>
+
+
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Ingresar nuevo comentario</button>
 
 
@@ -255,13 +288,10 @@
   
 </div>
 
-
-TABLA PARA MOSTRAR COMENTARIOS
   
   <table>
-    
-    <tr>otor
-      <td>nombre</td>
+    <br>
+   <?php  echo $row["COMENTARIO"] ; ?>
 
     </tr>
   </table>
