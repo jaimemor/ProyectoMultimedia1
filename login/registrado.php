@@ -1,10 +1,5 @@
 <?php 
 
-
-
-
-
-
 function GuardarFormu($rutt,$nombree,$correoo,$clavee)
 {
     require 'conexion.php';

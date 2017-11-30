@@ -1,4 +1,4 @@
- <?php 
+<?php 
 
   function selecdia ($DIA,$PERIODO){
  include "conec.php";
@@ -27,68 +27,67 @@ $datos=array();
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO1'][$i]=selecdia(1,$i+1);
+  $datos['PERIODO1'][$i]=selecdia(1,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO2'][$i]=selecdia(2,$i+1);
+  $datos['PERIODO2'][$i]=selecdia(2,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO3'][$i]=selecdia(3,$i+1);
+  $datos['PERIODO3'][$i]=selecdia(3,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO4'][$i]=selecdia(4,$i+1);
+  $datos['PERIODO4'][$i]=selecdia(4,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO5'][$i]=selecdia(5,$i+1);
+  $datos['PERIODO5'][$i]=selecdia(5,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO6'][$i]=selecdia(6,$i+1);
+  $datos['PERIODO6'][$i]=selecdia(6,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO7'][$i]=selecdia(7,$i+1);
+  $datos['PERIODO7'][$i]=selecdia(7,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO8'][$i]=selecdia(8,$i+1);
+  $datos['PERIODO8'][$i]=selecdia(8,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO9'][$i]=selecdia(9,$i+1);
+  $datos['PERIODO9'][$i]=selecdia(9,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO10'][$i]=selecdia(10,$i+1);
+  $datos['PERIODO10'][$i]=selecdia(10,$i);
 }
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO11'][$i]=selecdia(11,$i+1);
+  $datos['PERIODO11'][$i]=selecdia(11,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO12'][$i]=selecdia(12,$i+1);
+  $datos['PERIODO12'][$i]=selecdia(12,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO13'][$i]=selecdia(13,$i+1);
+  $datos['PERIODO13'][$i]=selecdia(13,$i);
 }
-
 
  ?>
 
@@ -107,40 +106,4 @@ for ($i=0; $i < 7; $i++) {
 
 
 
-    <table class="table table-bordered" border="1" >
-            
-                   
-                    <th style="width:15%"> PERIODO</th>
-                    <th style="width:15%"> LUNES</th>
-                    <th style="width:15%"> MARTES</th>
-                    <th style="width:15%"> MIÉRCOLES</th>
-                    <th style="width:15%"> JUEVES</th>
-                    <th style="width:15%"> VIERNES</th>
-                    <th style="width:15%"> SÁBADO</th>
-
-
-
-            <?php foreach ($datos as $key => $value): ?>
-                                
-                                <tr >
-                            <?php foreach ($value as $key => $periodo): ?>
-
-                             <td class="text-center"> 
-
-                                        <?php if (!empty($periodo)) {
-                                            
-                              echo $periodo[0]['RUT'].'<br>';
-
-                              echo $periodo[0]['CODSOL'];
-                                        } ?>
-                                </td>
-                           
-                            <?php endforeach ?>
-
-                            </tr>
-
-                        <?php endforeach ?>
-
-
-        </table>
-
+   

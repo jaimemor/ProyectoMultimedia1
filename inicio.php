@@ -55,7 +55,7 @@
     <li class="active"><a href="#">Inicio</a></li>
         <li><a href="#">Edificio</a></li>
     <li><a href="#">Piso</a></li> 
-    <li><a href=sala.php>sala</a></li>
+    <li><a href=vistasec.php>sala</a></li>
        
   </ul>
 
@@ -95,28 +95,13 @@
 
  	
 
-<?php
-  
-    include "conec.php";
-
-  $sql="select * from sala ";
-  $smt=$conn->prepare($sql);
-  $smt->execute();
-  $resultado=$smt->fetchall ();
-  $conn =null;
-  $var= count ($resultado);
-
-
- 
-   ?>                                                   
-     
 <table style="border:10px solid #ccc"  class="table table-hover">
  
  <?php
 
   include "conec.php";
 
-  $sql="SELECT * FROM sala ";
+  $sql="SELECT * FROM PISO  ";
   $smt=$conn->prepare($sql);
   $smt->execute();
   $resultado=$smt->fetchall ();
@@ -125,20 +110,20 @@
 
 
   
-   // $varlink="http://localhost/ProyectoMultimedia1/sala.php?codsala=". $_REQUEST['codsala'];
+    
 
     for ($i=0; $i < $var; $i++) { 
       echo "<table class='table table-bordered' style='border:1px solid #ccc'  class='table table-hover' >
       
        <tr><th> 
        <span style='cursor: pointer;' data-toggle='modal' data-target='#myModal1'>
-                    ".'<a href=#><u>Sala </u></a>'.$resultado[$i]['CODSALA']."
+                    ".'<a href=http://localhost/ProyectoMultimedia1/vistasec.php?codsala=><u>Sala </u></a>'.$resultado[$i]['CODSALA']."
         </span></td>
 </th></tr>
 
       </table>";
 
-    
+    $varlink="http://localhost/ProyectoMultimedia1/vistasec.php?codsala=CODSALA";
 
     }
 

@@ -27,32 +27,32 @@ $datos=array();
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO1'][$i]=selecdia(1,$i+1);
+  $datos['PERIODO1'][$i]=selecdia(1,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO2'][$i]=selecdia(2,$i+1);
+  $datos['PERIODO2'][$i]=selecdia(2,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO3'][$i]=selecdia(3,$i+1);
+  $datos['PERIODO3'][$i]=selecdia(3,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO4'][$i]=selecdia(4,$i+1);
+  $datos['PERIODO4'][$i]=selecdia(4,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO5'][$i]=selecdia(5,$i+1);
+  $datos['PERIODO5'][$i]=selecdia(5,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
   
-  $datos['PERIODO6'][$i]=selecdia(6,$i+1);
+  $datos['PERIODO6'][$i]=selecdia(6,$i);
 }
 
 for ($i=0; $i < 7; $i++) { 
@@ -88,18 +88,6 @@ for ($i=0; $i < 7; $i++) {
   
   $datos['PERIODO13'][$i]=selecdia(13,$i+1);
 }
-
-/*foreach ($datos['lunes'] as $key => $value) {
-  if (!empty($value)) {
-    echo $value[0]['RUT'];
-    echo '<br>';
-  }
-}*/
-
-
-echo "<pre>";
-print_r($datos);
-echo "</pre>";
 
  ?>
 
@@ -155,15 +143,3 @@ echo "</pre>";
 
         </table>
 
-'08:00-09:20' 
-'09:25-10:35' 
-'10:45-12:00' 
-'12:05-13:20' 
-'13:25-14:45' 
-'14:45-16:00' 
-'16:05-17:20' 
-'17:25-18:40' 
-'18:40-19:55'
-'19:55-21:10' 
-'21:10-22:25'
-'22:25-23:40' 
