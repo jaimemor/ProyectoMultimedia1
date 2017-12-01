@@ -1,9 +1,13 @@
  <?php 
 
-  function selecdia ($DIA,$PERIODO){
+   function selecdia ($DIA,$PERIODO){
  include "conec.php";
 
- $sql="SELECT * FROM solicitud where DIA=? and PERIODO=?";
+ $sql='SELECT NOMBRE,DIA,PERIODO,RAMO,SOL.CODSALA
+ FROM USUARIO U JOIN SOLICITUD SOL ON U.RUT=U.RUT
+  LEFT JOIN SALA S ON S.CODSALA=SOL.CODSALA
+AND DIA=? AND PERIODO=?
+ WHERE S.CODSALA="B404";';
   $smt=$conn->prepare($sql);
   
   $smt->bindParam(1,$PERIODO);
@@ -23,7 +27,11 @@
 
 $datos=array();
 
-
+for ($i=0; $i < 13; $i++) { 
+  
+  $datos[$i]['DIA']='8000';
+  
+}
 
 for ($i=0; $i < 7; $i++) { 
   
@@ -124,14 +132,23 @@ for ($i=0; $i < 7; $i++) {
                                 <tr >
                             <?php foreach ($value as $key => $periodo): ?>
 
-                             <td class="text-center"> 
+                             <td class="text-center" WIDTH="50" HEIGHT="50"> 
 
                                         <?php if (!empty($periodo)) {
                                             
-                              echo $periodo[0]['RUT'].'<br>';
+                              echo $periodo[0]['NOMBRE'].'<br>';
 
-                              echo $periodo[0]['CODSOL'];
-                                        } ?>
+                              echo $periodo[0]['RAMO'];
+                                        }else {
+
+                                          echo "
+                                                <p class='text-success'>Disponible</p>
+                                          " ;
+                                        }
+
+
+
+                                        ?>
                                 </td>
                            
                             <?php endforeach ?>

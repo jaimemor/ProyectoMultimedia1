@@ -14,15 +14,18 @@
 <?php include('horario.php');  ?>
 
 
-  <title></title>
+  <title>SISTEMA SOLICITD DE SALA</title>
 
 
-<div class="col-md-12 " HEIGHT="50" style="background:#103C70;" >
-
-  
-  <div class="left" ><font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
+<div class="col-md-12 " style="background:#bedddb;">
 
   
+  <div class="left" ><p class="lead"><h3>SISTEMA GESTION SALAS</h3></div>
+
+  <div class="pull-right" style="background:  #2D7C79  ;">
+<button type="button" class="btn btn-primary">Login</button>
+
+  </div>
 </div>
 
 
@@ -36,7 +39,7 @@
 
     -->
     <div class="col-md-6 col-md-4 col-lg-2 vcenter">
-        <div style="height:30em;border:5px solid #FFF">
+        <div style="height:30em;border:10px solid #FFF">
           
 
 <div class="btn-group-vertical " style="border:0px solid #fff" >
@@ -52,10 +55,7 @@
     <li class="active"><a href=inicio.php>Inicio</a></li>
 
     
-    
-
-   <li><a href="solicitud.php">Solicitar sala</a></li>
-
+  
          
 <div class="radio">
 
@@ -73,13 +73,7 @@
   </label>
 </div>
 
-    <li><a href="#">Generar Codigo QR</a></li>        
-    <li><a href="#">Ver Estadisticas</a></li>        
-  
- 
- 
-
-
+   
   </form>
 </nav>
 
@@ -106,14 +100,12 @@
        informacion que esta sobre el calendario de la sala
 
     -->
-<div class="col-md-4 col-md-4 col-lg-5 vcenter" >
+<div class="col-md-6 col-md-8 col-lg-10 vcenter" >
         <div style="height:7em;">
          
-         <h4 ><p class="text-primary">EDIFICIO<?php ?> 
-<h4 ><p class="text-primary">PISO<?php  ?></p></h4></p></h4> <h4 ><p class="text-primary">SALA<?php ?></p></h4>
-          
-         
-        
+         <h3>SALA <?php  ?></h3><h4><?php  ?></h4>
+         <h4><?php    
+        echo date("Y");?></h4>
 
           <div>
  
@@ -132,7 +124,7 @@
     -->
 
 
-<div class="col-md-4 col-md-4 col-lg-10 vcenter" style="border:5px solid #fff">
+<div class="col-md-4 col-md-4 col-lg-10 vcenter" style="border:10px solid #fff">
         <div style="height:20em">
    
          <div class="container-fluid">
@@ -199,50 +191,17 @@
 
         
 
-<div class="col-md-12 " ;" style="border:5px solid #fff" >
+<div class="col-md-12 " ;" style="border:10px solid #fff" >
 
 <div>
-  <h4 ><p class="text-primary">IMPLEMENTOS</p></h4> 
-  <?php
+  <h4 style="color: #000;">IMPLEMENTOS DE SALA</h4> 
 
-  include "conec.php";
-
-  $sql=( 'SELECT FECHACOM,HORA,COMENTARIO,ESTADO,CANTIDAD,TIPOIMPLE,S.CODSALA
-        FROM COMENTARIO C LEFT JOIN SALA S
- ON S.CODSALA=C.CODSALA INNER JOIN IMPLEMENTO I ON I.CODSALA=S.CODSALA
- WHERE S.CODSALA="B404";');
-  $smt=$conn->prepare($sql);
-  $smt->execute();
-  $resultado=$smt->fetchall ();
-  $conn =null;
-  $var= count ($resultado);
-
-
- ?>
-<table class="table table-bordered" border="0,5">
-  <th>Implemento</th>
-  <th>Cantidad</th>
-  <th>Estado</th>
-  <tr>
-    <?php 
-
-  for ($i=0; $i < $var; $i++) { 
-
-    
-      echo $resultado[$i]['TIPOIMPLE'];
-       echo $resultado[$i]['CANTIDAD'];
-        echo $resultado[$i]['ESTADO'];
-
-
+<?php  
+   echo $row["TIPOIMPLE"].'<br>';
+   echo $row["ESTADO"].'<br>' ;
+   echo $row["CANTIDAD"] ;
    
-
-    }
-     ?>
-    
-   
-  </tr>
-</table>
-
+    ?>
 
 </div>
 
@@ -261,52 +220,22 @@
 
         
 
-<div class="col-md-12 " ;" style="border:5px solid #fff" >
+<div class="col-md-12 " ;" style="border:10px solid #fff" >
   <div>
+    <h4 style="color: #000;">COMENTARIOS</h4>
     
-    <h4><p class="text-primary">COMENTARIOS</p></h4>
-    
 
 
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Ingresar nuevo comentario</button>
-
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      
-    <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Ingresa Comentario</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Enviar Comentario</button>
-      </div>
-    </div>
-  </div>
-</div>
-  
 </div>
 
   
   <table>
     <br>
    <?php  
-
-
-  for ($i=0; $i < $var; $i++) { 
-       echo $row["COMENTARIO"].'<br>';
+   echo $row["COMENTARIO"].'<br>';
    echo $row["FECHACOM"].'<br>' ;
    echo $row["HORA"] ;
-
- }
-  
    
     ?>
 

@@ -6,23 +6,18 @@ try{
     require "conec.php";
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    
-      $sql = $conn->prepare(' SELECT DIA,RAMO,U.NOMBRE,PERIODO,SOL.CODSALA,NOMBREED,
+      $sql = $conn->prepare('SELECT DIA,RAMO,PERIODO,SOL.CODSALA,E.NOMBREED,S.CODSALA
  FROM SOLICITUD SOL  LEFT JOIN  SALA S ON S.CODSALA=SOL.CODSALA
    JOIN PISO P ON S.CODSALA=P.CODSALA  JOIN EDIFICIO E ON E.CODED=P.CODED
  WHERE S.CODSALA="A406";');
       $sql->execute();
     $resultado = $sql->fetchAll();
-
+$var= count ($resultado);
    
 
       foreach ($resultado as $row) {
 
-          echo $row["DIA"] ;
-          echo $row["RAMO"] ;
-         
-          echo $row["PERIODO"] ;
-          echo $row["CODSALA"] ;
-          echo $row["NOMBREED"] ;
+          
          
       }
 
@@ -44,9 +39,9 @@ try{
     require "conec.php";
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    
-      $sql = $conn->prepare(' SELECT FECHACOM,HORA,COMENTARIO,ESTADO,CANTIDAD,TIPOIMPLE 
+      $sql = $conn->prepare(' SELECT FECHACOM,HORA,COMENTARIO,ESTADO,CANTIDAD,TIPOIMPLE,S.CODSALA
         FROM COMENTARIO C LEFT JOIN SALA S
- ON S.CODSALA=C.CODSALA INNER JOIN IMPLEMENTO ON C.CODSALA=S.CODSALA
+ ON S.CODSALA=C.CODSALA INNER JOIN IMPLEMENTO I ON I.CODSALA=S.CODSALA
  WHERE S.CODSALA="B404";');
       $sql->execute();
     $resultado = $sql->fetchAll();
@@ -55,6 +50,7 @@ try{
 
       foreach ($resultado as $row) {
 
+   
          
       }
 
@@ -79,8 +75,8 @@ try{
  include "conec.php";
 
  $sql='SELECT NOMBRE,DIA,PERIODO,RAMO,SOL.CODSALA
- FROM USUARIO U JOIN
-      SOLICITUD SOL ON U.RUT=U.RUT LEFT JOIN SALA S ON S.CODSALA=SOL.CODSALA
+ FROM USUARIO U JOIN SOLICITUD SOL ON U.RUT=U.RUT
+  LEFT JOIN SALA S ON S.CODSALA=SOL.CODSALA
 AND DIA=? AND PERIODO=?
  WHERE S.CODSALA="B404";';
   $smt=$conn->prepare($sql);

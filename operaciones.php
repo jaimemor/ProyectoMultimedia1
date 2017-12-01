@@ -1,9 +1,8 @@
  <?php
-          $nombre = $_REQUEST['nombre'];
+      $nombre = $_REQUEST['nombre'];
 			$rut = $_REQUEST['rut'];
 			$sala = $_REQUEST['sala'];
-    
-        $ramo = $_REQUEST['ramo'];
+      $ramo = $_REQUEST['ramo'];
         $semestre = $_REQUEST['semestre'];
         $periodo = $_REQUEST['periodo'];
 			$dia = $_REQUEST['dia'];

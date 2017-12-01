@@ -1,3 +1,57 @@
+ <?php
+
+  include "conec.php";
+
+  $sql="SELECT * FROM PISO  ";
+  $smt=$conn->prepare($sql);
+  $smt->execute();
+  $resultado=$smt->fetchall ();
+  $conn =null;
+  $var= count ($resultado);
+
+
+  echo "<pre>";
+print_r($resultado);
+echo "</pre>";
+
+
+
+
+
+
+    
+    ?>
+
+
+  <?php foreach ($resultado as $key => $value): ?>
+                                
+                                <tr>
+                            <?php foreach ($value as $key => $periodo): ?>
+
+                             <td class="text-center"> 
+
+                                        <?php if (!empty($periodo)) {
+                                            
+                              echo $periodo[0]['CODPISO'].'<br>';
+
+                              echo $periodo[0]['CODED'];
+                                        } ?>
+                                </td>
+
+                            <?php endforeach ?>
+
+                            </tr>
+
+                        <?php endforeach ?>
+
+
+
+
+
+
+
+
+
  <?php 
 
   function selecdia ($DIA,$PERIODO){
