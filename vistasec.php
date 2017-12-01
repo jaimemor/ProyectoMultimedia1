@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
  <html>
  <head>
@@ -10,8 +11,7 @@
  <?php  include('vista3.php'); ?>
 
 
-
-
+<?php include('horario.php');  ?>
 
 
   <title>SISTEMA SOLICITD DE SALA</title>
@@ -121,8 +121,9 @@
 <div class="col-md-6 col-md-8 col-lg-10 vcenter" >
         <div style="height:7em;">
          
-         <h3>SALA <?php echo 'CODSALA'; ?></h3><h4>Edificio Facultad</h4>
-         <h4>Año 2017</h4>
+         <h3>SALA <?php  ?></h3><h4><?php  ?></h4>
+         <h4><?php    
+        echo date("Y");?></h4>
 
           <div>
  
@@ -151,7 +152,7 @@
                                                  
          
 
-<?php include('horario.php');  ?>
+
 
  <table class="table table-bordered" border="1" >
             
@@ -175,9 +176,9 @@
 
                                         <?php if (!empty($periodo)) {
                                             
-                              echo $periodo[0]['RUT'].'<br>';
+                              echo $periodo[0]['NOMBRE'].'<br>';
 
-                              echo $periodo[0]['CODSOL'];
+                              echo $periodo[0]['RAMO'];
                                         } ?>
                                 </td>
                            
@@ -206,7 +207,12 @@
 <div>
   <h4 style="color: #000;">IMPLEMENTOS DE SALA</h4> 
 
-
+<?php  
+   echo $row["TIPOIMPLE"].'<br>';
+   echo $row["ESTADO"].'<br>' ;
+   echo $row["CANTIDAD"] ;
+   
+    ?>
 
 </div>
 
@@ -229,38 +235,7 @@
   <div>
     <h4 style="color: #000;">COMENTARIOS</h4>
     
-<?php 
 
-    
-
-  try{
-
-     // $conn = new PDO('mysql:host=localhost;dbname=basededatos', $usuario, $contra);
-    require "conec.php";
-      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   
-      $sql = $conn->prepare('SELECT * FROM COMENTARIO WHERE CODSALA ="B404"');
-      $sql->execute();
-    $resultado = $sql->fetchAll();
-
-   
-
-      foreach ($resultado as $row) {
-
-         
-      }
-
-  }catch(PDOException $e){
-
-      echo "ERROR: " . $e->getMessage();
-
-  }
-           
-
-
-        
-          
-?>
 
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Ingresar nuevo comentario</button>
@@ -291,7 +266,13 @@
   
   <table>
     <br>
-   <?php  echo $row["COMENTARIO"] ; ?>
+   <?php  
+   echo $row["COMENTARIO"].'<br>';
+   echo $row["FECHACOM"].'<br>' ;
+   echo $row["HORA"] ;
+   
+    ?>
+
 
     </tr>
   </table>
