@@ -2,9 +2,8 @@
 
   $facultad = $_REQUEST['nombre'];
       $piso = $_REQUEST['piso'];
-echo $facultad;
-echo $piso;
 
+      
 
 require "conec.php";
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -170,8 +169,8 @@ foreach ($resultado as $row) {
 
 <div class="col-md-6 col-md-8 col-lg-10 vcenter" >
         <div style="height:10em;border:10px solid #fff">
-          <h1>Edificio <?php echo $row['NOMBREED'];?></h1>
-          <h1>Piso <?php echo $row['NOMBREP']; ?></h1>
+          <h1>Edificio <?php echo $facultad;?></h1>
+          <h1>Piso <?php echo $piso; ?></h1>
          
         </div>
         </div>

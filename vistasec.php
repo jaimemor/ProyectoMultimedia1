@@ -85,15 +85,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
 </div>
 
 </div>
@@ -138,16 +129,72 @@
          <div class="container-fluid">
     
          <div class="row">
-<div class="col-md-9 " style="background:   #fff ;">
+
+          <div class="col-md-1 " style="background:   #fff ;">
+<table class='table table-border'  border="0.5" >
+
+            <th style="width:15%">periodo</th>
+            <tr>
+              <th class="text-center" WIDTH="50" HEIGHT="50">08:00<br>9:20</th>
+              
+              
+           </tr><tr>
+              <th class="text-center" WIDTH="50" HEIGHT="50">09:20<br>10:35</th>
+              
+              
+           </tr><tr>
+              <th class="text-center" WIDTH="50" HEIGHT="50">10:45<br>12:05</th>
+              
+              
+           </tr><tr>
+              <th class="text-center" WIDTH="50" HEIGHT="50">12:05<br>13:20</th>
+              
+              
+           </tr><tr>
+              <th class="text-center" WIDTH="50" HEIGHT="50">13:25<br>14:40</th>
+              
+              
+           </tr><tr>
+              <th class="text-center" WIDTH="50" HEIGHT="50">14:45<br>16:00</th>
+              
+              
+           </tr><tr>
+              <th class="text-center" WIDTH="50" HEIGHT="50">16:05<br>17:20</th>
+              
+              
+           </tr><tr>
+              <th class="text-center" WIDTH="50" HEIGHT="50">17:25<br>18:40</th>
+              
+              
+           </tr><tr>
+              <th class="text-center" WIDTH="50" HEIGHT="50">18:40<br>19:55</th>
+              
+              
+           </tr><tr>
+              <th class="text-center" WIDTH="50" HEIGHT="50">19:55<br>21:10</th>
+              
+              
+           </tr><tr>
+              <th class="text-center" WIDTH="50" HEIGHT="50">21:10<br>22:25</th>
+              
+              
+           </tr><tr>
+              <th class="text-center" WIDTH="50" HEIGHT="50">22:25<br>23:40</th>
+              
+              
+           </tr>
+          
+          </table>
+          </div>
+<div class="col-md-8 " style="background:   #fff ;">
                                                  
          
-
-
 
  <table class="table table-bordered" border="1" >
             
                    
-                    <th style="width:15%"> PERIODO</th>
+                    
+                    
                     <th style="width:15%"> LUNES</th>
                     <th style="width:15%"> MARTES</th>
                     <th style="width:15%"> MIÉRCOLES</th>
@@ -161,7 +208,7 @@
                                 <tr >
                             <?php foreach ($value as $key => $periodo): ?>
 
-                             <td  class="text-center" WIDTH="50" HEIGHT="50"> 
+                             <td  class="text-center"  HEIGHT="57"> 
 
                                         <?php if (!empty($periodo)) {
                                     
@@ -203,6 +250,9 @@
 
 <div>
   <h4 ><p class="text-primary">IMPLEMENTOS</p></h4> 
+  <th>Nombre</th>
+  <th>Cantidad</th>
+  <th>Estado</th>
   <?php
 
   include "conec.php";
@@ -218,29 +268,36 @@
   $var= count ($resultado);
 
 
+
+
  ?>
 <table class="table table-bordered" border="0,5">
-  <th>Implemento</th>
-  <th>Cantidad</th>
-  <th>Estado</th>
-  <tr>
-    <?php 
 
+  <?php  
   for ($i=0; $i < $var; $i++) { 
 
-    
-      echo $resultado[$i]['TIPOIMPLE'];
-       echo $resultado[$i]['CANTIDAD'];
-        echo $resultado[$i]['ESTADO'];
+      echo "<table class='table table-border' style='border:1px ' >
+       
+      
+       <tr>
+       <span style='cursor: pointer;'>
 
+                     <td> ".$resultado[$i]['TIPOIMPLE']."</td>
+                    <td >".$resultado[$i]['CANTIDAD']."</td>
+                    <td >".$resultado[$i]['ESTADO']."</td>
+        </span>
+</th></tr>
 
-   
+      </table>";
+
+ 
 
     }
-     ?>
     
    
-  </tr>
+
+ ?>
+
 </table>
 
 
@@ -294,25 +351,37 @@
   
 </div>
 
-  
-  <table>
-    <br>
-   <?php  
 
 
+
+
+<table class="table table-bordered" border="0,5" type="text">
+
+  <?php  
   for ($i=0; $i < $var; $i++) { 
-       echo $row["COMENTARIO"].'<br>';
-   echo $row["FECHACOM"].'<br>' ;
-   echo $row["HORA"] ;
 
- }
-  
+      echo "<table class='table table-border' style='border:1px ' >
+      
+       <tr>
+       <span style='cursor: pointer;'>
+
+                       <td> ".$resultado[$i]['COMENTARIO']."</td>
+                    <td >".$resultado[$i]['FECHACOM']."</td>
+                    <td >".$resultado[$i]['HORA']."</td>
+        </span>
+</th></tr>
+
+      </table>";
+
+ 
+
+    }
+    
    
-    ?>
+
+ ?>
 
 
-    </tr>
-  </table>
 
  </div>
          </div>
@@ -322,24 +391,11 @@
 
 </div>
  
-
-  
-  
 </div>
-
-
 
 </div>
 </div>
 </div>
-
-
-
-
-
-
-
-
 
 
 

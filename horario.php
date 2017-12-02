@@ -8,7 +8,7 @@ try{
    
       $sql = $conn->prepare('SELECT DIA,RAMO,PERIODO,SOL.CODSALA,E.NOMBREED,S.CODSALA
  FROM SOLICITUD SOL  LEFT JOIN  SALA S ON S.CODSALA=SOL.CODSALA
-   JOIN PISO P ON S.CODSALA=P.CODSALA  JOIN EDIFICIO E ON E.CODED=P.CODED
+   JOIN PISO P ON S.CODPISO=P.CODPISO  JOIN EDIFICIO E ON E.CODED=P.CODED
  WHERE S.CODSALA="A406";');
       $sql->execute();
     $resultado = $sql->fetchAll();
@@ -100,69 +100,66 @@ $datos=array();
 
 
 
-for ($i=0; $i < 7; $i++) { 
+for ($i=0; $i < 6; $i++) { 
   
-  $datos['PERIODO1'][$i]=selecdia(1,$i);
+  $datos['PERIODO1'][$i]=selecdia(1,$i+1);
 }
 
-for ($i=0; $i < 7; $i++) { 
+for ($i=0; $i < 6; $i++) { 
   
-  $datos['PERIODO2'][$i]=selecdia(2,$i);
+  $datos['PERIODO2'][$i]=selecdia(2,$i+1);
 }
 
-for ($i=0; $i < 7; $i++) { 
+for ($i=0; $i < 6; $i++) { 
   
-  $datos['PERIODO3'][$i]=selecdia(3,$i);
+  $datos['PERIODO3'][$i]=selecdia(3,$i+1);
 }
 
-for ($i=0; $i < 7; $i++) { 
+for ($i=0; $i < 6; $i++) { 
   
-  $datos['PERIODO4'][$i]=selecdia(4,$i);
+  $datos['PERIODO4'][$i]=selecdia(4,$i+1);
 }
 
-for ($i=0; $i < 7; $i++) { 
+for ($i=0; $i < 6; $i++) { 
   
-  $datos['PERIODO5'][$i]=selecdia(5,$i);
+  $datos['PERIODO5'][$i]=selecdia(5,$i+1);
 }
 
-for ($i=0; $i < 7; $i++) { 
+for ($i=0; $i < 6; $i++) { 
   
-  $datos['PERIODO6'][$i]=selecdia(6,$i);
+  $datos['PERIODO6'][$i]=selecdia(6,$i+1);
 }
 
-for ($i=0; $i < 7; $i++) { 
+for ($i=0; $i < 6; $i++) { 
   
-  $datos['PERIODO7'][$i]=selecdia(7,$i);
+  $datos['PERIODO7'][$i]=selecdia(7,$i+1);
 }
 
-for ($i=0; $i < 7; $i++) { 
+for ($i=0; $i < 6; $i++) { 
   
-  $datos['PERIODO8'][$i]=selecdia(8,$i);
+  $datos['PERIODO8'][$i]=selecdia(8,$i+1);
 }
 
-for ($i=0; $i < 7; $i++) { 
+for ($i=0; $i < 6; $i++) { 
   
-  $datos['PERIODO9'][$i]=selecdia(9,$i);
+  $datos['PERIODO9'][$i]=selecdia(9,$i+1);
 }
 
-for ($i=0; $i < 7; $i++) { 
+for ($i=0; $i < 6; $i++) { 
   
-  $datos['PERIODO10'][$i]=selecdia(10,$i);
+  $datos['PERIODO10'][$i]=selecdia(10,$i+1);
 }
-for ($i=0; $i < 7; $i++) { 
+for ($i=0; $i < 6; $i++) { 
   
-  $datos['PERIODO11'][$i]=selecdia(11,$i);
-}
-
-for ($i=0; $i < 7; $i++) { 
-  
-  $datos['PERIODO12'][$i]=selecdia(12,$i);
+  $datos['PERIODO11'][$i]=selecdia(11,$i+1);
 }
 
-for ($i=0; $i < 7; $i++) { 
+for ($i=0; $i < 6; $i++) { 
   
-  $datos['PERIODO13'][$i]=selecdia(13,$i);
+  $datos['PERIODO12'][$i]=selecdia(12,$i+1);
 }
+
+
 
  ?>
 
