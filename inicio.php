@@ -1,4 +1,11 @@
  <?php 
+
+  $facultad = $_REQUEST['nombre'];
+      $piso = $_REQUEST['piso'];
+echo $facultad;
+echo $piso;
+
+
 require "conec.php";
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    
@@ -21,9 +28,9 @@ foreach ($resultado as $row) {
  require "conec.php";
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    
-      $sql = $conn->prepare(' SELECT S.CODSALA,P.CODPISO
+      $sql = $conn->prepare("SELECT S.CODSALA,P.CODPISO
  FROM  EDIFICIO E JOIN PISO P ON E.CODED=P.CODED LEFT JOIN SALA S ON S.CODPISO=P.CODPISO
- WHERE E.CODED="002" AND NOMBREP="1";');
+ WHERE E.CODED='001' AND NOMBREP='1'");
       $sql->execute();
     $resultado = $sql->fetchAll();
     $conn =null;
@@ -39,9 +46,10 @@ foreach ($resultado as $row) {
  <head>
  	<meta charset="utf-8">
  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
- 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+ 	
 
   <?php  include('vista3.php'); ?>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
  	<title></title>
  	
  </head>
@@ -89,8 +97,52 @@ foreach ($resultado as $row) {
                   
   <ul class="nav nav-pills nav-stacked" role="tablist">
     <li class="active"><a href="#">Inicio</a></li>
-        <li><a href="#">Edificio</a></li>
-    <li><a href="#">Piso</a></li> 
+       
+  <li> <a type="button" data-toggle="modal"
+   data-target="#exampleModal" data-whatever="@getbootstrap">
+     
+     Buscar Sala
+   </a></li>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Seleccione Edificio y Piso</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="inicio.php"  method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+          
+<input type="radio" name="nombre" value="Facultad de Ciencias e Ingenieria" checked>Facultad de Ciencias e Ingenieria
+
+<br>
+
+<input type="radio" name="nombre" value="Facultad de Humanidades" >Facultad de Humanidades
+
+<br>
+
+<input type="radio" name="piso" value="1" checked>Piso 1
+              
+
+
+<input type="radio" name="piso" value="2">Piso 2
+
+<br>
+
+
+<input type="submit" value="ENVIAR" class="btn btn-primary" ><hr/> 
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
     <li><a href=vistasec.php>visata secretaria</a></li>
     <li><a href=vistapro.php>vista profe</a></li>
        
@@ -199,8 +251,7 @@ foreach ($resultado as $row) {
 </div>
 </div>
 
- <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8" async defer></script>
-		<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8" async defer></script>
+ 
  </html>
 
 
