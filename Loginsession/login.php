@@ -10,15 +10,23 @@
 	<link rel="stylesheet" href="css/estilos.css">
 
  </head>
-<body style="background-color:#fff " >
+<body style="background-color:#fff;" >
+
+	<div class="col-md-12 " HEIGHT="50" style="background-color: #191C59;" 
+
+  
+  <div class="left" ><font color="white"><h3>SISTEMA GESTION INFORMACION DE SALAS</h3></font></div>
+
+  
+</div>
 	<div class="col-md-12">
 					<div class="row" >
-						<div class="col-md-4 col-md-offset-4 " style="width: 500px; height: 300px;margin-top: 100px; background-color: #103C70;">
+						<div class="col-md-4 col-md-offset-4 " style="width: 500px; height: 300px;margin-top: 100px; background-color: #fff;">
 
 								
 									
  									<form action="validar.php" method="POST">
- 									<br><p class="">Rut usuario</p>
+ 									<br><h3><p class="text-primary">Identificación</p></h3>
 
  								     <input name="rut" maxlength="8"  class="form-control text-center"
  									 placeholder="12345678" autocomplete="off" type="text" required=""><br>
@@ -35,9 +43,9 @@
  								
  					
  									<br>
- 									<form action="recu.php">
- 									<label><button  class="btn btn-secondary btn-lg btn-block" >Restaurar clave</button></label>
- 									</form>
+ 									
+ 									<a href="recu.php"><h6><p class="text-primary"> Recuperar Contraseña</p></h6></a>
+ 									
 
 
 
@@ -65,6 +73,8 @@
 					</div>
 				</div>
  </body>
+
+ 
  </html>
 
 							

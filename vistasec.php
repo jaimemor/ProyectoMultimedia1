@@ -356,10 +356,11 @@
         
 
 <div class="col-md-12 " ;" style="background:#000000;">
-<div style="width: 100%; height:65px ;"></div>infomracion del footer
+<div style="width: 100%; height:65px ;"></div>infomracion del footer</div>
 </div>
 </div>
 </div>
+
 
  </footer>
 
