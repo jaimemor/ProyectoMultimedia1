@@ -1,4 +1,24 @@
+<?php
+session_start();
 
+$varsesion= $_SESSION['usuario'];
+if($varsesion == null || $varsesion=''){
+  echo 'Usted no tiene autorizacion';
+  die();
+}
+
+require 'conec.php';
+$smt = $conn->prepare("SELECT * FROM USUARIO WHERE RUT=".$_SESSION['usuario'] ); 
+$smt -> execute(); 
+$resultado= $smt->fetchall();
+$conn=null;
+
+foreach ($resultado as $row) {
+
+          echo $row['NOMBRE'];
+         
+      }
+?>
 
 
 <!DOCTYPE html>
@@ -24,7 +44,6 @@
 
   
 </div>
-
 
 
 
@@ -330,7 +349,7 @@
 <table class="table table-bordered" border="0,5" type="text">
 
   <?php  
-  for ($i=0; $i < $var; $i++) { 
+  for ($i=0; $i <2; $i++) { 
 
       echo "<table class='table table-border' style='border:1px ' >
       

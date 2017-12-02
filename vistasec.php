@@ -274,7 +274,11 @@
 <table class="table table-bordered" border="0,5">
 
   <?php  
-  for ($i=0; $i < $var; $i++) { 
+  foreach ($resultado as $row) {
+      
+            
+          
+   
 
       echo "<table class='table table-border' style='border:1px ' >
        
@@ -282,9 +286,9 @@
        <tr>
        <span style='cursor: pointer;'>
 
-                     <td> ".$resultado[$i]['TIPOIMPLE']."</td>
-                    <td >".$resultado[$i]['CANTIDAD']."</td>
-                    <td >".$resultado[$i]['ESTADO']."</td>
+                     <td> ".$row['TIPOIMPLE']."</td>
+                    <td >".$row['CANTIDAD']."</td>
+                    <td >".$row['ESTADO']."</td>
         </span>
 </th></tr>
 
@@ -358,9 +362,18 @@
 <table class="table table-bordered" border="0,5" type="text">
 
   <?php  
-  for ($i=0; $i < $var; $i++) { 
 
-      echo "<table class='table table-border' style='border:1px ' >
+  for ($i=0; $i < 2; $i++) { 
+
+
+      echo "
+
+
+
+
+
+
+      <table class='table table-border' style='border:1px ' >
       
        <tr>
        <span style='cursor: pointer;'>
@@ -377,6 +390,8 @@
 
     }
     
+
+ 
    
 
  ?>

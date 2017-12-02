@@ -19,7 +19,7 @@ if ($_SESSION['usuario']==$resultado[0]['RUT'] && $clave==$resultado[0]['PASS'])
  {
  	if ($resultado[0]['TIPOUSUARIO']=='profesor') {
  		
- 		header("location:http://localhost/ProyectoMultimedia1/vistaprofe.php.php");
+ 		header("location:../vistaprofe.php.php");
  	} else if ($resultado[0]['TIPOUSUARIO']=='secretaria') {
  		$_SESSION['name']=$resultado[0]['nombre'];
  		header("location:secre.php");
