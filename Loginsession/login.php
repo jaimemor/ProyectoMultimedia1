@@ -12,10 +12,10 @@
  </head>
 <body style="background-color:#fff;" >
 
-	<div class="col-md-12 " HEIGHT="50" style="background-color: #191C59;" 
+	<div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" 
 
   
-  <div class="left" ><font color="white"><h3>SISTEMA GESTION INFORMACION DE SALAS</h3></font></div>
+  <div class="left" ><font color="white"><h3>SISTEMA GESTION DE SALAS</h3></font></div>
 
   
 </div>

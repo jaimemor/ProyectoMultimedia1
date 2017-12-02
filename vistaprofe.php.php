@@ -54,7 +54,7 @@
     
     
 
-   <li><a href="solicitud.php">Solicitar sala</a></li>
+  
 
          
 <div class="radio">
@@ -73,14 +73,7 @@
   </label>
 </div>
 
-    <li><a href="#">Generar Codigo QR</a></li>        
-    <li><a href="#">Ver Estadisticas</a></li>        
   
- 
- 
-
-
-  </form>
 </nav>
 
 
@@ -326,28 +319,7 @@
 
 
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Ingresar nuevo comentario</button>
 
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      
-    <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Ingresa Comentario</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Enviar Comentario</button>
-      </div>
-    </div>
-  </div>
-</div>
   
 </div>
 

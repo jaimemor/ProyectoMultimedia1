@@ -1,9 +1,10 @@
  <?php 
 
-  $facultad = $_REQUEST['nombre'];
+     $facultad = $_REQUEST['nombre'];
       $piso = $_REQUEST['piso'];
 
-      
+     
+
 
 require "conec.php";
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -59,17 +60,17 @@ foreach ($resultado as $row) {
 
 
 
-<div class="col-md-12 " style="background:#103C70  ;"> 
+<div class="col-md-12 " style="background:#2E3D55;  height:50px; "> 
 
   
    <div class="left" ><font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
 
   <div class="pull-right">
-    <a type="button" class="btn btn-primary" href="Loginsession/login.php">LOGIN</a>
+    <a  class="btn btn-primary" href="Loginsession/login.php">LOGIN</a>
 
   </div>
 
-
+ 
 
 </div>
 
@@ -130,7 +131,6 @@ foreach ($resultado as $row) {
 <input type="radio" name="piso" value="2">Piso 2
 
 <br>
-
 
 <input type="submit" value="ENVIAR" class="btn btn-primary" ><hr/> 
         </form>

@@ -12,23 +12,28 @@
  </head>
  <body>
  	
-<div class="col-md-12 " style="background:#bedddb;">
+<div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;">
 
   
-  <div class="left" ><p class="lead"><h3>SISTEMA GESTION SALAS</h3></div>
-
+   <div class="left" ><font color="white"><h3>SISTEMA GESTION SALAS</h3></font>
+</div>
   <div class="pull-right" style="background:  #2D7C79  ;">
 <a href='inicio.php' type="button" class="btn btn-primary">Inicio</a>
 
   </div>
+
 </div>
+
+
+
 <div class="container">
  
 <h3><p class="text-center">Formulario Solicitud sala codsala</p></h3>
 	<div class="row">
 		
 		<form action="operaciones.php"  method="POST" enctype="multipart/form-data" accept-charset="utf-8">
-<div class="col-md-6 ">
+
+<div class="col-md-5 ">
 
 
 Nombre Porfesor:<input name="nombre" type="text" value="" class="form-control" required />
@@ -45,14 +50,16 @@ Dia:<input name="dia" type="text"  value="" class="form-control" required/>
 
 </form>
 
-<div class="col-md-6">
+<div class="col-md-7">
 
 	<h4>Horario disponible</h4>
 	<?php include('t.php');  ?>
 
 </div>
 </div>
+
 </div>
+
 
 
 
@@ -62,21 +69,6 @@ Dia:<input name="dia" type="text"  value="" class="form-control" required/>
 
 
 
- <footer>
-   
+ 
 
-
-
-        
-
-<div class="col-md-12 " ;" style="background:#000000;">
-<div style="width: 100%; height:65px ;">
-	infomracion del footer
-</div>
-
-</div>
-
-
-
- </footer>
  </html>
