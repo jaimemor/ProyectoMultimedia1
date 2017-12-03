@@ -1,36 +1,14 @@
- <?php 
-
-     $facultad = $_REQUEST['nombre'];
-      $piso = $_REQUEST['piso'];
-
-     
-
-
-require "conec.php";
-      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   
-      $sql = $conn->prepare(' SELECT NOMBREED,P.CODPISO,NOMBREP
- FROM  EDIFICIO E JOIN PISO P ON E.CODED=P.CODED
- WHERE E.CODED="001" AND NOMBREP="1";');
-      $sql->execute();
-    $resultado = $sql->fetchAll();
-    $conn =null;
-    $var= count ($resultado);
-
-foreach ($resultado as $row) {
-        
-          
-        }
-
-  ?>
 
 <?php 
+  $facultad = $_REQUEST['nombre'];
+      $piso = $_REQUEST['piso'];
+
  require "conec.php";
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    
-      $sql = $conn->prepare("SELECT S.CODSALA,P.CODPISO
+      $sql = $conn->prepare("SELECT S.CODSALA,P.CODPISO,NOMBREED,NOMBREP
  FROM  EDIFICIO E JOIN PISO P ON E.CODED=P.CODED LEFT JOIN SALA S ON S.CODPISO=P.CODPISO
- WHERE E.CODED='001' AND NOMBREP='1'");
+ WHERE E.CODED='$facultad' AND NOMBREP='$piso'");
       $sql->execute();
     $resultado = $sql->fetchAll();
     $conn =null;
@@ -113,11 +91,11 @@ foreach ($resultado as $row) {
       <div class="modal-body">
         <form action="inicio.php"  method="POST" enctype="multipart/form-data" accept-charset="utf-8">
           
-<input type="radio" name="nombre" value="Facultad de Ciencias e Ingenieria" checked>Facultad de Ciencias e Ingenieria
+<input type="radio" name="nombre" value="001" checked>Facultad de Ciencias e Ingenieria
 
 <br>
 
-<input type="radio" name="nombre" value="Facultad de Humanidades" >Facultad de Humanidades
+<input type="radio" name="nombre" value="002" >Facultad de Humanidades
 
 <br>
 
@@ -177,6 +155,8 @@ foreach ($resultado as $row) {
 
     -->
 
+
+
 <div class="col-md-6 col-md-8 col-lg-10 vcenter" style="background: # ;">
         <div style="height:20em;border:10px solid #fff">
    
@@ -188,21 +168,24 @@ foreach ($resultado as $row) {
   <?php 
 
 
-
+ 
    
  for ($i=0; $i < $var; $i++) { 
 
-      echo "<table class='table table-bordered' style='border:1px ' >
+      echo "<table class='table table-border' style='border:1px ' >
       
-       <tr><th> 
+       <tr> <td <style='WIDTH='50px';'>
+         
+       </style>
        <span style='cursor: pointer;'>
-                    ".'<a href=http://localhost/ProyectoMultimedia1/horariosala.php?codsala=><u>Sala </u></a>'.$resultado[$i]['CODSALA']."
+                    
+                    ".$resultado[$i]['CODSALA']."
+
         </span></td>
-</th></tr>
+</tr>
 
       </table>";
 
-    $varlink="http://localhost/ProyectoMultimedia1/vistasec.php?codsala=CODSALA";
 
     }
     
@@ -250,7 +233,6 @@ foreach ($resultado as $row) {
 
  </footer>
  </html>
-
 
 
 
