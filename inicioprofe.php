@@ -20,6 +20,7 @@ $conn=null;
 
      $facultad = $_REQUEST['nombre'];
       $piso = $_REQUEST['piso'];
+     $nombre= $_SESSION['usuario'];
 
      
 
@@ -27,36 +28,20 @@ $conn=null;
 require "conec.php";
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    
-      $sql = $conn->prepare(' SELECT NOMBREED,P.CODPISO,NOMBREP
- FROM  EDIFICIO E JOIN PISO P ON E.CODED=P.CODED
- WHERE E.CODED="001" AND NOMBREP="1";');
+      $sql = $conn->prepare("SELECT S.CODSALA,P.CODPISO,NOMBREED,NOMBREP
+ FROM  EDIFICIO E JOIN PISO P ON E.CODED=P.CODED LEFT JOIN SALA S ON S.CODPISO=P.CODPISO
+ WHERE E.CODED='$facultad' AND NOMBREP='$piso'");
       $sql->execute();
     $resultado = $sql->fetchAll();
     $conn =null;
     $var= count ($resultado);
 
-foreach ($resultado as $row) {
-        
-          
-        }
+
 
   ?>
 
-<?php 
- require "conec.php";
-      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   
-      $sql = $conn->prepare("SELECT S.CODSALA,P.CODPISO
- FROM  EDIFICIO E JOIN PISO P ON E.CODED=P.CODED LEFT JOIN SALA S ON S.CODPISO=P.CODPISO
- WHERE E.CODED='001' AND NOMBREP='1'");
-      $sql->execute();
-    $resultado = $sql->fetchAll();
-    $conn =null;
-    $var= count ($resultado);
 
 
-
- ?>
 
 
  <!DOCTYPE html>
@@ -99,7 +84,7 @@ foreach ($resultado as $row) {
         botonera
 
     -->
-    <div class="col-md-6 col-md-4 col-lg-2 vcenter">
+    <div class="col-md-3 col-lg-2 vcenter">
         <div style="height:30em;border:10px solid #FFF">
           
 <div class="btn-group-vertical " style="border:0px solid #fff" >
@@ -131,11 +116,11 @@ foreach ($resultado as $row) {
       <div class="modal-body">
         <form action="inicioprofe.php"  method="POST" enctype="multipart/form-data" accept-charset="utf-8">
           
-<input type="radio" name="nombre" value="Facultad de Ciencias e Ingenieria" checked>Facultad de Ciencias e Ingenieria
+<input type="radio" name="nombre" value="002" checked>Facultad de Ciencias e Ingenieria
 
 <br>
 
-<input type="radio" name="nombre" value="Facultad de Humanidades" >Facultad de Humanidades
+<input type="radio" name="nombre" value="001" >Facultad de Humanidades
 
 <br>
 
@@ -175,25 +160,32 @@ foreach ($resultado as $row) {
 
       
      </div>
+     
 
 
+<div class="col-md-6   col-lg-15" style="background:   #fff ;">
 
-
-<div class="col-md-6 col-md-8 col-lg-10 vcenter" >
-        <div style="height:10em;border:10px solid #fff">
+<div class="col-md-12   " >
+        <div style="height:3em;border:5px solid #fff">
           <h1>Edificio <?php echo $facultad;?></h1>
           <h1>Piso <?php echo $piso; ?></h1>
-          <h1>Mostrar lista de salas que el profesor ha solicitado</h1>
-         
+</div>
         </div>
-        </div>
+        
+
+        
 <!--
         aqui se muestran las salas
 
     -->
 
-<div class="col-md-6 col-md-8 col-lg-10 vcenter" style="background: # ;">
-        <div style="height:20em;border:10px solid #fff">
+
+
+
+         
+
+<div class="col-md-12 vcenter" style="margin-top:100px ;">
+        <div style="height:20em;border:10px solid #fff;">
    
 
  	
@@ -211,13 +203,14 @@ foreach ($resultado as $row) {
       
        <tr><th> 
        <span style='cursor: pointer;'>
-                    ".'<a href=http://localhost/ProyectoMultimedia1/horariosala.php?codsala=><u>Sala </u></a>'.$resultado[$i]['CODSALA']."
+                    "
+                    .$resultado[$i]['CODSALA']."
         </span></td>
 </th></tr>
 
       </table>";
 
-    $varlink="http://localhost/ProyectoMultimedia1/vistasec.php?codsala=CODSALA";
+   
 
     }
     
@@ -232,13 +225,58 @@ foreach ($resultado as $row) {
   
 
 
-          
-
-
      </div>
-    </div>
 
+
+ </div>
+
+
+
+<div class="col-md-3   col-lg-15" style="background:   #fff ;">
+
+ <div class="col-md-12  vcenter" style="background:   #fff ;">
+                <h4>Salas solicitadas por <?php echo $nombre; ?></h4>
+
+                <?php  
+                 
+
+          require "conec.php";
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   
+       $sql = $conn->prepare(" SELECT SOL.CODSALA,PERIODO,DIA
+ FROM SOLICITUD SOL
+   WHERE RUT='$nombre'");
+      $sql->execute();
+    $resultado = $sql->fetchAll();
+    $conn =null;
+    $var= count ($resultado);
+
+  foreach ($resultado as $row) {
+    $sala= $row['CODSALA'];
+    $periodo= $row['PERIODO'];
+    $dia= $row['DIA'];
+  }
+
+ ?>
+
+
+            <table class="table table-bordered  pull-right" style='border:1px '>
+                <th>sala</th> 
+                <th>periodo</th>
+                      <th>dia</th>
+            <tr>
+              <td><?php echo $sala; ?></td>
+              <td><?php echo $periodo; ?></td>
+              <td><?php echo $dia; ?></td>
+            </tr>
+            </table>
+
+          </div>
+          </div>
+      
+   
 </div>
+
 
 
 

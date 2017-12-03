@@ -157,7 +157,7 @@
 
 
 
-<div class="col-md-6 col-md-8 col-lg-10 vcenter" style="background: # ;">
+<div class="col-md-4  vcenter" style="background: # ;">
         <div style="height:20em;border:10px solid #fff">
    
 
