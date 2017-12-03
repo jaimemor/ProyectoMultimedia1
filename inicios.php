@@ -1,8 +1,6 @@
  <?php 
 
-     $facultad = $_REQUEST['nombre'];
-      $piso = $_REQUEST['piso'];
-
+  
      
 
 
@@ -58,7 +56,11 @@ foreach ($resultado as $row) {
  <body>
 
 
- 
+
+
+
+
+  
  <div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" 
 
   
@@ -95,53 +97,10 @@ foreach ($resultado as $row) {
   <ul class="nav nav-pills nav-stacked" role="tablist">
     <li ><a >Inicio</a></li>
        
-  <li> <a type="button" data-toggle="modal"
-   data-target="#exampleModal" data-whatever="@getbootstrap">
-     
-     Buscar Sala
-   </a></li>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Seleccione Edificio y Piso</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="inicio.php"  method="POST" enctype="multipart/form-data" accept-charset="utf-8">
-          
-<input type="radio" name="nombre" value="Facultad de Ciencias e Ingenieria" checked>Facultad de Ciencias e Ingenieria
-
-<br>
-
-<input type="radio" name="nombre" value="Facultad de Humanidades" >Facultad de Humanidades
-
-<br>
-
-<input type="radio" name="piso" value="1" checked>Piso 1
-              
-
-
-<input type="radio" name="piso" value="2">Piso 2
-
-<br>
-
-<input type="submit" value="ENVIAR" class="btn btn-primary" ><hr/> 
-        </form>
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-
-
- 
-    <li><a href=vistasec.php>visata secretaria</a></li>
-    <li><a href=vistaprofe.php>vista profe</a></li>
+    <li><a>buscar por profe</a></li>
+    <li><a >ver solo salas que corresponden a su piso</a></li>
+    
        
   </ul>
 
@@ -167,8 +126,8 @@ foreach ($resultado as $row) {
 
 <div class="col-md-6 col-md-8 col-lg-10 vcenter" >
         <div style="height:10em;border:10px solid #fff">
-          <h1>Edificio <?php echo $facultad;?></h1>
-          <h1>Piso <?php echo $piso; ?></h1>
+          <h1>Edificio </h1>
+          <h1>Piso </h1>
          
         </div>
         </div>

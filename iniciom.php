@@ -1,7 +1,9 @@
+
+
+
  <?php 
 
-     $facultad = $_REQUEST['nombre'];
-      $piso = $_REQUEST['piso'];
+ 
 
      
 
@@ -46,10 +48,10 @@ foreach ($resultado as $row) {
  <head>
  	<meta charset="utf-8">
  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
- 	 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+ 	
 
   <?php  include('vista3.php'); ?>
- 
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
  	<title></title>
  	
  </head>
@@ -58,17 +60,17 @@ foreach ($resultado as $row) {
  <body>
 
 
+
+
+<div class="col-md-12 " style="background:#2E3D55;  height:50px; "> 
+
+  
+   <div class="left" ><font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
+
  
- <div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" 
 
-  
-  <div class="left" > <font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
- <div class="pull-right">
-    <a  class="btn btn-primary" href="Loginsession/login.php">LOGIN</a>
+ 
 
-  </div>
-
-  
 </div>
 
 
@@ -111,15 +113,9 @@ foreach ($resultado as $row) {
         </button>
       </div>
       <div class="modal-body">
-        <form action="inicio.php"  method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+        <form action="inicioprofe.php"  method="POST" enctype="multipart/form-data" accept-charset="utf-8">
           
-<input type="radio" name="nombre" value="Facultad de Ciencias e Ingenieria" checked>Facultad de Ciencias e Ingenieria
 
-<br>
-
-<input type="radio" name="nombre" value="Facultad de Humanidades" >Facultad de Humanidades
-
-<br>
 
 <input type="radio" name="piso" value="1" checked>Piso 1
               
@@ -138,10 +134,6 @@ foreach ($resultado as $row) {
 </div>
 
 
-
- 
-    <li><a href=vistasec.php>visata secretaria</a></li>
-    <li><a href=vistaprofe.php>vista profe</a></li>
        
   </ul>
 
@@ -167,8 +159,11 @@ foreach ($resultado as $row) {
 
 <div class="col-md-6 col-md-8 col-lg-10 vcenter" >
         <div style="height:10em;border:10px solid #fff">
-          <h1>Edificio <?php echo $facultad;?></h1>
-          <h1>Piso <?php echo $piso; ?></h1>
+          <h1>Edificio </h1>
+          <h1>Piso </h1>
+          <h1>Mostrar lista de salas por profesor</h1>
+          <h1>Mostrar lista de salas segun edificio del mayor domo</h1>
+
          
         </div>
         </div>

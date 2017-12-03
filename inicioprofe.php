@@ -1,3 +1,21 @@
+ <?php
+session_start();
+
+$varsesion= $_SESSION['usuario'];
+if($varsesion == null || $varsesion=''){
+  echo 'Usted no tiene autorizacion';
+  die();
+}
+
+require 'conec.php';
+$smt = $conn->prepare("SELECT* FROM usuario WHERE RUT=".$_SESSION['usuario'] ); 
+$smt -> execute(); 
+$resultado= $smt->fetchall();
+$conn=null;
+
+?>
+
+
  <?php 
 
      $facultad = $_REQUEST['nombre'];
@@ -46,10 +64,10 @@ foreach ($resultado as $row) {
  <head>
  	<meta charset="utf-8">
  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
- 	 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+ 	
 
   <?php  include('vista3.php'); ?>
- 
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
  	<title></title>
  	
  </head>
@@ -58,17 +76,17 @@ foreach ($resultado as $row) {
  <body>
 
 
+
+
+<div class="col-md-12 " style="background:#2E3D55;  height:50px; "> 
+
+  
+   <div class="left" ><font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
+
  
- <div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" 
 
-  
-  <div class="left" > <font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
- <div class="pull-right">
-    <a  class="btn btn-primary" href="Loginsession/login.php">LOGIN</a>
+ 
 
-  </div>
-
-  
 </div>
 
 
@@ -111,7 +129,7 @@ foreach ($resultado as $row) {
         </button>
       </div>
       <div class="modal-body">
-        <form action="inicio.php"  method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+        <form action="inicioprofe.php"  method="POST" enctype="multipart/form-data" accept-charset="utf-8">
           
 <input type="radio" name="nombre" value="Facultad de Ciencias e Ingenieria" checked>Facultad de Ciencias e Ingenieria
 
@@ -138,10 +156,6 @@ foreach ($resultado as $row) {
 </div>
 
 
-
- 
-    <li><a href=vistasec.php>visata secretaria</a></li>
-    <li><a href=vistaprofe.php>vista profe</a></li>
        
   </ul>
 
@@ -169,6 +183,7 @@ foreach ($resultado as $row) {
         <div style="height:10em;border:10px solid #fff">
           <h1>Edificio <?php echo $facultad;?></h1>
           <h1>Piso <?php echo $piso; ?></h1>
+          <h1>Mostrar lista de salas que el profesor ha solicitado</h1>
          
         </div>
         </div>

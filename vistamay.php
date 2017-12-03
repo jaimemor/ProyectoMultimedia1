@@ -1,24 +1,4 @@
-<?php
-session_start();
 
-$varsesion= $_SESSION['usuario'];
-if($varsesion == null || $varsesion=''){
-  echo 'Usted no tiene autorizacion';
-  die();
-}
-
-require 'conec.php';
-$smt = $conn->prepare("SELECT * FROM USUARIO WHERE RUT=".$_SESSION['usuario'] ); 
-$smt -> execute(); 
-$resultado= $smt->fetchall();
-$conn=null;
-
-foreach ($resultado as $row) {
-
-          echo $row['NOMBRE'];
-         
-      }
-?>
 
 
 <!DOCTYPE html>
@@ -47,6 +27,7 @@ foreach ($resultado as $row) {
 
 
 
+
 <div class="row">
 
 
@@ -70,12 +51,7 @@ foreach ($resultado as $row) {
   <ul class="nav nav-pills nav-stacked" role="tablist">
     <li class="active"><a href=inicio.php>Inicio</a></li>
 
-    
-    
-
-  
-
-         
+        
 <div class="radio">
 
 
@@ -92,7 +68,15 @@ foreach ($resultado as $row) {
   </label>
 </div>
 
+    <li><a href="#">Generar Codigo QR</a></li>  
+       <li><a>informacion de secretaria</a></li>      
+           
   
+ 
+ 
+
+
+  </form>
 </nav>
 
 
@@ -286,7 +270,11 @@ foreach ($resultado as $row) {
 <table class="table table-bordered" border="0,5">
 
   <?php  
-  for ($i=0; $i < $var; $i++) { 
+  foreach ($resultado as $row) {
+      
+            
+          
+   
 
       echo "<table class='table table-border' style='border:1px ' >
        
@@ -294,9 +282,9 @@ foreach ($resultado as $row) {
        <tr>
        <span style='cursor: pointer;'>
 
-                     <td> ".$resultado[$i]['TIPOIMPLE']."</td>
-                    <td >".$resultado[$i]['CANTIDAD']."</td>
-                    <td >".$resultado[$i]['ESTADO']."</td>
+                     <td> ".$row['TIPOIMPLE']."</td>
+                    <td >".$row['CANTIDAD']."</td>
+                    <td >".$row['ESTADO']."</td>
         </span>
 </th></tr>
 
@@ -338,7 +326,28 @@ foreach ($resultado as $row) {
 
 
 
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Ingresar nuevo comentario</button>
 
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+    <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Ingresa Comentario</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Enviar Comentario</button>
+      </div>
+    </div>
+  </div>
+</div>
   
 </div>
 
@@ -349,9 +358,18 @@ foreach ($resultado as $row) {
 <table class="table table-bordered" border="0,5" type="text">
 
   <?php  
-  for ($i=0; $i <2; $i++) { 
 
-      echo "<table class='table table-border' style='border:1px ' >
+  for ($i=0; $i < 2; $i++) { 
+
+
+      echo "
+
+
+
+
+
+
+      <table class='table table-border' style='border:1px ' >
       
        <tr>
        <span style='cursor: pointer;'>
@@ -368,6 +386,8 @@ foreach ($resultado as $row) {
 
     }
     
+
+ 
    
 
  ?>
