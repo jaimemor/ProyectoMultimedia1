@@ -1,3 +1,26 @@
+<?php
+session_start();
+
+$varsesion= $_SESSION['usuario'];
+
+if($varsesion == null || $varsesion=''){
+  echo 'Usted no tiene autorizacion';
+  die();
+}
+
+require 'conec.php';
+$smt = $conn->prepare("SELECT* FROM usuario WHERE RUT=".$_SESSION['usuario'] ); 
+$smt -> execute(); 
+$resultado= $smt->fetchall();
+$conn=null;
+
+
+$secre=$_SESSION['usuario'];
+
+?>
+
+
+
  <?php 
 
   
@@ -26,13 +49,21 @@ foreach ($resultado as $row) {
  require "conec.php";
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    
-      $sql = $conn->prepare("SELECT S.CODSALA,P.CODPISO
- FROM  EDIFICIO E JOIN PISO P ON E.CODED=P.CODED LEFT JOIN SALA S ON S.CODPISO=P.CODPISO
- WHERE E.CODED='001' AND NOMBREP='1'");
+      $sql = $conn->prepare("SELECT S.CODSALA,P.CODPISO,CODED,RUT
+ FROM  USUARIO U JOIN PISO P ON U.CODPISO=P.CODPISO JOIN SALA S ON S.CODPISO=P.CODPISO
+ WHERE RUT='$secre'");
       $sql->execute();
     $resultado = $sql->fetchAll();
     $conn =null;
     $var= count ($resultado);
+
+for ($i=0; $i <$var; $i++) { 
+  $sala= $resultado[$i]['CODSALA'];
+   $piso =$resultado[$i]['CODPISO'];
+   $edificio =$resultado[$i]['CODED'];
+  
+   
+ }
 
 
 
@@ -65,10 +96,7 @@ foreach ($resultado as $row) {
 
   
   <div class="left" > <font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
- <div class="pull-right">
-    <a  class="btn btn-primary" href="Loginsession/login.php">LOGIN</a>
 
-  </div>
 
   
 </div>
@@ -83,7 +111,7 @@ foreach ($resultado as $row) {
         botonera
 
     -->
-    <div class="col-md-6 col-md-4 col-lg-2 vcenter">
+    <div class="col-md-4 col-lg-2 vcenter">
         <div style="height:30em;border:10px solid #FFF">
           
 <div class="btn-group-vertical " style="border:0px solid #fff" >
@@ -99,7 +127,7 @@ foreach ($resultado as $row) {
        
 
     <li><a>buscar por profe</a></li>
-    <li><a >ver solo salas que corresponden a su piso</a></li>
+    
     
        
   </ul>
@@ -122,12 +150,15 @@ foreach ($resultado as $row) {
      </div>
 
 
+<div class="col-md-6   col-lg-15" style="background:   #fff ;">
 
+<div class=" col-md-12 vcenter" >
+        <div style="height:10em;border:20px solid #fff">
 
-<div class="col-md-6 col-md-8 col-lg-10 vcenter" >
-        <div style="height:10em;border:10px solid #fff">
-          <h1>Edificio </h1>
-          <h1>Piso </h1>
+          <h1>Secretaria <?php echo $secre ; ?></h1>
+          <h1>Edificio <?php echo $edificio ; ?></h1>
+          
+          <h1>Piso <?php echo $piso; ?></h1>
          
         </div>
         </div>
@@ -136,7 +167,7 @@ foreach ($resultado as $row) {
 
     -->
 
-<div class="col-md-6 col-md-8 col-lg-10 vcenter" style="background: # ;">
+<div class="col-md-12  vcenter" style="margin-top:100px" ;">
         <div style="height:20em;border:10px solid #fff">
    
 
@@ -151,17 +182,17 @@ foreach ($resultado as $row) {
    
  for ($i=0; $i < $var; $i++) { 
 
-      echo "<table class='table table-bordered' style='border:1px ' >
+      echo "<table class='table table-border' style='border:1px ' >
       
        <tr><th> 
        <span style='cursor: pointer;'>
-                    ".'<a href=http://localhost/ProyectoMultimedia1/horariosala.php?codsala=><u>Sala </u></a>'.$resultado[$i]['CODSALA']."
+                    ".$resultado[$i]['CODSALA']."
         </span></td>
 </th></tr>
 
       </table>";
 
-    $varlink="http://localhost/ProyectoMultimedia1/vistasec.php?codsala=CODSALA";
+  
 
     }
     
@@ -180,9 +211,82 @@ foreach ($resultado as $row) {
 
 
      </div>
-    </div>
+
 
 </div>
+
+
+<div class="col-md-3   col-lg-15" style="background:   #fff ;">
+
+ <div class="col-md-12  vcenter" style="background:   #fff ;">
+<div class="row">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Buscar</button>
+      </span>
+      <input type="text" class="form-control" name="buscar">
+    </div>
+  </div>
+                <h4>Salas solicitadas por <?php  ?></h4>
+                <h4>Buscar salas por profesor <?php  ?></h4>
+
+                <?php  
+                 
+
+          require "conec.php";
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   
+       $sql = $conn->prepare(" SELECT *
+ FROM SOLICITUD SOL
+   WHERE  RUT='17875041'");
+      $sql->execute();
+    $resultado = $sql->fetchAll();
+    $conn =null;
+    $var= count ($resultado);
+
+ for ($i=0; $i <$var; $i++) { 
+  $sala= $resultado[$i]['CODSALA'];
+   $periodo =$resultado[$i]['PERIODO'];
+   $dia =$resultado[$i]['DIA'];
+   $ramo =$resultado[$i]['RAMO'];
+ }
+
+ ?>
+
+
+            <table class="table table-bordered  pull-right" style='border:1px '>
+                <th>Sala</th> 
+                <th>Periodo</th>
+                      <th>Dia</th>
+                      <th>Ramo</th>
+            <tr>
+              <td><?php echo $sala; ?></td>
+              <td><?php echo $periodo; ?></td>
+              <td><?php echo $dia; ?></td>
+              <td><?php echo $ramo; ?></td>
+            </tr>
+            </table>
+
+          </div>
+          </div>
+      
+   
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
 
 
 

@@ -22,7 +22,7 @@ if ($_SESSION['usuario']==$resultado[0]['RUT'] && $clave==$resultado[0]['PASS'])
  		header("location:../inicioprofe.php");
  	} else if ($resultado[0]['TIPOUSUARIO']=='secretaria') {
  		$_SESSION['name']=$resultado[0]['nombre'];
- 		header("location:secre.php");
+ 		header("location:../inicios.php");
  	} else {
  		header("location:mayordomo.php");
  	}

@@ -243,7 +243,7 @@ require "conec.php";
           require "conec.php";
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    
-       $sql = $conn->prepare(" SELECT SOL.CODSALA,PERIODO,DIA
+       $sql = $conn->prepare(" SELECT *
  FROM SOLICITUD SOL
    WHERE RUT='$nombre'");
       $sql->execute();
@@ -251,23 +251,26 @@ require "conec.php";
     $conn =null;
     $var= count ($resultado);
 
-  foreach ($resultado as $row) {
-    $sala= $row['CODSALA'];
-    $periodo= $row['PERIODO'];
-    $dia= $row['DIA'];
-  }
+ for ($i=0; $i <$var; $i++) { 
+  $sala= $resultado[$i]['CODSALA'];
+   $periodo =$resultado[$i]['PERIODO'];
+   $dia =$resultado[$i]['DIA'];
+   $ramo =$resultado[$i]['RAMO'];
+ }
 
  ?>
 
 
             <table class="table table-bordered  pull-right" style='border:1px '>
-                <th>sala</th> 
-                <th>periodo</th>
-                      <th>dia</th>
+                <th>Sala</th> 
+                <th>Periodo</th>
+                      <th>Dia</th>
+                      <th>Ramo</th>
             <tr>
               <td><?php echo $sala; ?></td>
               <td><?php echo $periodo; ?></td>
               <td><?php echo $dia; ?></td>
+              <td><?php echo $ramo; ?></td>
             </tr>
             </table>
 
