@@ -1,5 +1,7 @@
 
 <?php 
+  error_reporting(0);
+
   $facultad = $_REQUEST['nombre'];
       $piso = $_REQUEST['piso'];
 

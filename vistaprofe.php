@@ -50,7 +50,7 @@
   <ul class="nav nav-pills nav-stacked" role="tablist">
     <li class="active"><a href=inicio.php>Inicio</a></li>
     <li ><a>Contacto</a></li>
-    <li ><a>ver todas las salas que solicitadas</a></li>
+    
     
 
     

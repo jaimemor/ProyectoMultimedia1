@@ -278,8 +278,9 @@
       
             
           
-   
-
+   echo "<pre>";
+   //print_r($row);
+   echo "</pre>";
       echo "<table class='table table-border' style='border:1px ' >
        
       
