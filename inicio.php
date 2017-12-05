@@ -181,7 +181,10 @@
        </style>
        <span style='cursor: pointer;'>
                     
-                    ".$resultado[$i]['CODSALA']."
+   ".$resultado[$i]['CODSALA']."<a href='horariosala.php?id=".$resultado[$i]['CODSALA']."'>ver</a>
+        
+
+                    
 
         </span></td>
 </tr>

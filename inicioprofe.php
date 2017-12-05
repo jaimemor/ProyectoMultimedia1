@@ -68,9 +68,11 @@ require "conec.php";
 <div class="col-md-12 " style="background:#2E3D55;  height:50px; "> 
 
   
-   <div class="left" ><font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
+   <div class="left" ><font color="white"><h3>SISTEMA GESTION SALAS</h3></font>
 
- 
+   </div>
+
+ <a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
 
  
 

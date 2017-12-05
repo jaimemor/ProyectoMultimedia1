@@ -1,4 +1,7 @@
 <?php
+
+
+error_reporting(0);
 session_start();
 
 $varsesion= $_SESSION['usuario'];
@@ -21,35 +24,12 @@ $secre=$_SESSION['usuario'];
 
 
 
- <?php 
-
-  
-     
-
-
-require "conec.php";
-      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   
-      $sql = $conn->prepare(' SELECT NOMBREED,P.CODPISO,NOMBREP
- FROM  EDIFICIO E JOIN PISO P ON E.CODED=P.CODED
- WHERE E.CODED="001" AND NOMBREP="1";');
-      $sql->execute();
-    $resultado = $sql->fetchAll();
-    $conn =null;
-    $var= count ($resultado);
-
-foreach ($resultado as $row) {
-        
-          
-        }
-
-  ?>
 
 <?php 
  require "conec.php";
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    
-      $sql = $conn->prepare("SELECT S.CODSALA,P.CODPISO,CODED,RUT
+      $sql = $conn->prepare("SELECT S.CODSALA,P.CODPISO,CODED,RUT,NOMBRE
  FROM  USUARIO U JOIN PISO P ON U.CODPISO=P.CODPISO JOIN SALA S ON S.CODPISO=P.CODPISO
  WHERE RUT='$secre'");
       $sql->execute();
@@ -58,9 +38,10 @@ foreach ($resultado as $row) {
     $var= count ($resultado);
 
 for ($i=0; $i <$var; $i++) { 
-  $sala= $resultado[$i]['CODSALA'];
+  $sala1= $resultado[$i]['CODSALA'];
    $piso =$resultado[$i]['CODPISO'];
    $edificio =$resultado[$i]['CODED'];
+   $nombre =$resultado[$i]['NOMBRE'];
   
    
  }
@@ -95,11 +76,13 @@ for ($i=0; $i <$var; $i++) {
  <div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" 
 
   
-  <div class="left" > <font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
+  <div class="left" > <font color="white"><h3>SISTEMA GESTION SALAS</h3></font>
+
+<a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
+  </div>
 
 
-  
-</div>
+ 
 
 
 
@@ -125,11 +108,7 @@ for ($i=0; $i <$var; $i++) {
   <ul class="nav nav-pills nav-stacked" role="tablist">
     <li ><a >Inicio</a></li>
        
-
-    <li><a>buscar por profe</a></li>
-    
-    
-       
+      
   </ul>
 
   
@@ -155,7 +134,7 @@ for ($i=0; $i <$var; $i++) {
 <div class=" col-md-12 vcenter" >
         <div style="height:10em;border:20px solid #fff">
 
-          <h1>Secretaria <?php echo $secre ; ?></h1>
+          <h1>Secretaria <?php echo $nombre ; ?></h1>
           <h1>Edificio <?php echo $edificio ; ?></h1>
           
           <h1>Piso <?php echo $piso; ?></h1>
@@ -184,15 +163,16 @@ for ($i=0; $i <$var; $i++) {
 
       echo "<table class='table table-border' style='border:1px ' >
       
-       <tr><th> 
+       <th> 
        <span style='cursor: pointer;'>
-                    ".$resultado[$i]['CODSALA']."
-        </span></td>
-</th></tr>
+                    ".$resultado[$i]['CODSALA']." 
+        </span></th>
 
-      </table>";
+      </table>
 
   
+
+";
 
     }
     
@@ -219,42 +199,45 @@ for ($i=0; $i <$var; $i++) {
 <div class="col-md-3   col-lg-15" style="background:   #fff ;">
 
  <div class="col-md-12  vcenter" style="background:   #fff ;">
-<div class="row">
-  <div class="col-lg-6">
-    <div class="input-group">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Buscar</button>
-      </span>
-      <input type="text" class="form-control" name="buscar">
-    </div>
-  </div>
-                <h4>Salas solicitadas por <?php  ?></h4>
-                <h4>Buscar salas por profesor <?php  ?></h4>
+
+
+<h4>Buscar salas por profesor</h4>
+<form action="inicios.php" class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input name='rut' type="text" value"123456.." maxlength="8" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Buscar</button>
+      </form>
+                
 
                 <?php  
                  
+ $rut = $_REQUEST['rut'];
 
           require "conec.php";
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    
-       $sql = $conn->prepare(" SELECT *
- FROM SOLICITUD SOL
-   WHERE  RUT='17875041'");
+       $sql = $conn->prepare(" SELECT CODSALA,PERIODO,DIA,RAMO, NOMBRE
+ FROM SOLICITUD SOL join USUARIO U ON SOL.RUT=U.RUT
+   WHERE  SOL.RUT='$rut'");
       $sql->execute();
     $resultado = $sql->fetchAll();
     $conn =null;
     $var= count ($resultado);
+
 
  for ($i=0; $i <$var; $i++) { 
   $sala= $resultado[$i]['CODSALA'];
    $periodo =$resultado[$i]['PERIODO'];
    $dia =$resultado[$i]['DIA'];
    $ramo =$resultado[$i]['RAMO'];
+   $name =$resultado[$i]['NOMBRE'];
  }
 
  ?>
 
-
+<h4>Salas solicitadas por <?php echo $name; ?></h4>
+                
             <table class="table table-bordered  pull-right" style='border:1px '>
                 <th>Sala</th> 
                 <th>Periodo</th>

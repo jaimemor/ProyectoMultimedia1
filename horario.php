@@ -72,6 +72,8 @@ $var= count ($resultado);
 
 <?php 
 
+
+
   function selecdia ($DIA,$PERIODO){
  include "conec.php";
 
