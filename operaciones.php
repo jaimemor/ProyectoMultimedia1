@@ -1,5 +1,5 @@
  <?php
-      $nombre = $_REQUEST['nombre'];
+     // $nombre = $_REQUEST['nombre'];
 			$rut = $_REQUEST['rut'];
 			$sala = $_REQUEST['sala'];
       $ramo = $_REQUEST['ramo'];
@@ -11,10 +11,10 @@
 
 
 
-        function guardar_form($nombre,$rut,$sala,$ramo,$semestre,$periodo,$dia){
+        function guardar_form($dia,$rut,$sala,$ramo,$semestre,$periodo,$dia){
 
 			require "conec.php";
-        	$sql = "INSERT INTO solicitud(DIA,RAMO,PERIODO,SEMESTRE,RUT,CODSALA,NOMBRE) 
+        	$sql = "INSERT INTO solicitud(DIA,RAMO,PERIODO,SEMESTRE,RUT,CODSALA) 
             VALUES (?,?,?,?,?,?,?)";
         	 $smt = $conn->prepare($sql);
         	 $smt->bindParam(1,$dia);
@@ -23,7 +23,6 @@
              $smt->bindParam(4,$semestre);
              $smt->bindParam(5,$rut);
              $smt->bindParam(6,$sala);
-            $smt->bindParam(7,$nombre);
             
 
         	 $smt ->execute();
@@ -35,8 +34,8 @@
 
 		
 	
-guardar_form($nombre,$rut,$sala,$ramo,$semestre,$periodo,$dia);     
+guardar_form($dia,$rut,$sala,$ramo,$semestre,$periodo,$dia);     
 
-echo $dia.$nombre.$rut;   
+//echo $dia.$nombre.$rut;   
 
 ?>
