@@ -273,23 +273,18 @@
  ?>
 <table class="table table-bordered" border="0,5">
 
-  <?php  
-  foreach ($resultado as $row) {
-      
-            
-          
-   echo "<pre>";
-   //print_r($row);
-   echo "</pre>";
+ <?php  
+  for ($i=0; $i < $var; $i++) { 
+
       echo "<table class='table table-border' style='border:1px ' >
        
       
        <tr>
        <span style='cursor: pointer;'>
 
-                     <td> ".$row['TIPOIMPLE']."</td>
-                    <td >".$row['CANTIDAD']."</td>
-                    <td >".$row['ESTADO']."</td>
+                     <td> ".$resultado[$i]['TIPOIMPLE']."</td>
+                    <td >".$resultado[$i]['CANTIDAD']."</td>
+                    <td >".$resultado[$i]['ESTADO']."</td>
         </span>
 </th></tr>
 

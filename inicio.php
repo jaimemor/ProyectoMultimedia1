@@ -120,8 +120,7 @@
 
 
  
-    <li><a href=vistasec.php>visata secretaria</a></li>
-    <li><a href=vistaprofe.php>vista profe</a></li>
+   
        
   </ul>
 

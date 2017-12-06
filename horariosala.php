@@ -1,30 +1,30 @@
-
-
-
-<!DOCTYPE html>
- <html>
- <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
- <?php  include('vista3.php'); ?>
+<?php error_reporting(0); ?>
 
 
 
 <?php 
 
-$link=$_GET['id'];
-$var='b404';
+$codigo=$_REQUEST['id'];
+
+
+
+
+ ?>
+
+<?php 
+
+
 
   function selecdia ($DIA,$PERIODO){
  include "conec.php";
 
- $sql=('SELECT NOMBRE,DIA,PERIODO,RAMO,SOL.CODSALA
+    
+
+ $sql=("SELECT NOMBRE,DIA,PERIODO,RAMO,SOL.CODSALA,SEMESTRE
  FROM USUARIO U JOIN SOLICITUD SOL ON U.RUT=SOL.RUT
   LEFT JOIN SALA S ON S.CODSALA=SOL.CODSALA
-
- WHERE S.CODSALA="b404" AND DIA=? AND PERIODO=? ');
+AND DIA=? AND PERIODO=?
+ WHERE S.CODSALA='b404'  AND SEMESTRE='1'" );
   $smt=$conn->prepare($sql);
   
   $smt->bindParam(1,$PERIODO);
@@ -109,6 +109,15 @@ for ($i=0; $i < 6; $i++) {
 
  ?>
 
+ <!DOCTYPE html>
+ <html>
+ <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+ <?php  include('vista3.php'); ?>
+
   <title></title>
 
 
@@ -150,36 +159,19 @@ for ($i=0; $i < 6; $i++) {
     <li class="active"><a href=inicio.php>Inicio</a></li>
    
 
+
+
+        <form action="horariosala.php"  method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+        <input type="radio" name="semestre" value="1" >Primer Semestre<br>
+        <input type="radio" name="semestre" value="2" >Segundo Semestre<br>
+      <input type="submit" value="ENVIAR" class="btn btn-primary" ><hr/>
+      </form>
+      
+       
     
-    
-
-  
-
-         
-<div class="radio">
-
-
-  <label>
-    <input type="radio" name="opciones" id="opciones_1" value="opcion_1" checked>
-   <a href="">Primer Semestre </a>
-   
-  </label>
-</div>
-<div class="radio">
-  <label>
-    <input type="radio" name="opciones" id="opciones_2" value="opcion_2">
-    <a href="">Segundo Semestre </a>
-  </label>
-</div>
-
-  
-</nav>
-
-
 
 </div>
-
-</div>
+ </div>
  </div>
  </div>
 
@@ -189,12 +181,13 @@ for ($i=0; $i < 6; $i++) {
        informacion que esta sobre el calendario de la sala
 
     -->
+
+
 <div class="col-md-4 col-lg-5 vcenter" >
         <div style="height:7em;">
          
-         <h4 ><p class="text-primary">EDIFICIO<?php ?> 
-<h4 ><p class="text-primary">PISO<?php  ?></p></h4></p></h4> <h4 ><p class="text-primary">SALA<?php ?></p></h4>
-          
+         <h4 ><p class="text-primary">SALA <?php echo $codigo;?> </p></h4>
+<h4 ><p class="text-primary">PISO<?php  ?></p></h4> 
          
         
 
@@ -347,12 +340,12 @@ for ($i=0; $i < 6; $i++) {
   <th>Estado</th>
   <?php
 
+
   include "conec.php";
 
-  $sql=( 'SELECT FECHACOM,HORA,COMENTARIO,ESTADO,CANTIDAD,TIPOIMPLE,S.CODSALA
-        FROM COMENTARIO C LEFT JOIN SALA S
- ON S.CODSALA=C.CODSALA INNER JOIN IMPLEMENTO I ON I.CODSALA=S.CODSALA
- WHERE S.CODSALA="B404";');
+  $sql=( 'SELECT ESTADO,CANTIDAD,TIPOIMPLE,S.CODSALA
+        FROM  SALA S JOIN IMPLEMENTO I ON I.CODSALA=S.CODSALA
+ WHERE S.CODSALA="b404";');
   $smt=$conn->prepare($sql);
   $smt->execute();
   $resultado=$smt->fetchall ();
