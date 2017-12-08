@@ -31,11 +31,11 @@
 <h3><p class="text-center">Formulario Solicitud sala codsala</p></h3>
 	<div class="row">
 		
-		<form action="operaciones.php"  method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+		
 
 <div class="col-md-5 ">
 
-
+<form action="operaciones.php"  method="POST" enctype="multipart/form-data" accept-charset="utf-8">
 Nombre Porfesor:<input name="nombre" type="text" value="" class="form-control" required />
 Rut Porfesor:<input name="rut" type="text"  maxlength="8" value="" class="form-control" required/>
 Sala:<input name="sala" type="text"  value="" class="form-control" required/>
