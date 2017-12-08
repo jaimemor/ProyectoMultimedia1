@@ -1,6 +1,15 @@
 
 
+<?php 
 
+error_reporting(0);
+$varaibe=$_REQUEST['id'];
+
+ ?>
+
+
+
+ 
 <!DOCTYPE html>
  <html>
  <head>
@@ -10,8 +19,7 @@
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
  <?php  include('vista3.php'); ?>
 
-
-<?php include('horario.php');  ?>
+<?php include ('proceso.php');?>
 
 
   <title></title>
@@ -49,41 +57,23 @@
                  
 
   <ul class="nav nav-pills nav-stacked" role="tablist">
-    <li class="active"><a href=inicio.php>Inicio</a></li>
+    <li class="active"><a href=inicio.php>Inicio</a></li><br>
 
-    
-    
-
-   <li><a href="solicitud.php">Solicitar sala</a></li>
-
-         
-<div class="radio">
-
-
-  <label>
-    <input type="radio" name="opciones" id="opciones_1" value="opcion_1" checked>
-   <a href="">Primer Semestre </a>
-   
-  </label>
-</div>
-<div class="radio">
-  <label>
-    <input type="radio" name="opciones" id="opciones_2" value="opcion_2">
-    <a href="">Segundo Semestre </a>
-  </label>
-</div>
+           
+  <form action="<?php echo $_SERVER['proceso.php'] ?>"   method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+        <input type="radio" name="semestre" value="1" checked value="1">Primer Semestre<br>
+        <input type="radio" name="semestre" value="2" >Segundo Semestre<br>
+      <input type="submit" value="Enviar" class="btn btn-primary" ><hr/>
+      </form>
 
     <li><a href="#">Generar Codigo QR</a></li>        
     <li><a href="#">Ver Estadisticas</a></li>        
   
- 
+ <li><a href="solicitud.php">Solicitar sala</a></li> 
  
 
 
   </form>
-</nav>
-
-
 
 </div>
 
@@ -253,27 +243,26 @@
   <th>Nombre</th>
   <th>Cantidad</th>
   <th>Estado</th>
-  <?php
+  <?php  
+  
+  
+include "conec.php";
 
-  include "conec.php";
+  $sql=( "SELECT ESTADO,CANTIDAD,TIPOIMPLE,S.CODSALA
+        FROM  SALA S JOIN IMPLEMENTO I ON I.CODSALA=S.CODSALA
+ WHERE S.CODSALA='".$_REQUEST['id']."'");
 
-  $sql=( 'SELECT FECHACOM,HORA,COMENTARIO,ESTADO,CANTIDAD,TIPOIMPLE,S.CODSALA
-        FROM COMENTARIO C LEFT JOIN SALA S
- ON S.CODSALA=C.CODSALA INNER JOIN IMPLEMENTO I ON I.CODSALA=S.CODSALA
- WHERE S.CODSALA="B404";');
   $smt=$conn->prepare($sql);
   $smt->execute();
-  $resultado=$smt->fetchall ();
-  $conn =null;
-  $var= count ($resultado);
+  $resultado=$smt->fetchall();
+
+  
+$var= count ($resultado);
+
+    
+   
 
 
-
-
- ?>
-<table class="table table-bordered" border="0,5">
-
- <?php  
   for ($i=0; $i < $var; $i++) { 
 
       echo "<table class='table table-border' style='border:1px ' >
@@ -282,9 +271,9 @@
        <tr>
        <span style='cursor: pointer;'>
 
-                     <td> ".$resultado[$i]['TIPOIMPLE']."</td>
-                    <td >".$resultado[$i]['CANTIDAD']."</td>
-                    <td >".$resultado[$i]['ESTADO']."</td>
+                     <td class='text-center'  HEIGHT='40'> ".$resultado[$i]['TIPOIMPLE']."</td>
+                    <td class='text-center'  HEIGHT='40'>".$resultado[$i]['CANTIDAD']."</td>
+                    <td class='text-center'  HEIGHT='40'>".$resultado[$i]['ESTADO']."</td>
         </span>
 </th></tr>
 
@@ -293,9 +282,6 @@
  
 
     }
-    
-   
-
  ?>
 
 </table>
@@ -354,12 +340,28 @@
 
 
 
+<?php 
+
+  
+include "conec.php";
+
+  $sql=( "SELECT COMENTARIO,HORA,FECHACOM
+FROM COMENTARIO C JOIN SALA S ON C.CODSALA=S.CODSALA
+WHERE S.CODSALA='".$_REQUEST['id']."'");
+
+  $smt=$conn->prepare($sql);
+  $smt->execute();
+  $resultado=$smt->fetchall();
+
+$var= count ($resultado);
+
+ ?>
 
 <table class="table table-bordered" border="0,5" type="text">
 
   <?php  
 
-  for ($i=0; $i < 2; $i++) { 
+  for ($i=0; $i < $var; $i++) { 
 
 
       echo "
@@ -413,23 +415,7 @@
 
 
  </body>                                                                 
- <footer>
-   
-
-<div class="container-fluid">
-    
-         <div class="row">
-
-        
-
-<div class="col-md-12 " ;" style="background:#000000;">
-<div style="width: 100%; height:65px ;"></div>infomracion del footer</div>
-</div>
-</div>
-</div>
-
-
- </footer>
+ 
 
    
  </html>

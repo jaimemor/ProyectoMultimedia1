@@ -16,7 +16,9 @@
     $conn =null;
     $var= count ($resultado);
 
-
+foreach ($resultado as $row) {
+ $edificio =$row['NOMBREED'];
+}
 
  ?>
 
@@ -130,7 +132,7 @@
 
 <div class="col-md-6  col-lg-10 vcenter" >
         <div style="height:10em;border:10px solid #fff">
-          <h1>Edificio <?php echo $facultad;?></h1>
+          <h1>Edificio <?php echo $edificio;?></h1>
           <h1>Piso <?php echo $piso; ?></h1>
          
         </div>

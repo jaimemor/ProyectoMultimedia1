@@ -8,9 +8,6 @@ error_reporting(0);
 $varaibe=$_REQUEST['id'];
 
 
-
-
-
  ?>
 
 
@@ -69,7 +66,7 @@ $varaibe=$_REQUEST['id'];
 
 
         <form action="<?php echo $_SERVER['proceso.php'] ?>"   method="POST" enctype="multipart/form-data" accept-charset="utf-8">
-        <input type="radio" name="semestre" value="1" checked>Primer Semestre<br>
+        <input type="radio" name="semestre" value="1" checked value="1">Primer Semestre<br>
         <input type="radio" name="semestre" value="2" >Segundo Semestre<br>
       <input type="submit" value="Enviar" class="btn btn-primary" ><hr/>
       </form>

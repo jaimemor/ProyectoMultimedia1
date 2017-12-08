@@ -165,7 +165,7 @@ for ($i=0; $i <$var; $i++) {
       
        <th> 
        <span style='cursor: pointer;'>
-                    ".$resultado[$i]['CODSALA']." 
+                    ".$resultado[$i]['CODSALA']."<a href='vistasec.php?id=".$resultado[$i]['CODSALA']."'>ver</a>
         </span></th>
 
       </table>
