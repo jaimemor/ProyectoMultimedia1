@@ -24,7 +24,7 @@ if ($_SESSION['usuario']==$resultado[0]['RUT'] && $clave==$resultado[0]['PASS'])
  		$_SESSION['name']=$resultado[0]['nombre'];
  		header("location:../inicios.php");
  	} else {
- 		header("location:mayordomo.php");
+ 		header("location:../iniciom.php");
  	}
  	
 

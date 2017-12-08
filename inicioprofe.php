@@ -169,12 +169,7 @@ require "conec.php";
 
 <div class="col-md-6   col-lg-15" style="background:   #fff ;">
 
-<div class="col-md-12   " >
-        <div style="height:3em;border:5px solid #fff">
-          <h1>Edificio <?php echo $facultad;?></h1>
-          <h1>Piso <?php echo $piso; ?></h1>
-</div>
-        </div>
+
         
 
         

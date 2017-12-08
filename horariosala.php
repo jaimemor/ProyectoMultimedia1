@@ -1,113 +1,19 @@
-<?php error_reporting(0); ?>
+
 
 
 
 <?php 
 
-$codigo=$_REQUEST['id'];
+error_reporting(0);
+$varaibe=$_REQUEST['id'];
+
 
 
 
 
  ?>
 
-<?php 
 
-
-
-  function selecdia ($DIA,$PERIODO){
- include "conec.php";
-
-    
-
- $sql=("SELECT NOMBRE,DIA,PERIODO,RAMO,SOL.CODSALA,SEMESTRE
- FROM USUARIO U JOIN SOLICITUD SOL ON U.RUT=SOL.RUT
-  LEFT JOIN SALA S ON S.CODSALA=SOL.CODSALA
-AND DIA=? AND PERIODO=?
- WHERE S.CODSALA='b404'  AND SEMESTRE='1'" );
-  $smt=$conn->prepare($sql);
-  
-  $smt->bindParam(1,$PERIODO);
-  $smt->bindParam(2,$DIA);
-  $smt->execute();
-  $resultado=$smt->fetchall ();
-  $conn =null;
- 
-
- return $resultado;
-
-
- }
-
-
-
-
-$datos=array();
-
-
-
-for ($i=0; $i < 6; $i++) { 
-  
-  $datos['PERIODO1'][$i]=selecdia(1,$i+1);
-}
-
-for ($i=0; $i < 6; $i++) { 
-  
-  $datos['PERIODO2'][$i]=selecdia(2,$i+1);
-}
-
-for ($i=0; $i < 6; $i++) { 
-  
-  $datos['PERIODO3'][$i]=selecdia(3,$i+1);
-}
-
-for ($i=0; $i < 6; $i++) { 
-  
-  $datos['PERIODO4'][$i]=selecdia(4,$i+1);
-}
-
-for ($i=0; $i < 6; $i++) { 
-  
-  $datos['PERIODO5'][$i]=selecdia(5,$i+1);
-}
-
-for ($i=0; $i < 6; $i++) { 
-  
-  $datos['PERIODO6'][$i]=selecdia(6,$i+1);
-}
-
-for ($i=0; $i < 6; $i++) { 
-  
-  $datos['PERIODO7'][$i]=selecdia(7,$i+1);
-}
-
-for ($i=0; $i < 6; $i++) { 
-  
-  $datos['PERIODO8'][$i]=selecdia(8,$i+1);
-}
-
-for ($i=0; $i < 6; $i++) { 
-  
-  $datos['PERIODO9'][$i]=selecdia(9,$i+1);
-}
-
-for ($i=0; $i < 6; $i++) { 
-  
-  $datos['PERIODO10'][$i]=selecdia(10,$i+1);
-}
-for ($i=0; $i < 6; $i++) { 
-  
-  $datos['PERIODO11'][$i]=selecdia(11,$i+1);
-}
-
-for ($i=0; $i < 6; $i++) { 
-  
-  $datos['PERIODO12'][$i]=selecdia(12,$i+1);
-}
-
-
-
- ?>
 
  <!DOCTYPE html>
  <html>
@@ -117,6 +23,7 @@ for ($i=0; $i < 6; $i++) {
   
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
  <?php  include('vista3.php'); ?>
+<?php include ('proceso.php');?>
 
   <title></title>
 
@@ -161,10 +68,10 @@ for ($i=0; $i < 6; $i++) {
 
 
 
-        <form action="horariosala.php"  method="POST" enctype="multipart/form-data" accept-charset="utf-8">
-        <input type="radio" name="semestre" value="1" >Primer Semestre<br>
+        <form action="<?php echo $_SERVER['proceso.php'] ?>"   method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+        <input type="radio" name="semestre" value="1" checked>Primer Semestre<br>
         <input type="radio" name="semestre" value="2" >Segundo Semestre<br>
-      <input type="submit" value="ENVIAR" class="btn btn-primary" ><hr/>
+      <input type="submit" value="Enviar" class="btn btn-primary" ><hr/>
       </form>
       
        
@@ -338,14 +245,20 @@ for ($i=0; $i < 6; $i++) {
   <th>Nombre</th>
   <th>Cantidad</th>
   <th>Estado</th>
-  <?php
+  
+<table class="table table-bordered" border="0,5">
 
+
+  <?php  
+  
+  
 
   include "conec.php";
 
   $sql=( 'SELECT ESTADO,CANTIDAD,TIPOIMPLE,S.CODSALA
         FROM  SALA S JOIN IMPLEMENTO I ON I.CODSALA=S.CODSALA
- WHERE S.CODSALA="b404";');
+ WHERE S.CODSALA="$semestre";');
+
   $smt=$conn->prepare($sql);
   $smt->execute();
   $resultado=$smt->fetchall ();
@@ -353,12 +266,10 @@ for ($i=0; $i < 6; $i++) {
   $var= count ($resultado);
 
 
+    
+   
 
 
- ?>
-<table class="table table-bordered" border="0,5">
-
-  <?php  
   for ($i=0; $i < $var; $i++) { 
 
       echo "<table class='table table-border' style='border:1px ' >
@@ -378,9 +289,6 @@ for ($i=0; $i < 6; $i++) {
  
 
     }
-    
-   
-
  ?>
 
 </table>

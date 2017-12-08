@@ -44,6 +44,7 @@ Semestre:<input name="semestre"  type="text"  value="1,2,3,4,5..." class="form-c
 Periodo:<input name="periodo"  type="text"  value="1,2,3,4,5..." class="form-control" required/>
 Dia:<input name="dia" type="text"  value="" class="form-control" required/>
 
+<input type="hidden" name="form">
 <input type="submit" value="ENVIAR" class="btn btn-primary" ><hr/> 
 </div>
 

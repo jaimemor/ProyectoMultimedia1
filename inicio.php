@@ -169,8 +169,6 @@
   <?php 
 
 
- 
-   
  for ($i=0; $i < $var; $i++) { 
 
       echo "<table class='table table-border' style='border:1px ' >
@@ -211,14 +209,6 @@
     </div>
 
 </div>
-
-
-
-
-
-
-
-
 
 
  </body>
