@@ -39,7 +39,7 @@
 
 
  
- <div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" 
+ <div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" >
 
   
   <div class="left" > <font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
@@ -61,25 +61,22 @@
         botonera
 
     -->
-    <div class="col-md-6 col-md-4 col-lg-2 vcenter">
-        <div style="height:30em;border:10px solid #FFF">
+    <div class=" col-md-4 col-lg-2 vcenter">
+        <div style="height:30em;border:5px solid #fff">
           
-<div class="btn-group-vertical " style="border:0px solid #fff" >
 
-
-
-
-<div class="container" style="width: 200px" >
+<div class="container" >
   
                   
   <ul class="nav nav-pills nav-stacked" role="tablist">
-    <li ><a >Inicio</a></li>
+
+    <a style='cursor: pointer;'>Inicio</a><br>
        
-  <li> <a type="button" data-toggle="modal"
-   data-target="#exampleModal" data-whatever="@getbootstrap">
+   <a type="button" data-toggle="modal"
+   data-target="#exampleModal" data-whatever="@getbootstrap" style='cursor: pointer;'>
      
      Buscar Sala
-   </a></li>
+   </a>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -116,12 +113,7 @@
     </div>
   </div>
 </div>
-
-
-
- 
-   
-       
+      
   </ul>
 
   
@@ -129,22 +121,14 @@
 
 
 
-
-</div>
-
-
-
-
   </div>
 
-
-      
-     </div>
+   </div>
 
 
 
 
-<div class="col-md-6 col-md-8 col-lg-10 vcenter" >
+<div class="col-md-6  col-lg-10 vcenter" >
         <div style="height:10em;border:10px solid #fff">
           <h1>Edificio <?php echo $facultad;?></h1>
           <h1>Piso <?php echo $piso; ?></h1>
@@ -208,12 +192,9 @@
      </div>
     </div>
 
-</div>
-
-
  </body>
 <footer>
- <div class="container-fluid">
+ 
     
          <div class="row">
 
@@ -222,8 +203,8 @@
 <div class="col-md-12 " ;" style="background:#000000;">
 <div style="width: 100%; height:65px ;"></div>infomracion del footer
 </div>
-</div>
-</div>
+
+
 
  </footer>
  </html>

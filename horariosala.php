@@ -28,7 +28,7 @@ $varaibe=$_REQUEST['id'];
   <title></title>
 
 
-<div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" 
+<div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" >
 
   
   <div class="left" > <font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
@@ -49,8 +49,8 @@ $varaibe=$_REQUEST['id'];
         botonera
 
     -->
-    <div class="col-md-4 col-lg-2 vcenter">
-        <div style="height:30em;border:5px solid #FFF">
+    <div class="col-md-3 col-lg-2 vcenter">
+        <div style="height:30em;border:1px solid #FFF">
           
 
 <div class="btn-group-vertical " style="border:0px solid #fff" >
@@ -90,18 +90,12 @@ $varaibe=$_REQUEST['id'];
     -->
 
 
-<div class="col-md-4 col-lg-5 vcenter" >
-        <div style="height:7em;">
+<div class="col-md-3 col-lg-5 vcenter" >
+        <div style="height:7em;  " >
          
-         <h4 ><p class="text-primary">SALA <?php echo $codigo;?> </p></h4>
-<h4 ><p class="text-primary">PISO<?php  ?></p></h4> 
+         <h4 style="margin-top:10px;"><p class="text-primary">SALA <?php echo $varaibe;?> </p></h4>
+
          
-        
-
-          <div>
- 
-
-        </div>
         </div></div>
 
 
@@ -115,7 +109,7 @@ $varaibe=$_REQUEST['id'];
     -->
 
 
-<div class="col-md-4 col-lg-10 vcenter" style="border:5px solid #fff">
+<div class="col-md-4 col-lg-10 vcenter" style="border:1px solid #fff">
         <div style="height:20em">
    
          <div class="container-fluid">
@@ -238,7 +232,7 @@ $varaibe=$_REQUEST['id'];
 
         
 
-<div class="col-md-12 " ;" style="border:5px solid #fff" >
+<div class="col-md-11 " ;" style="border:1px solid #fff" >
 
 <div>
   <h4 ><p class="text-primary">IMPLEMENTOS</p></h4> 
@@ -252,19 +246,18 @@ $varaibe=$_REQUEST['id'];
   <?php  
   
   
+include "conec.php";
 
-  include "conec.php";
-
-  $sql=( 'SELECT ESTADO,CANTIDAD,TIPOIMPLE,S.CODSALA
+  $sql=( "SELECT ESTADO,CANTIDAD,TIPOIMPLE,S.CODSALA
         FROM  SALA S JOIN IMPLEMENTO I ON I.CODSALA=S.CODSALA
- WHERE S.CODSALA="$semestre";');
+ WHERE S.CODSALA='".$_REQUEST['id']."'");
 
   $smt=$conn->prepare($sql);
   $smt->execute();
   $resultado=$smt->fetchall ();
-  $conn =null;
-  $var= count ($resultado);
 
+  
+$var= count ($resultado);
 
     
    
@@ -278,9 +271,9 @@ $varaibe=$_REQUEST['id'];
        <tr>
        <span style='cursor: pointer;'>
 
-                     <td> ".$resultado[$i]['TIPOIMPLE']."</td>
-                    <td >".$resultado[$i]['CANTIDAD']."</td>
-                    <td >".$resultado[$i]['ESTADO']."</td>
+                     <td class='text-center'  HEIGHT='40'> ".$resultado[$i]['TIPOIMPLE']."</td>
+                    <td class='text-center'  HEIGHT='40'>".$resultado[$i]['CANTIDAD']."</td>
+                    <td class='text-center'  HEIGHT='40'>".$resultado[$i]['ESTADO']."</td>
         </span>
 </th></tr>
 
