@@ -7,9 +7,32 @@ $varaibe=$_REQUEST['id'];
 
  ?>
 
+<?php
 
+
+error_reporting(0);
+session_start();
+
+$varsesion= $_SESSION['usuario'];
+
+if($varsesion == null || $varsesion=''){
+  echo 'Usted no tiene autorizacion';
+  die();
+}
+
+require 'conec.php';
+$smt = $conn->prepare("SELECT * FROM usuario WHERE RUT=".$_SESSION['usuario'] ); 
+$smt -> execute(); 
+$resultado= $smt->fetchall();
+$conn=null;
+
+
+$secre=$_SESSION['usuario'];
+
+?>
 
  
+
 <!DOCTYPE html>
  <html>
  <head>
@@ -25,11 +48,11 @@ $varaibe=$_REQUEST['id'];
   <title></title>
 
 
-<div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" 
+<div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" >
 
   
   <div class="left" > <font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
-
+<a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
   
 </div>
 
@@ -57,7 +80,7 @@ $varaibe=$_REQUEST['id'];
                  
 
   <ul class="nav nav-pills nav-stacked" role="tablist">
-    <li class="active"><a href=inicio.php>Inicio</a></li><br>
+    <li class="active"><a href=inicios.php>Inicio</a></li><br>
 
            
   <form action="<?php echo $_SERVER['proceso.php'] ?>"   method="POST" enctype="multipart/form-data" accept-charset="utf-8">

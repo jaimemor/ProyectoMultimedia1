@@ -12,7 +12,7 @@ if($varsesion == null || $varsesion=''){
 }
 
 require 'conec.php';
-$smt = $conn->prepare("SELECT* FROM usuario WHERE RUT=".$_SESSION['usuario'] ); 
+$smt = $conn->prepare("SELECT * FROM usuario WHERE RUT=".$_SESSION['usuario'] ); 
 $smt -> execute(); 
 $resultado= $smt->fetchall();
 $conn=null;
