@@ -29,7 +29,7 @@ $secre=$_SESSION['usuario'];
  require "conec.php";
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    
-      $sql = $conn->prepare("SELECT S.CODSALA,P.CODPISO,CODED,RUT,NOMBRE
+      $sql = $conn->prepare("SELECT S.CODSALA,P.CODPISO,RUT,NOMBRE
  FROM  USUARIO U JOIN PISO P ON U.CODPISO=P.CODPISO JOIN SALA S ON S.CODPISO=P.CODPISO
  WHERE RUT='$secre'");
       $sql->execute();
@@ -39,13 +39,11 @@ $secre=$_SESSION['usuario'];
 
 for ($i=0; $i <$var; $i++) { 
   $sala1= $resultado[$i]['CODSALA'];
-   $piso =$resultado[$i]['CODPISO'];
-   $edificio =$resultado[$i]['CODED'];
+   $codigop=$resultado[$i]['CODPISO'];
    $nombre =$resultado[$i]['NOMBRE'];
   
    
  }
-
 
 
  ?>
@@ -56,7 +54,13 @@ for ($i=0; $i <$var; $i++) {
  <head>
  	<meta charset="utf-8">
  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
  	 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+   <?php 
+
+  header("Content-Type: text/html;charset=utf-8");
+
+    ?>
 
   <?php  include('vista3.php'); ?>
  
@@ -107,39 +111,56 @@ for ($i=0; $i <$var; $i++) {
                   
   <ul class="nav nav-pills nav-stacked" role="tablist">
     <li ><a >Inicio</a></li>
-       
+
+
+<?php 
+ require "conec.php";
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   
+      $sql = $conn->prepare("SELECT S.CODSALA,P.CODPISO,RUT,NOMBRE
+ FROM  USUARIO U JOIN PISO P ON U.CODPISO=P.CODPISO JOIN SALA S ON S.CODPISO=P.CODPISO
+ WHERE RUT='$secre' and P.CODPISO='$codigop'");
+      $sql->execute();
+    $resultado = $sql->fetchAll();
+    $conn =null;
+    $var= count ($resultado);
+
+foreach ($variable as $row) {
+ 
+
+  $sala1= $resultado[$i]['CODSALA'];
+   
+   $nombre =$resultado[$i]['NOMBRE'];
+  
+   
+ }
+
+echo $var;
+
+ ?>
+   
       
   </ul>
-
   
 </div>
 
 
-
-
 </div>
-
-
 
 
   </div>
 
-
-      
-     </div>
+</div>
 
 
 <div class="col-md-6   col-lg-15" style="background:   #fff ;">
 
 <div class=" col-md-12 vcenter" >
-        <div style="height:10em;border:20px solid #fff">
+        
 
           <h1>Secretaria <?php echo $nombre ; ?></h1>
-          <h1>Edificio <?php echo $edificio ; ?></h1>
           
-          <h1>Piso <?php echo $piso; ?></h1>
-         
-        </div>
+        
         </div>
 <!--
         aqui se muestran las salas
@@ -204,7 +225,7 @@ for ($i=0; $i <$var; $i++) {
 <h4>Buscar salas por profesor</h4>
 <form action="inicios.php" class="navbar-form navbar-left" role="search">
         <div class="form-group">
-          <input name='rut' type="text" value"123456.." maxlength="8" class="form-control" placeholder="Search">
+          <input name='nombre' type="text" value"" maxlength="20" class="form-control" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-default">Buscar</button>
       </form>
@@ -212,45 +233,52 @@ for ($i=0; $i <$var; $i++) {
 
                 <?php  
                  
- $rut = $_REQUEST['rut'];
+ $nombre = $_REQUEST['nombre'];
 
           require "conec.php";
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    
        $sql = $conn->prepare(" SELECT CODSALA,PERIODO,DIA,RAMO, NOMBRE
  FROM SOLICITUD SOL join USUARIO U ON SOL.RUT=U.RUT
-   WHERE  SOL.RUT='$rut'");
+   WHERE  NOMBRE='$nombre'");
       $sql->execute();
     $resultado = $sql->fetchAll();
     $conn =null;
     $var= count ($resultado);
 
-
- for ($i=0; $i <$var; $i++) { 
-  $sala= $resultado[$i]['CODSALA'];
-   $periodo =$resultado[$i]['PERIODO'];
-   $dia =$resultado[$i]['DIA'];
-   $ramo =$resultado[$i]['RAMO'];
-   $name =$resultado[$i]['NOMBRE'];
+ foreach ($variable as $row) {
+   $nombre=$row['nombre'];
  }
+ 
+
 
  ?>
 
-<h4>Salas solicitadas por <?php echo $name; ?></h4>
+<h4>Salas solicitadas por <?php echo $nombre; ?></h4>
                 
             <table class="table table-bordered  pull-right" style='border:1px '>
                 <th>Sala</th> 
                 <th>Periodo</th>
                       <th>Dia</th>
                       <th>Ramo</th>
-            <tr>
-              <td><?php echo $sala; ?></td>
-              <td><?php echo $periodo; ?></td>
-              <td><?php echo $dia; ?></td>
-              <td><?php echo $ramo; ?></td>
-            </tr>
-            </table>
+<?php  
+                      for ($i=0; $i < $var; $i++) { 
+ 
 
+
+
+              echo "
+
+            <tr>
+              <td>".$resultado[$i]['CODSALA']."</td>
+              <td>".$resultado[$i]['PERIODO']."</td>
+              <td>".$resultado[$i]['DIA']."</td>
+              <td>".$resultado[$i]['RAMO']."</td>
+            </tr>
+            
+"; 
+          }?>
+</table>
           </div>
           </div>
       

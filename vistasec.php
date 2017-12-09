@@ -94,6 +94,7 @@ $secre=$_SESSION['usuario'];
   
  <li><a href="solicitud.php">Solicitar sala</a></li> 
  
+ 
 
 
   </form>
@@ -415,7 +416,6 @@ WHERE S.CODSALA='".$_REQUEST['id']."' ORDER BY FECHACOM ");
 
 $var= count ($resultado);
 
-print_r($var);
 
  ?>
 
@@ -427,9 +427,9 @@ print_r($var);
 
   for ($i=0; $i <$var ; $i++) { 
 
-    
 
-echo $resultado[$i]['NOMBRE']." "
+
+echo  $resultado[$i]['NOMBRE']." "
 .$resultado[$i]['COMENTARIO']." ".$resultado[$i]['FECHACOM']." ".$resultado[$i]['HORA']." ";
               
  

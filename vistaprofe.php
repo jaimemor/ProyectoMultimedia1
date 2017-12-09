@@ -17,7 +17,7 @@
   <title></title>
 
 
-<div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" 
+<div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" >
 
   
   <div class="left" > <font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
@@ -49,17 +49,8 @@
 
   <ul class="nav nav-pills nav-stacked" role="tablist">
     <li class="active"><a href=inicio.php>Inicio</a></li>
-    <li ><a>Contacto</a></li>
-    
-    
 
-    
-    
-
-  
-
-         
-<div class="radio">
+    <div class="radio">
 
 
   <label>
@@ -75,8 +66,58 @@
   </label>
 </div>
 
+
+     <li><a>Solicitar a:</a></li> 
+<?php 
+
   
-</nav>
+  
+  
+include "conec.php";
+
+  $sql=( "SELECT NOMBRE,CODSALA,CORREO,TELEFONO
+FROM USUARIO JOIN piso p ON usuario.CODPISO = p.CODPISO
+JOIN sala s ON p.CODPISO = s.CODPISO
+WHERE  CODSALA='$varaibe' and TIPOUSUARIO='secretaria'");
+
+  $smt=$conn->prepare($sql);
+  $smt->execute();
+  $resultado=$smt->fetchall();
+
+  
+$var= count ($resultado);
+
+    foreach ($resultado as $row) {
+   $nn=$row['NOMBRE'];
+    $c=$row['CORREO'];
+    $t=$row['TELEFONO'];
+    }
+
+ ?>
+
+           <table>
+  
+   <tr>
+     
+<?php echo $nn."<br>";?>
+telefono: <?php echo $t."<br>"; ?>
+<?php echo $c."<br>"; ?>
+
+   </tr>
+
+ </table>
+    
+    
+
+    
+    
+
+  
+
+         
+
+  
+
 
 
 

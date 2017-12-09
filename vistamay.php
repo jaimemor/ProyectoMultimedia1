@@ -9,7 +9,6 @@ $varaibe=$_REQUEST['id'];
 <?php
 
 
-error_reporting(0);
 session_start();
 
 $varsesion= $_SESSION['usuario'];
@@ -90,8 +89,45 @@ $secre=$_SESSION['usuario'];
       </form>
 
     <li><a href="#">Generar Codigo QR</a></li>  
-       <li><a>informacion de secretaria</a></li>      
-           
+       <li><a>Solicitar a:</a></li> 
+<?php 
+
+  
+  
+  
+include "conec.php";
+
+  $sql=( "SELECT NOMBRE,CODSALA,CORREO,TELEFONO
+FROM USUARIO JOIN piso p ON usuario.CODPISO = p.CODPISO
+JOIN sala s ON p.CODPISO = s.CODPISO
+WHERE  CODSALA='$varaibe' and TIPOUSUARIO='secretaria'");
+
+  $smt=$conn->prepare($sql);
+  $smt->execute();
+  $resultado=$smt->fetchall();
+
+  
+$var= count ($resultado);
+
+    foreach ($resultado as $row) {
+   $nn=$row['NOMBRE'];
+    $c=$row['CORREO'];
+    $t=$row['TELEFONO'];
+    }
+
+ ?>
+
+           <table>
+  
+   <tr>
+     
+<?php echo $nn."<br>";?>
+telefono: <?php echo $t."<br>"; ?>
+<?php echo $c."<br>"; ?>
+
+   </tr>
+
+ </table>
   
  
 
@@ -111,8 +147,8 @@ $secre=$_SESSION['usuario'];
 <div class="col-md-4 col-lg-5 vcenter" >
         <div style="height:7em;">
          
-         <h4 ><p class="text-primary">EDIFICIO<?php ?> 
-<h4 ><p class="text-primary">PISO<?php  ?></p></h4></p></h4> <h4 ><p class="text-primary">SALA<?php ?></p></h4>
+ 
+<h3 ><p class="text-primary">SALA  <?php echo $varaibe; ?></p></h3>
           
          
         
@@ -411,7 +447,7 @@ WHERE S.CODSALA='".$_REQUEST['id']."' ORDER BY FECHACOM ");
 
 $var= count ($resultado);
 
-print_r($var);
+
 
  ?>
 

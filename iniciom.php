@@ -22,6 +22,7 @@ $conn=null;
 $mayor=$_SESSION['usuario'];
 
 
+
 ?>
 
 
@@ -52,14 +53,14 @@ foreach ($resultado as $row) {
 
 <?php 
 
-$piso=$_SESSION['piso'];
+$piso = $_REQUEST['piso'];
  require "conec.php";
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    
       $sql = $conn->prepare("SELECT e.CODED,p.CODPISO,CODSALA
  FROM  edificio e join piso p ON p.CODED = e.CODED
    JOIN sala s ON p.CODPISO = s.CODPISO
- WHERE  e.CODED='$edificio' AND p.NOMBREP='1'");
+ WHERE  e.CODED='$edificio' AND p.NOMBREP='$piso'");
       $sql->execute();
     $resultado = $sql->fetchAll();
     $conn =null;
