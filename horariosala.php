@@ -90,7 +90,7 @@ $varaibe=$_REQUEST['id'];
 <div class="col-md-3 col-lg-5 vcenter" >
         <div style="height:7em;  " >
          
-         <h4 style="margin-top:10px;"><p class="text-primary">SALA <?php echo $varaibe;?> </p></h4>
+         <h3 ><p class="text-primary">SALA: <?php echo $varaibe;?></p></h3>
 
          
         </div></div>

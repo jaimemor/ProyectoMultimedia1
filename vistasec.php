@@ -113,8 +113,8 @@ $secre=$_SESSION['usuario'];
 <div class="col-md-4 col-lg-5 vcenter" >
         <div style="height:7em;">
          
-         <h4 ><p class="text-primary">EDIFICIO<?php ?> 
-<h4 ><p class="text-primary">PISO<?php  ?></p></h4></p></h4> <h4 ><p class="text-primary">SALA<?php ?></p></h4>
+        
+<h3 ><p class="text-primary">SALA: <?php echo $varaibe;?></p></h3>
           
          
         
@@ -330,8 +330,8 @@ $var= count ($resultado);
 <div class="col-md-12 " ;" style="border:5px solid #fff" >
   <div>
     
-    <h4><p class="text-primary">COMENTARIOS</p></h4>
-    
+      <h4><p class="text-primary">COMENTARIOS</p></h4>
+   
 
 
 
@@ -339,21 +339,58 @@ $var= count ($resultado);
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+ <div class="modal-dialog" role="document">
+   <div class="modal-content">
+     
+   <div class="modal-body">
+       
+         <div class="form-group">
+           <form action=""  method="POST">
+           <label for="message-text" class="col-form-label">Ingresa Comentario</label>
+           <textarea class="form-control" id="message-text" name="texto" required=""></textarea>
+           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+           <button type="submit" class="btn btn-secondary"  >Enviar comentario</button>
+
+           <input type="hidden" name="formu2">
+           </form>    
+
+           <?php
+           function GuardarFormu2($rutt,$codsala,$comentario,$fecha,$hora){
+   require 'conec.php';
+   $sql="INSERT INTO COMENTARIO(FECHACOM,HORA,RUT,CODSALA,COMENTARIO) VALUES(?,?,?,?,?)";
+   $smt = $conn->prepare($sql);
+   $smt->bindParam(1, $fecha);
+   $smt->bindParam(2, $hora);
+   $smt->bindParam(3, $rutt);
+   $smt->bindParam(4, $codsala);
+   $smt->bindParam(5, $comentario);
+
+   //$smt->bindParam(3, $correoo);
+   //$smt->bindParam(4, $clavee);
+   $smt->execute();
+   $conn=null;
+
+}
+
+
+if(isset($_REQUEST['formu2'])){
+
+// aqui tenemos que rescatar las variables de c/secretaria!
+$rutt="$secre";
+$codsala="$varaibe";
+$comentario=$_REQUEST['texto'];
+date_default_timezone_set('America/Santiago');
+$fecha=date("y-m-d g:ia");
+
+$hora=date('g:ia');
+
+GuardarFormu2($rutt,$codsala,$comentario,$fecha,$hora);
+}
+
+
+?>
+      </div>
       
-    <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Ingresa Comentario</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Enviar Comentario</button>
-      </div>
     </div>
   </div>
 </div>
@@ -362,15 +399,15 @@ $var= count ($resultado);
 
 
 
-
 <?php 
 
   
 include "conec.php";
 
-  $sql=( "SELECT COMENTARIO,HORA,FECHACOM
-FROM COMENTARIO C JOIN SALA S ON C.CODSALA=S.CODSALA
-WHERE S.CODSALA='".$_REQUEST['id']."'");
+  $sql=( "SELECT COMENTARIO,HORA,FECHACOM,NOMBRE
+FROM SALA S JOIN COMENTARIO C  ON C.CODSALA=S.CODSALA
+  JOIN USUARIO U ON C.RUT=U.RUT
+WHERE S.CODSALA='".$_REQUEST['id']."' ORDER BY FECHACOM ");
 
   $smt=$conn->prepare($sql);
   $smt->execute();
@@ -378,42 +415,29 @@ WHERE S.CODSALA='".$_REQUEST['id']."'");
 
 $var= count ($resultado);
 
+print_r($var);
+
  ?>
 
-<table class="table table-bordered" border="0,5" type="text">
-
-  <?php  
-
-  for ($i=0; $i < $var; $i++) { 
-
-
-      echo "
-
-
-
-
-
-
-      <table class='table table-border' style='border:1px ' >
-      
-       <tr>
-       <span style='cursor: pointer;'>
-
-                       <td> ".$resultado[$i]['COMENTARIO']."</td>
-                    <td >".$resultado[$i]['FECHACOM']."</td>
-                    <td >".$resultado[$i]['HORA']."</td>
-        </span>
-</th></tr>
-
-      </table>";
 
  
 
+  <?php  
+ echo "<textarea class='form-control' rows='24'>";
+
+  for ($i=0; $i <$var ; $i++) { 
+
+    
+
+echo $resultado[$i]['NOMBRE']." "
+.$resultado[$i]['COMENTARIO']." ".$resultado[$i]['FECHACOM']." ".$resultado[$i]['HORA']." ";
+              
+ 
     }
     
 
  
-   
+   echo "</textarea>";
 
  ?>
 

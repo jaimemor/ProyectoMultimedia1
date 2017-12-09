@@ -1,46 +1,83 @@
 
+<?php
 
 
- <?php 
+error_reporting(0);
+session_start();
 
- error_reporting(0);
+$varsesion= $_SESSION['usuario'];
 
-     
+if($varsesion == null || $varsesion=''){
+  echo 'Usted no tiene autorizacion';
+  die();
+}
+
+require 'conec.php';
+$smt = $conn->prepare("SELECT * FROM usuario WHERE RUT=".$_SESSION['usuario'] ); 
+$smt -> execute(); 
+$resultado= $smt->fetchall();
+$conn=null;
 
 
-require "conec.php";
+$mayor=$_SESSION['usuario'];
+
+
+?>
+
+
+
+
+<?php 
+ require "conec.php";
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    
-      $sql = $conn->prepare(' SELECT NOMBREED,P.CODPISO,NOMBREP
- FROM  EDIFICIO E JOIN PISO P ON E.CODED=P.CODED
- WHERE E.CODED="001" AND NOMBREP="1";');
+      $sql = $conn->prepare("SELECT e.CODED,rut,nombreed
+ FROM  USUARIO u join edificio e ON u.CODED = e.CODED
+ WHERE  RUT='$mayor'");
       $sql->execute();
     $resultado = $sql->fetchAll();
     $conn =null;
     $var= count ($resultado);
 
 foreach ($resultado as $row) {
-        
-          
-        }
+  $edificio =$row['CODED'];
+  $o =$row['rut'];
+  $n =$row['nombreed'];
+}
 
-  ?>
+ 
+
+
+ ?>
 
 <?php 
+
+$piso=$_SESSION['piso'];
  require "conec.php";
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    
-      $sql = $conn->prepare("SELECT S.CODSALA,P.CODPISO
- FROM  EDIFICIO E JOIN PISO P ON E.CODED=P.CODED LEFT JOIN SALA S ON S.CODPISO=P.CODPISO
- WHERE E.CODED='001' AND NOMBREP='1'");
+      $sql = $conn->prepare("SELECT e.CODED,p.CODPISO,CODSALA
+ FROM  edificio e join piso p ON p.CODED = e.CODED
+   JOIN sala s ON p.CODPISO = s.CODPISO
+ WHERE  e.CODED='$edificio' AND p.NOMBREP='1'");
       $sql->execute();
     $resultado = $sql->fetchAll();
     $conn =null;
     $var= count ($resultado);
 
+for ($i=0; $i <$var; $i++) { 
+$sala =$resultado[$i]['CODED'];
+$nombre =$resultado[$i]['NOMBREP'];
+$p =$resultado[$i]['CODPISO'];
+$sala =$resultado[$i]['CODSALA'];
+ 
+
+ }
 
 
  ?>
+
+ 
 
 
  <!DOCTYPE html>
@@ -66,6 +103,8 @@ foreach ($resultado as $row) {
 
   
    <div class="left" ><font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
+
+   <a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
 
  
 
@@ -97,41 +136,12 @@ foreach ($resultado as $row) {
   <ul class="nav nav-pills nav-stacked" role="tablist">
     <li ><a >Inicio</a></li>
        
-  <li> <a type="button" data-toggle="modal"
-   data-target="#exampleModal" data-whatever="@getbootstrap">
-     
-     Buscar Sala
-   </a></li>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Seleccione Edificio y Piso</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="inicioprofe.php"  method="POST" enctype="multipart/form-data" accept-charset="utf-8">
-          
-
-
-<input type="radio" name="piso" value="1" checked>Piso 1
-              
-
-
-<input type="radio" name="piso" value="2">Piso 2
-
-<br>
-
-<input type="submit" value="ENVIAR" class="btn btn-primary" ><hr/> 
-        </form>
-      </div>
-      
-    </div>
-  </div>
-</div>
+  
+  <form action="<?php echo $_SERVER['iniciom.php'] ?>"   method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+        <input type="radio" name="piso" value="1" checked value="1">Primer Piso<br>
+        <input type="radio" name="piso" value="2" >Segundo Piso<br>
+      <input type="submit" value="Enviar" class="btn btn-primary" ><hr/>
+      </form>
 
 
        
@@ -157,12 +167,12 @@ foreach ($resultado as $row) {
 
 
 
-<div class="col-md-6 col-md-8 col-lg-10 vcenter" >
+<div class="col-md-6  col-lg-10 vcenter" style="border-top: 50px;" >
         <div style="height:10em;border:10px solid #fff">
-          <h1>Edificio </h1>
-          <h1>Piso </h1>
-          <h1>Mostrar lista de salas por profesor</h1>
-          <h1>Mostrar lista de salas segun edificio del mayor domo</h1>
+          <h1>Edificio <?php echo $n; ?></h1>
+          <h1>Piso <?php echo $p; ?></h1>
+         
+        
 
          
         </div>
@@ -187,17 +197,14 @@ foreach ($resultado as $row) {
    
  for ($i=0; $i < $var; $i++) { 
 
-      echo "<table class='table table-bordered' style='border:1px ' >
+      echo "<table class='table table-border' style='border:1px ' >
       
-       <tr><th> 
+       <th> 
        <span style='cursor: pointer;'>
-                    ".'<a href=http://localhost/ProyectoMultimedia1/horariosala.php?codsala=><u>Sala </u></a>'.$resultado[$i]['CODSALA']."
-        </span></td>
-</th></tr>
+                    ".$resultado[$i]['CODSALA']."<a href='vistamay.php?id=".$resultado[$i]['CODSALA']."'>ver</a>
+        </span></th>
 
       </table>";
-
-    $varlink="http://localhost/ProyectoMultimedia1/vistasec.php?codsala=CODSALA";
 
     }
     
