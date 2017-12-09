@@ -10,7 +10,7 @@ $varaibe=$_REQUEST['id'];
 <?php
 
 
-error_reporting(0);
+
 session_start();
 
 $varsesion= $_SESSION['usuario'];
@@ -89,11 +89,20 @@ $secre=$_SESSION['usuario'];
       <input type="submit" value="Enviar" class="btn btn-primary" ><hr/>
       </form>
 
-    <li><a href="#">Generar Codigo QR</a></li>        
+<?php echo "
+
+    <li><a href='http://localhost/proyectoMultimedia1/phpqrcode/index.php?id=".$varaibe."'>Generar Codigo QR</a></li>         
+"; ?>
     <li><a href="#">Ver Estadisticas</a></li>        
-  
- <li><a href="solicitud.php">Solicitar sala</a></li> 
- 
+  <?php  
+  echo "
+  <form action='solicitud.php' method='POST'>
+    <input type='text' value=".$_REQUEST['id']." name='id'>
+ <li><button href='solicitud.php'>Solicitar sala></button></li> 
+  </form>
+
+";
+ ?>
  
 
 

@@ -63,7 +63,7 @@ foreach ($resultado as $row) {
         botonera
 
     -->
-    <div class=" col-md-4 col-lg-2 vcenter">
+    <div class=" col-md-3 col-lg-2 vcenter">
         <div style="height:30em;border:5px solid #fff">
           
 

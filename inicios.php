@@ -135,7 +135,7 @@ foreach ($variable as $row) {
    
  }
 
-echo $var;
+
 
  ?>
    
