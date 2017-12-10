@@ -9,16 +9,29 @@
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/estilos.css">
 
+ 
+<div class="row" >
+<div class="container" style="width: 100%;" >
+  
+
+
+<div class="col-md-12" style="background-color: #2E3D55; height:95px; margin-top:-20px ; ">
+
+  
+  <font color="white" class="left" ><h3>SISTEMA GESTION SALAS</h3></font>
+
+ 
+
+  </div>
+  </div>
+  </div>
+
  </head>
+
+
 <body style="background-color:#fff;" >
 
-	<div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" 
-
-  
-  <div class="left" ><font color="white"><h3>SISTEMA GESTION DE SALAS</h3></font></div>
-
-  
-</div>
+	
 	<div class="col-md-12">
 					<div class="row" >
 						<div class="col-md-4 col-md-offset-4 " style="width: 500px; height: 300px;margin-top: 100px; background-color: #fff;">

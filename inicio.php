@@ -34,26 +34,30 @@ foreach ($resultado as $row) {
  
  	<title></title>
  	
- </head>
-
-
- <body>
-
-<div class="row">
  
- <div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;">
+<div class="row" >
+<div class="container" style="width: 100%;" >
+  
+
+
+<div class="col-md-12" style="background-color: #2E3D55; height:95px; margin-top:-20px ; ">
 
   
-  <div class="left" > <font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
- <div class="pull-right">
+  <font color="white" class="left" ><h3>SISTEMA GESTION SALAS</h3></font>
 
-    <a class="btn btn-" href="Loginsession/login.php">Login</a>
+ 
+ <div class="pull-right">
+    <a class="btn btn-primary" href="Loginsession/login.php">LOGIN</a>
 
   </div>
 
-  
-</div>
-</div>
+  </div>
+  </div>
+  </div>
+</head>
+ <body>
+
+
 
 
 
@@ -166,7 +170,7 @@ foreach ($resultado as $row) {
        </style>
        <span style='cursor: pointer;'>
                     
-   ".$resultado[$i]['CODSALA']."<a href='horariosala.php?id=".$resultado[$i]['CODSALA']."'>ver</a>
+   ".$resultado[$i]['CODSALA']."<a href='salaini.php?id=".$resultado[$i]['CODSALA']."'>ver</a>
         
 
                     
@@ -198,19 +202,19 @@ foreach ($resultado as $row) {
 
  </body>
 <footer>
- 
-    
-         <div class="row">
 
-        
+  <div class="row" >
+<div class="container" style="width: 100%;" >
+  
+<div style="background-color: #000; width: 100%; height:75px; margin-top:40px ;">
+  
+teto para footer
 
-<div class="col-md-12 " ;" style="background:#000000;">
-<div style="width: 100%; height:65px ;"></div>infomracion del footer
+</div>
+</div>
 </div>
 
-
-
- </footer>
+</footer>
  </html>
 
 

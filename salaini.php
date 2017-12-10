@@ -18,10 +18,26 @@ $varaibe=$_REQUEST['id'];
 <?php include ('proceso.php');?>
 	<title></title>
 	
+	
 
-<div style="background-color: #000; width: 100%; height:100px; ">
+	<div class="row" >
+<div class="container" style="width: 100%;" >
+	
 
 
+<div class="col-md-12" style="background-color: #2E3D55; height:95px; margin-top:-20px ; ">
+
+  
+ 	<font color="white" class="left" ><h3>SISTEMA GESTION SALAS</h3></font>
+
+ 
+ <div class="pull-right">
+    <a class="btn btn-primary" href="Loginsession/login.php">LOGIN</a>
+
+  </div>
+
+	</div>
+	</div>
 	</div>
 
 </head>
@@ -29,16 +45,17 @@ $varaibe=$_REQUEST['id'];
 
 	
 <body>
-	
+	<div class="container" style="width: 100%;" >
 <div class="row" >
-<div class="container" style="width: 100%;" >
 
 
-	<div style="background-color: #ccc; width: 20%; height:1000px; float: left;">
+
+	<div class="col-md-2" style="background-color: #fff; float: left;">
 		
           
  <ul class="nav nav-pills nav-stacked" role="tablist">
-    <li class="active"><a href=inicio.php>Inicio</a></li>
+
+    <li ><a class="btn btn-primary" href=inicio.php>Inicio</a></li>
    
 
 
@@ -46,29 +63,29 @@ $varaibe=$_REQUEST['id'];
         <form action="<?php echo $_SERVER['proceso.php'] ?>"   method="POST" enctype="multipart/form-data" accept-charset="utf-8">
         <input type="radio" name="semestre" value="1" checked value="1">Primer Semestre<br>
         <input type="radio" name="semestre" value="2" >Segundo Semestre<br>
-      <input type="submit" value="Enviar" class="btn btn-primary" ><hr/>
+      <input type="submit" value="Enviar" class="btn btn" ><hr/>
       </form>
       </ul>
 	</div>
 
-	<div style="background-color: #020; width: 60%; height:1000px; float: left;" >
+	<div class="col-md-8" style="background-color: #fff; float: left;" >
 
 
-		<div style="background-color: #ff2; width: 100%; height:100px; float: center;">
+		<div class="col-md-12" style="background-color: #fff; height:90px ; float: center;">
 
 			<h3 ><p class="text-primary">SALA: <?php echo $varaibe;?></p></h3>
 
 		</div>
 
 
-		<div style="background-color: #f22; width: 100%; height:800px; float: left;">
+		<div class="col-md-12" style="background-color: #fff;  float: left;">
 		
 			
             
 <table class='table table-border' border="0.5" 
-style="background-color: #ff5; width: 20%; height:600px; float: left;" >
+style="background-color: #fff; width: 15%; height:600px; float: left;" >
 
-            <th style="width:15%">periodo</th>
+            <th style="width: 15%;">periodo</th>
             <tr>
               <th class="text-center" WIDTH="50" HEIGHT="50">08:00<br>9:20</th>
               
@@ -121,21 +138,21 @@ style="background-color: #ff5; width: 20%; height:600px; float: left;" >
           
           </table>
 
-		<div style="background-color: #f72; width: 80%; height:800px; float: right;">
+		<div style="background-color: #fff; width: 85%; height:800px; float: right;">
 
 
 <table class="table table-bordered" border="1" 
-style="background-color: #ff5; width: 100%; height:600px;" >
+style="background-color: #fff; width: 100%; height:600px;" >
             
                    
                     
                     
-                    <th style="width:15%"> LUNES</th>
-                    <th style="width:15%"> MARTES</th>
-                    <th style="width:15%"> MIÉRCOLES</th>
-                    <th style="width:15%"> JUEVES</th>
-                    <th style="width:15%"> VIERNES</th>
-                    <th style="width:15%"> SÁBADO</th>
+                    <th style="width: 15%; "> LUNES</th>
+                    <th style="width: 15%;"> MARTES</th>
+                    <th style="width: 15%; "> MIÉRCOLES</th>
+                    <th style="width: 15%; "> JUEVES</th>
+                    <th style="width: 15%;"> VIERNES</th>
+                    <th style="width: 15%;"> SÁBADO</th>
 
      
             <?php foreach ($datos as $key => $value): ?>
@@ -175,9 +192,58 @@ style="background-color: #ff5; width: 100%; height:600px;" >
 
 	</div>
 
-	<div style="background-color: #cc2; width: 20%; height:1000px; float: left;">
+	<div class="col-md-2" style="background-color: #fff; margin-top:80px ; float: left;">
 		
+<h4 ><p class="text-primary">IMPLEMENTOS</p></h4> 
+  <th>Nombre</th>
+  <th>Cantidad</th>
+  <th>Estado</th>
+  
+<table class="table table-bordered" border="0,5">
 
+
+  <?php  
+  
+  
+include "conec.php";
+
+  $sql=( "SELECT ESTADO,CANTIDAD,TIPOIMPLE,S.CODSALA
+        FROM  SALA S JOIN IMPLEMENTO I ON I.CODSALA=S.CODSALA
+ WHERE S.CODSALA='".$_REQUEST['id']."'");
+
+  $smt=$conn->prepare($sql);
+  $smt->execute();
+  $resultado=$smt->fetchall ();
+
+  
+$var= count ($resultado);
+
+    
+   
+
+
+  for ($i=0; $i < $var; $i++) { 
+
+      echo "<table class='table table-border' style='border:1px ' >
+       
+      
+       <tr>
+       <span style='cursor: pointer;'>
+
+                     <td class='text-center'  HEIGHT='40'> ".$resultado[$i]['TIPOIMPLE']."</td>
+                    <td class='text-center'  HEIGHT='40'>".$resultado[$i]['CANTIDAD']."</td>
+                    <td class='text-center'  HEIGHT='40'>".$resultado[$i]['ESTADO']."</td>
+        </span>
+</th></tr>
+
+      </table>";
+
+ 
+
+    }
+ ?>
+
+</table>
 
 	</div>
 
@@ -197,7 +263,11 @@ style="background-color: #ff5; width: 100%; height:600px;" >
 	<div class="row" >
 <div class="container" style="width: 100%;" >
 	
-<div style="background-color: #c22; width: 100%; height:75px;"></div>
+<div  class="col-md-12" style="background-color: #000; height:75px;">
+	
+teto para footer
+
+</div>
 </div>
 </div>
 
