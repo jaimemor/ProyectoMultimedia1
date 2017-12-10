@@ -15,6 +15,8 @@ $smt -> execute();
 $resultado= $smt->fetchall();
 $conn=null;
 
+
+
 ?>
 
 
@@ -52,9 +54,9 @@ require "conec.php";
  	<meta charset="utf-8">
  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
  	
-
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <?php  include('vista3.php'); ?>
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  
  	<title></title>
  	
  </head>
@@ -99,14 +101,15 @@ require "conec.php";
 <div class="container" style="width: 200px" >
   
                   
-  <ul class="nav nav-pills nav-stacked" role="tablist">
-    <li ><a >Inicio</a></li>
+   <ul class="nav nav-pills nav-stacked" role="tablist">
+
+    <a style='cursor: pointer;'>Inicio</a><br>
        
-  <li> <a type="button" data-toggle="modal"
-   data-target="#exampleModal" data-whatever="@getbootstrap">
+   <a type="button" data-toggle="modal"
+   data-target="#exampleModal" data-whatever="@getbootstrap" style='cursor: pointer;'>
      
      Buscar Sala
-   </a></li>
+   </a>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -120,11 +123,11 @@ require "conec.php";
       <div class="modal-body">
         <form action="inicioprofe.php"  method="POST" enctype="multipart/form-data" accept-charset="utf-8">
           
-<input type="radio" name="nombre" value="002" checked>Facultad de Ciencias e Ingenieria
+<input type="radio" name="nombre" value="001" checked>Facultad de Ciencias e Ingenieria
 
 <br>
 
-<input type="radio" name="nombre" value="001" >Facultad de Humanidades
+<input type="radio" name="nombre" value="002" >Facultad de Humanidades
 
 <br>
 
@@ -143,9 +146,7 @@ require "conec.php";
     </div>
   </div>
 </div>
-
-
-       
+      
   </ul>
 
   
@@ -167,49 +168,104 @@ require "conec.php";
      
 
 
-<div class="col-md-6   col-lg-15" style="background:   #fff ;">
+
+<div class="col-md-12   col-lg-10" style="background:#fff;">
 
 
-        
+  <!--
+        aqui se muestran las salas que solicito el profesor
 
-        
+    -->
+
+ <div class="col-md-7  vcenter" style="background:   #fff ;  ">
+                <h4 ">Salas solicitadas por <?php echo $nombre; ?></h4>
+
+                <?php  
+                 
+
+          require "conec.php";
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   
+       $sql = $conn->prepare(" SELECT *
+ FROM SOLICITUD SOL
+   WHERE RUT='$nombre'");
+      $sql->execute();
+    $resul = $sql->fetchAll();
+    $conn =null;
+    $var2= count ($resul);
+
+
+
+ ?>
+
+
+            <table class="table table-bordered  pull-right" style='border:1px '>
+                <th>Sala</th> 
+                <th>Periodo</th>
+                      <th>Dia</th>
+                      <th>Ramo</th>
+                     
+
+
+                      <?php 
+
+ for ($i=0; $i <$var2; $i++) { 
+                      echo "  
+<tr>
+    <td> ".$resul[$i]['CODSALA']."</td>
+    <td>".$resul[$i]['PERIODO']."</td>
+    <td>".$resul[$i]['DIA']."</td>
+ <td>".$resul[$i]['RAMO']."</td>
+
+ </tr>
+ 
+                      ";} ?>
+            
+            </table>
+
+          </div>
+
+
+
 <!--
-        aqui se muestran las salas
+        aqui se muestran las salas que se buscaron
 
     -->
 
 
 
-
+<font color="black"><h4 class="text-center" >Seleccion De Salas</h4></font>
+      
+    <div class="col-md-5  vcenter" style="background: # ;">
+        <div style="height:20em;border:10px solid #fff">
+ <h3>Piso <?php echo $piso; ?></h3>
          
-
-<div class="col-md-12 vcenter" style="margin-top:100px ;">
-        <div style="height:20em;border:10px solid #fff;">
-   
-
- 	
+      
 
 <table style="border:10px solid #ccc"  class="table table-hover">
 
   <?php 
 
 
-
-   
  for ($i=0; $i < $var; $i++) { 
 
-      echo "<table class='table table-bordered' style='border:1px ' >
+      echo "<table class='table table-border' style='border:1px ' >
       
-       <tr><th> 
+       <tr> <td <style='WIDTH='50px';'>
+         
+       </style>
        <span style='cursor: pointer;'>
-                    "
-                    .$resultado[$i]['CODSALA']."
+                    
+   ".$resultado[$i]['CODSALA']."<a href='vistaprofe.php?id=".$resultado[$i]['CODSALA']."'>ver</a>
+        
+
+                    
+
         </span></td>
-</th></tr>
+</tr>
 
       </table>";
 
-   
 
     }
     
@@ -224,56 +280,11 @@ require "conec.php";
   
 
 
+          
+
+
      </div>
 
-
- </div>
-
-
-
-<div class="col-md-3   col-lg-15" style="background:   #fff ;">
-
- <div class="col-md-12  vcenter" style="background:   #fff ;">
-                <h4>Salas solicitadas por <?php echo $nombre; ?></h4>
-
-                <?php  
-                 
-
-          require "conec.php";
-          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   
-       $sql = $conn->prepare(" SELECT *
- FROM SOLICITUD SOL
-   WHERE RUT='$nombre'");
-      $sql->execute();
-    $resultado = $sql->fetchAll();
-    $conn =null;
-    $var= count ($resultado);
-
- for ($i=0; $i <$var; $i++) { 
-  $sala= $resultado[$i]['CODSALA'];
-   $periodo =$resultado[$i]['PERIODO'];
-   $dia =$resultado[$i]['DIA'];
-   $ramo =$resultado[$i]['RAMO'];
- }
-
- ?>
-
-
-            <table class="table table-bordered  pull-right" style='border:1px '>
-                <th>Sala</th> 
-                <th>Periodo</th>
-                      <th>Dia</th>
-                      <th>Ramo</th>
-            <tr>
-              <td><?php echo $sala; ?></td>
-              <td><?php echo $periodo; ?></td>
-              <td><?php echo $dia; ?></td>
-              <td><?php echo $ramo; ?></td>
-            </tr>
-            </table>
-
-          </div>
           </div>
       
    

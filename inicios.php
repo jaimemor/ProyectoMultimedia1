@@ -41,9 +41,13 @@ for ($i=0; $i <$var; $i++) {
   $sala1= $resultado[$i]['CODSALA'];
    $codigop=$resultado[$i]['CODPISO'];
    $nombre =$resultado[$i]['NOMBRE'];
+   $r =$resultado[$i]['RUT'];
   
    
  }
+echo $nombre;
+echo $r;
+echo $sala1;
 
 
  ?>
@@ -77,7 +81,7 @@ for ($i=0; $i <$var; $i++) {
 
 
   
- <div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" 
+ <div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" >
 
   
   <div class="left" > <font color="white"><h3>SISTEMA GESTION SALAS</h3></font>
@@ -110,34 +114,11 @@ for ($i=0; $i <$var; $i++) {
   
                   
   <ul class="nav nav-pills nav-stacked" role="tablist">
+
     <li ><a >Inicio</a></li>
 
 
-<?php 
- require "conec.php";
-      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   
-      $sql = $conn->prepare("SELECT S.CODSALA,P.CODPISO,RUT,NOMBRE
- FROM  USUARIO U JOIN PISO P ON U.CODPISO=P.CODPISO JOIN SALA S ON S.CODPISO=P.CODPISO
- WHERE RUT='$secre' and P.CODPISO='$codigop'");
-      $sql->execute();
-    $resultado = $sql->fetchAll();
-    $conn =null;
-    $var= count ($resultado);
 
-foreach ($variable as $row) {
- 
-
-  $sala1= $resultado[$i]['CODSALA'];
-   
-   $nombre =$resultado[$i]['NOMBRE'];
-  
-   
- }
-
-
-
- ?>
    
       
   </ul>
@@ -158,7 +139,7 @@ foreach ($variable as $row) {
 <div class=" col-md-12 vcenter" >
         
 
-          <h1>Secretaria <?php echo $nombre ; ?></h1>
+          <h1>Secretaria <?php echo $nombre; ?></h1>
           
         
         </div>

@@ -50,13 +50,13 @@ $secre=$_SESSION['usuario'];
   
    <div class="left" ><font color="white"><h3>SISTEMA GESTION SALAS</h3></font>
 </div>
-  <div class="pull-right" style="background:  #2D7C79  ;">
+  <a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
+
+</div>
+<div class="pull-right" style="background:  #2D7C79  ;">
 <a href='inicio.php' type="button" class="btn btn-primary">Inicio</a>
 
   </div>
-
-</div>
-
 
 
 <div class="container">

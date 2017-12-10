@@ -39,18 +39,20 @@ foreach ($resultado as $row) {
 
  <body>
 
-
+<div class="row">
  
- <div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" >
+ <div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;">
 
   
   <div class="left" > <font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
  <div class="pull-right">
-    <a  class="btn btn-primary" href="Loginsession/login.php">LOGIN</a>
+
+    <a class="btn btn-" href="Loginsession/login.php">Login</a>
 
   </div>
 
   
+</div>
 </div>
 
 

@@ -100,17 +100,12 @@ $sala =$resultado[$i]['CODSALA'];
 
 
 
-<div class="col-md-12 " style="background:#2E3D55;  height:50px; "> 
+<div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" >
 
   
-   <div class="left" ><font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
-
-   <a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
-
- 
-
- 
-
+  <div class="left" > <font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
+<a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
+  
 </div>
 
 
@@ -171,7 +166,7 @@ $sala =$resultado[$i]['CODSALA'];
 <div class="col-md-6  col-lg-10 vcenter" style="border-top: 50px;" >
         <div style="height:10em;border:10px solid #fff">
           <h1>Edificio <?php echo $n; ?></h1>
-          <h1>Piso <?php echo $p; ?></h1>
+          <h1>Piso <?php echo $piso; ?></h1>
          
         
 

@@ -88,7 +88,10 @@ $secre=$_SESSION['usuario'];
       <input type="submit" value="Enviar" class="btn btn-primary" ><hr/>
       </form>
 
-    <li><a href="#">Generar Codigo QR</a></li>  
+   <?php echo "
+
+    <li><a href='http://localhost/proyectoMultimedia1/phpqrcode/index.php?id=".$varaibe."'>Generar Codigo QR</a></li>         
+"; ?>
        <li><a>Solicitar a:</a></li> 
 <?php 
 
@@ -461,8 +464,8 @@ $var= count ($resultado);
 
 
 
-echo  $resultado[$i]['NOMBRE']." "
-.$resultado[$i]['COMENTARIO']." ".$resultado[$i]['FECHACOM']." ".$resultado[$i]['HORA']." ";
+echo  $resultado[$i]['NOMBRE'].":  "
+.$resultado[$i]['COMENTARIO']."   ".$resultado[$i]['FECHACOM']." -  ".$resultado[$i]['HORA']."  ||   ";
               
  
     }

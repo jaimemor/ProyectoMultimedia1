@@ -1,5 +1,34 @@
 
+<?php 
 
+error_reporting(0);
+$varaibe=$_REQUEST['id'];
+
+ ?>
+
+<?php
+
+
+
+session_start();
+
+$varsesion= $_SESSION['usuario'];
+
+if($varsesion == null || $varsesion=''){
+  echo 'Usted no tiene autorizacion';
+  die();
+}
+
+require 'conec.php';
+$smt = $conn->prepare("SELECT * FROM usuario WHERE RUT=".$_SESSION['usuario'] ); 
+$smt -> execute(); 
+$resultado= $smt->fetchall();
+$conn=null;
+
+
+$secre=$_SESSION['usuario'];
+
+?>
 
 <!DOCTYPE html>
  <html>
@@ -11,7 +40,7 @@
  <?php  include('vista3.php'); ?>
 
 
-<?php include('horario.php');  ?>
+<?php include('proceso.php');  ?>
 
 
   <title></title>
@@ -21,9 +50,10 @@
 
   
   <div class="left" > <font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
-
+<a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
   
 </div>
+
 
 
 
@@ -48,24 +78,13 @@
                  
 
   <ul class="nav nav-pills nav-stacked" role="tablist">
-    <li class="active"><a href=inicio.php>Inicio</a></li>
+    <li class="active"><a href=inicioprofe.php>Inicio</a></li>
 
-    <div class="radio">
-
-
-  <label>
-    <input type="radio" name="opciones" id="opciones_1" value="opcion_1" checked>
-   <a href="">Primer Semestre </a>
-   
-  </label>
-</div>
-<div class="radio">
-  <label>
-    <input type="radio" name="opciones" id="opciones_2" value="opcion_2">
-    <a href="">Segundo Semestre </a>
-  </label>
-</div>
-
+   <form action="<?php echo $_SERVER['proceso.php'] ?>"   method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+        <input type="radio" name="semestre" value="1" checked value="1">Primer Semestre<br>
+        <input type="radio" name="semestre" value="2" >Segundo Semestre<br>
+      <input type="submit" value="Enviar" class="btn btn-primary" ><hr/>
+      </form>
 
      <li><a>Solicitar a:</a></li> 
 <?php 
@@ -107,18 +126,6 @@ telefono: <?php echo $t."<br>"; ?>
 
  </table>
     
-    
-
-    
-    
-
-  
-
-         
-
-  
-
-
 
 
 </div>
@@ -289,27 +296,26 @@ telefono: <?php echo $t."<br>"; ?>
   <th>Nombre</th>
   <th>Cantidad</th>
   <th>Estado</th>
-  <?php
+  <?php  
+  
+  
+include "conec.php";
 
-  include "conec.php";
+  $sql=( "SELECT ESTADO,CANTIDAD,TIPOIMPLE,S.CODSALA
+        FROM  SALA S JOIN IMPLEMENTO I ON I.CODSALA=S.CODSALA
+ WHERE S.CODSALA='".$_REQUEST['id']."'");
 
-  $sql=( 'SELECT FECHACOM,HORA,COMENTARIO,ESTADO,CANTIDAD,TIPOIMPLE,S.CODSALA
-        FROM COMENTARIO C LEFT JOIN SALA S
- ON S.CODSALA=C.CODSALA INNER JOIN IMPLEMENTO I ON I.CODSALA=S.CODSALA
- WHERE S.CODSALA="B404";');
   $smt=$conn->prepare($sql);
   $smt->execute();
-  $resultado=$smt->fetchall ();
-  $conn =null;
-  $var= count ($resultado);
+  $resultado=$smt->fetchall();
+
+  
+$var= count ($resultado);
+
+    
+   
 
 
-
-
- ?>
-<table class="table table-bordered" border="0,5">
-
-  <?php  
   for ($i=0; $i < $var; $i++) { 
 
       echo "<table class='table table-border' style='border:1px ' >
@@ -318,9 +324,9 @@ telefono: <?php echo $t."<br>"; ?>
        <tr>
        <span style='cursor: pointer;'>
 
-                     <td> ".$resultado[$i]['TIPOIMPLE']."</td>
-                    <td >".$resultado[$i]['CANTIDAD']."</td>
-                    <td >".$resultado[$i]['ESTADO']."</td>
+                     <td class='text-center'  HEIGHT='40'> ".$resultado[$i]['TIPOIMPLE']."</td>
+                    <td class='text-center'  HEIGHT='40'>".$resultado[$i]['CANTIDAD']."</td>
+                    <td class='text-center'  HEIGHT='40'>".$resultado[$i]['ESTADO']."</td>
         </span>
 </th></tr>
 
@@ -329,15 +335,20 @@ telefono: <?php echo $t."<br>"; ?>
  
 
     }
-    
-   
-
  ?>
 
 </table>
 
 
 </div>
+
+
+
+
+
+
+
+
 
 </div>
 
@@ -358,43 +369,56 @@ telefono: <?php echo $t."<br>"; ?>
   <div>
     
     <h4><p class="text-primary">COMENTARIOS</p></h4>
-    
 
-
-
-
-  
 </div>
 
 
+<?php 
+
+  
+include "conec.php";
+
+  $sql=( "SELECT COMENTARIO,HORA,FECHACOM,NOMBRE
+FROM SALA S JOIN COMENTARIO C  ON C.CODSALA=S.CODSALA
+  JOIN USUARIO U ON C.RUT=U.RUT
+WHERE S.CODSALA='".$_REQUEST['id']."' ORDER BY FECHACOM ");
+
+  $smt=$conn->prepare($sql);
+  $smt->execute();
+  $resultado=$smt->fetchall();
+
+$var= count ($resultado);
 
 
+ ?>
 
-<table class="table table-bordered" border="0,5" type="text">
-
-  <?php  
-  for ($i=0; $i <2; $i++) { 
-
-      echo "<table class='table table-border' style='border:1px ' >
-      
-       <tr>
-       <span style='cursor: pointer;'>
-
-                       <td> ".$resultado[$i]['COMENTARIO']."</td>
-                    <td >".$resultado[$i]['FECHACOM']."</td>
-                    <td >".$resultado[$i]['HORA']."</td>
-        </span>
-</th></tr>
-
-      </table>";
 
  
 
+  <?php  
+ echo "<textarea class='form-control' rows='24'>";
+
+  for ($i=0; $i <$var ; $i++) { 
+
+
+
+echo  $resultado[$i]['NOMBRE'].":  "
+.$resultado[$i]['COMENTARIO']."   ".$resultado[$i]['FECHACOM']."  ".$resultado[$i]['HORA']."    ";
+              
+ 
     }
     
-   
+
+ 
+   echo "</textarea>";
 
  ?>
+
+
+
+
+
+ 
 
 
 
