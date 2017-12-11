@@ -3,7 +3,7 @@
 
 error_reporting(0);
 $varaibe=$_REQUEST['id'];
-echo $varaibe;
+
 
 
  ?>
@@ -53,8 +53,13 @@ $secre=$_SESSION['usuario'];
   <a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
 
 </div>
-<div class="pull-right" style="background:  #2D7C79  ;">
-<a href='inicio.php' type="button" class="btn btn-primary">Inicio</a>
+<div class="pull-right";><br><br>
+<?php echo "
+  
+    
+ <a href='http://localhost/ProyectoMultimedia1/vistasec.php?id=".$_REQUEST['id']."'>Volver</a>
+  "; ?>
+
 
   </div>
 
@@ -71,15 +76,25 @@ $secre=$_SESSION['usuario'];
 <form action="operaciones.php"  method="POST" enctype="multipart/form-data" accept-charset="utf-8">
 Nombre Porfesor:<input name="nombre" type="text" value="" class="form-control" required />
 Rut Porfesor:<input name="rut" type="text"  maxlength="8" value="" class="form-control" required/>
-Sala:<input name="sala" type="text"  value="" class="form-control" required/>
 Asignatura:<input  name="ramo" type="text"  value="" class="form-control" required/>
-Semestre:<input name="semestre"  type="text"  value="1,2,3,4,5..." class="form-control" required/>
-Periodo:<input name="periodo"  type="text"  value="1,2,3,4,5..." class="form-control" required/>
+Semestre:<input name="semestre"  type="text"  value="" class="form-control" required/>
+Periodo: <select name="periodo" multiple>
+
+    <option value="1">08:00-09:20</option>
+    <option value="2">09:20-1035</option>
+    <option value="3">10:45-12:05</option>
+    <option value="4">12:05-13:20</option>
+    <option value="5">13:25-14:40</option>
+    
+</select>
+
 Dia:<input name="dia" type="text"  value="" class="form-control" required/>
 <input type="hidden" name="form">
 
 <input type="submit" value="ENVIAR" class="btn btn-primary" ><hr/> 
 </div>
+
+
 
 
 </form>

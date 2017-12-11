@@ -265,7 +265,7 @@ $var= count ($resultado);
 	
 <div  class="col-md-12" style="background-color: #000; height:75px;">
 	
-teto para footer
+texto para footer
 
 </div>
 </div>

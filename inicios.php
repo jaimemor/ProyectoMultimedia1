@@ -45,9 +45,6 @@ for ($i=0; $i <$var; $i++) {
   
    
  }
-echo $nombre;
-echo $r;
-echo $sala1;
 
 
  ?>

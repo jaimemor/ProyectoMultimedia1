@@ -93,13 +93,13 @@ $secre=$_SESSION['usuario'];
 
     <li><a href='http://localhost/proyectoMultimedia1/phpqrcode/index.php?id=".$varaibe."'>Generar Codigo QR</a></li>         
 "; ?>
-    <li><a href="#">Ver Estadisticas</a></li>        
+    <li><a href="estadistica.php">Ver Estadisticas</a></li>        
   <?php  
   echo "
-  <form action='solicitud.php' method='POST'>
-    <input type='text' value=".$_REQUEST['id']." name='id'>
- <li><button href='solicitud.php'>Solicitar sala></button></li> 
-  </form>
+  
+    
+ <li><a href='http://localhost/ProyectoMultimedia1/solicitud.php?id=".$_REQUEST['id']."'>Solicitar sala</a></li> 
+ 
 
 ";
  ?>
