@@ -64,9 +64,11 @@ for ($i=0; $i <$var; $i++) {
     ?>
 
   <?php  include('vista3.php'); ?>
+
  
+ <div class="container" style="width: 100%;" >
  	<div class="row" >
-<div class="container" style="width: 100%;" >
+
   
 
 
@@ -74,8 +76,6 @@ for ($i=0; $i <$var; $i++) {
 
   
   <font color="white" class="left" ><h3>SISTEMA GESTION SALAS</h3></font>
-
- 
 
 
   </div>
@@ -102,30 +102,21 @@ for ($i=0; $i <$var; $i++) {
 <div class="container" style="width: 100%;" >
 <div class="row">
 
- <div class="col-md-2 vcenter">
-        <div style="height:30em;border:5px solid #FFF">
-          
-
-
-</div>
-
+ <div class="col-md-1 vcenter">
+       
 
   </div>
 
 
 
 
-<div class="col-md-7   col-lg-15" style="background:   #fff ;">
+<div class="col-md-8   col-lg-5 vcenter" style="background:   #fff ;">
 
-<div class=" col-md-7 vcenter" >
-        
-
-          <h1>Secretaria <?php echo $nombre; ?></h1>
+    <h1>Secretaria <?php echo $nombre; ?></h1>
           
-        
-        </div>
+  
 
-<div class="col-md-7  vcenter" style="margin-top:40px" ;">
+<div class="col-md-12  vcenter" style="margin-top:10px" ;">
         <div style="height:20em;border:10px solid #fff">
    
 
@@ -158,11 +149,7 @@ for ($i=0; $i <$var; $i++) {
  </table>
 </div>
   
-
-
-          
-
-
+     </div>
      </div>
     
 
@@ -170,7 +157,7 @@ for ($i=0; $i <$var; $i++) {
 
 
 <div class="col-md-3 " style="background:#fff ; float: right;">
-  <div class="col-md-12 " style="background:#fff ; float: center;">
+  <div class="col-md-12 " style="background:#fff ; ">
 
 
 <h4>Buscar salas por profesor</h4>
@@ -249,6 +236,10 @@ for ($i=0; $i <$var; $i++) {
 
 
     </div>
+    </div>
+    </div>
+    </div>
+   
 
 
 
@@ -262,14 +253,16 @@ for ($i=0; $i <$var; $i++) {
 
 
  </body>
+
+
 <footer>
 
   <div class="row" >
 <div class="container" style="width: 100%;" >
   
-<div  class="col-md-12" style="background-color: #000; height:75px;">
+<div style="background-color: #000; width: 100%; height:75px; margin-top:40px ;">
   
-texto para footer
+teto para footer
 
 </div>
 </div>

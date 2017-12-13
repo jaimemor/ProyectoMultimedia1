@@ -60,7 +60,7 @@ $secre=$_SESSION['usuario'];
 </head>
 
 <ol class="breadcrumb">
-  <li class="active"><a href=inicio.php>Inicio</a></li>
+  <li class="active"><a href=inicios.php>Inicio</a></li>
   
  
   
@@ -97,6 +97,7 @@ $secre=$_SESSION['usuario'];
     <a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
  
 </ol>
+
 <body>
   
 
@@ -109,7 +110,7 @@ $secre=$_SESSION['usuario'];
         botonera
 
     -->
-    <div class="col-md-4 col-lg-2 vcenter">
+    <div class="col-md-1 vcenter">
         <div style="height:30em;border:5px solid #FFF">
           
 
@@ -126,7 +127,7 @@ $secre=$_SESSION['usuario'];
 
     -->
 <div class="col-md-4 col-lg-5 vcenter" >
-        <div style="height:7em;">
+        <div style="height:3em;">
          
         
 <h3 ><p class="text-primary">SALA: <?php echo $varaibe;?></p></h3>
@@ -437,14 +438,15 @@ $var= count ($resultado);
  
 
   <?php  
- echo "<textarea class='form-control' rows='24'>";
+ echo "<textarea class='form-control' rows='15'>";
 
   for ($i=0; $i <$var ; $i++) { 
 
 
 
-echo  $resultado[$i]['NOMBRE']." "
-.$resultado[$i]['COMENTARIO']." ".$resultado[$i]['FECHACOM']." ".$resultado[$i]['HORA']." ";
+echo  "   
+".$resultado[$i]['NOMBRE'].":  "
+.$resultado[$i]['COMENTARIO']."  ".$resultado[$i]['FECHACOM']." | ".$resultado[$i]['HORA']." ";
               
  
     }

@@ -90,95 +90,74 @@ $sala =$resultado[$i]['CODSALA'];
 
   <?php  include('vista3.php'); ?>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
- 	<title></title>
+ 	
+
+  <div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" >
+
+  
+  <div class="left" > <font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
+
+  
+</div>
  	
  </head>
 
+
+
+<ol class="breadcrumb">
+  <li class="active">Inicio</li>
+
+   <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Selecion de piso
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
+
+          <form action="<?php echo $_SERVER['iniciom.php'] ?>"   method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+        <input type="submit" name="piso" value="1" >Primer Piso<br>
+        <input type="submit" name="piso" value="2" >Segundo Piso<br>
+      
+      </form>
+        </ul>
+      </li>
+
+ 
+
+  <a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
+</ol>
 
  <body>
 
 
 
 
-<div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" >
-
-  
-  <div class="left" > <font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
-<a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
-  
-</div>
 
 
 
+<div class="container" style="width: 100%;" >
 
 <div class="row">
 
 
-  <!--
-        botonera
-
-    -->
-    <div class="col-md-6 col-md-4 col-lg-2 vcenter">
-        <div style="height:30em;border:10px solid #FFF">
-          
-<div class="btn-group-vertical " style="border:0px solid #fff" >
-
-
-
-
-<div class="container" style="width: 200px" >
-  
-                  
-  <ul class="nav nav-pills nav-stacked" role="tablist">
-    <li ><a >Inicio</a></li>
-       
-  
-  <form action="<?php echo $_SERVER['iniciom.php'] ?>"   method="POST" enctype="multipart/form-data" accept-charset="utf-8">
-        <input type="radio" name="piso" value="1" checked value="1">Primer Piso<br>
-        <input type="radio" name="piso" value="2" >Segundo Piso<br>
-      <input type="submit" value="Enviar" class="btn btn-primary" ><hr/>
-      </form>
-
-
-       
-  </ul>
-
-  
-</div>
-
-
-
-
-</div>
-
-
-
+    <div class="col-md-1 vcenter">
+        
 
   </div>
 
 
-      
-     </div>
 
 
-
-
-<div class="col-md-6  col-lg-10 vcenter" style="border-top: 50px;" >
-        <div style="height:10em;border:10px solid #fff">
-          <h1>Edificio <?php echo $n; ?></h1>
-          <h1>Piso <?php echo $piso; ?></h1>
-         
-        
-
-         
-        </div>
-        </div>
 <!--
         aqui se muestran las salas
 
     -->
 
-<div class="col-md-6 col-md-8 col-lg-10 vcenter" style="background: # ;">
+<div class="col-md-7  col-lg-5 vcenter" style="background: # ;">
+  <h1>Edificio <?php echo $n; ?></h1>
+          <h1>Piso <?php echo $piso; ?></h1>
+  <div class="col-md-12  vcenter"">
+
+ 
         <div style="height:20em;border:10px solid #fff">
    
 
@@ -219,9 +198,91 @@ $sala =$resultado[$i]['CODSALA'];
 
 
      </div>
-    </div>
+     </div>
+
+
+
+
+
+
+
+<div class="col-md-3 " style="background:#fff ; float: right;">
+
+  <div class="col-md-12 " style="background:#fff ; ">
+
+
+<h4>Buscar salas por profesor</h4>
+<form action="iniciom.php" class="navbar-form navbar-left" role="search">
+       
+        <div class="form-group">
+          <input name='nombre' type="text" value"" maxlength="20" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Buscar</button>
+      
+      </form>
+                
+
+                <?php  
+                 
+ $nombre = $_REQUEST['nombre'];
+
+          require "conec.php";
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   
+       $sql = $conn->prepare(" SELECT CODSALA,PERIODO,DIA,RAMO, NOMBRE
+ FROM SOLICITUD SOL join USUARIO U ON SOL.RUT=U.RUT
+   WHERE  NOMBRE='$nombre'");
+      $sql->execute();
+    $resultado = $sql->fetchAll();
+    $conn =null;
+    $var= count ($resultado);
+
+ foreach ($variable as $row) {
+   $nombre=$row['nombre'];
+ }
+ 
+
+
+ ?>
+
+<h4>Salas solicitadas por <?php echo $nombre; ?></h4>
+                
+            <table class="table table-bordered" style='border:1px '>
+                <th>Sala</th> 
+                <th>Periodo</th>
+                      <th>Dia</th>
+                      <th>Ramo</th>
+<?php  
+                      for ($i=0; $i < $var; $i++) { 
+ 
+
+
+
+              echo "
+
+            <tr>
+              <td>".$resultado[$i]['CODSALA']."</td>
+              <td>".$resultado[$i]['PERIODO']."</td>
+              <td>".$resultado[$i]['DIA']."</td>
+              <td>".$resultado[$i]['RAMO']."</td>
+            </tr>
+            
+"; 
+          }?>
+</table>
+          </div>
+          </div>
+
+
+
+
 
 </div>
+</div>
+</div>
+    </div>
+
+
 
 
 

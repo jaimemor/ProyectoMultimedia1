@@ -51,12 +51,47 @@ $secre=$_SESSION['usuario'];
 
   
   <div class="left" > <font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
-<a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
+
   
 </div>
 
 
+<head>
 
+
+<ol class="breadcrumb">
+  <li class="active"><a href=iniciom.php>Inicio</a></li>
+  
+ 
+  
+   <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Semestre
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
+
+          <form action="<?php echo $_SERVER['proceso.php'] ?>"  
+ method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+       <li> <input type="submit" name="semestre" value="1" >Primer Semestre<br> </li> 
+        <input type="submit" name="semestre" value="2" >Segundo Semestre<br>  
+
+      </form>
+        </ul>
+      </li>
+  
+<?php echo "
+
+    <li><a href='http://localhost/proyectoMultimedia1/phpqrcode/index.php?id=".$varaibe."'>Generar Codigo QR</a></li>         
+"; ?>
+    
+
+    <a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
+ 
+</ol>
+
+  <body>
+    
+ 
 
 <div class="row">
 
@@ -76,22 +111,8 @@ $secre=$_SESSION['usuario'];
 
 <div class="container" style="width: 200px" >
  
-                 
+  
 
-  <ul class="nav nav-pills nav-stacked" role="tablist">
-    <li class="active"><a href=iniciom.php>Inicio</a></li>
-
-        
-<form action="<?php echo $_SERVER['proceso.php'] ?>"   method="POST" enctype="multipart/form-data" accept-charset="utf-8">
-        <input type="radio" name="semestre" value="1" checked value="1">Primer Semestre<br>
-        <input type="radio" name="semestre" value="2" >Segundo Semestre<br>
-      <input type="submit" value="Enviar" class="btn btn-primary" ><hr/>
-      </form>
-
-   <?php echo "
-
-    <li><a href='http://localhost/proyectoMultimedia1/phpqrcode/index.php?id=".$varaibe."'>Generar Codigo QR</a></li>         
-"; ?>
        <li><a>Solicitar a:</a></li> 
 <?php 
 
@@ -148,23 +169,7 @@ telefono: <?php echo $t."<br>"; ?>
 
     -->
 <div class="col-md-4 col-lg-5 vcenter" >
-        <div style="height:7em;">
-         
- 
-<h3 ><p class="text-primary">SALA  <?php echo $varaibe; ?></p></h3>
-          
-         
-        
-
-          <div>
- 
-
-        </div>
-        </div></div>
-
-
-
-
+       </div>
 
 
 <!--
@@ -174,6 +179,8 @@ telefono: <?php echo $t."<br>"; ?>
 
 
 <div class="col-md-4 col-lg-10 vcenter" style="border:5px solid #fff">
+
+  <h3 ><p class="text-primary" style="border: 10px;">SALA  <?php echo $varaibe; ?></p></h3>
         <div style="height:20em">
    
          <div class="container-fluid">
@@ -458,15 +465,15 @@ $var= count ($resultado);
  
 
   <?php  
- echo "<textarea class='form-control' rows='24'>";
+ echo "<textarea class='form-control' rows='15'>";
 
   for ($i=0; $i <$var ; $i++) { 
 
 
 
-echo  $resultado[$i]['NOMBRE'].":  "
-.$resultado[$i]['COMENTARIO']."   ".$resultado[$i]['FECHACOM']." -  ".$resultado[$i]['HORA']."  ||   ";
-              
+echo   "   
+".$resultado[$i]['NOMBRE'].":  "
+.$resultado[$i]['COMENTARIO']."  ".$resultado[$i]['FECHACOM']." | ".$resultado[$i]['HORA']." ";
  
     }
     

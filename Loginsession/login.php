@@ -20,11 +20,19 @@
   
   <font color="white" class="left" ><h3>SISTEMA GESTION SALAS</h3></font>
 
- 
+  </div>
+  </div>
+  </div>
 
-  </div>
-  </div>
-  </div>
+
+
+<ol class="breadcrumb">
+  
+
+ <li> <a class="pull-right" href="../inicio.php">Inicio</a></li>
+  
+</ol>
+
 
  </head>
 
@@ -57,7 +65,7 @@
  					
  									<br>
  									
- 									<a href="recu.php"><h6><p class="text-primary"> Recuperar Contraseña</p></h6></a>
+ 									
  									
 
 
@@ -86,6 +94,9 @@
 					</div>
 				</div>
  </body>
+
+ 
+
 
  
  </html>

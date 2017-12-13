@@ -45,16 +45,13 @@ foreach ($resultado as $row) {
   
   <font color="white" class="left" ><h3>SISTEMA GESTION SALAS</h3></font>
 
- 
- <div class="pull-right">
-    <a class="btn btn-primary" href="Loginsession/login.php">LOGIN</a>
 
-  </div>
 
   </div>
   </div>
   </div>
 </head>
+
 
 <ol class="breadcrumb">
   <li class="active">Inicio</li>
@@ -102,6 +99,8 @@ foreach ($resultado as $row) {
   </div>
 </div>
   
+
+  <a class="pull-right" href="Loginsession/login.php">Ingresar</a>
   
 </ol>
  <body>
@@ -109,7 +108,7 @@ foreach ($resultado as $row) {
 
 
 
-
+<div class="container" style="width: 100%;" >
 
 <div class="row">
 
@@ -194,6 +193,7 @@ foreach ($resultado as $row) {
 
 
      </div>
+    </div>
     </div>
 
  </body>

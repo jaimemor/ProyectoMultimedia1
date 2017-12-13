@@ -57,58 +57,28 @@ require "conec.php";
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <?php  include('vista3.php'); ?>
   
- 	<title></title>
- 	
- </head>
-
-
- <body>
-
-
-
-
-<div class="col-md-12 " style="background:#2E3D55;  height:50px; "> 
+ <div class="col-md-12 " style="background:#2E3D55;  height:50px; "> 
 
   
    <div class="left" ><font color="white"><h3>SISTEMA GESTION SALAS</h3></font>
 
    </div>
 
- <a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
+
 
  
 
 </div>
+ 	
+ </head>
 
+<ol class="breadcrumb">
+  <li class="active">Inicio</li>
 
-
-
-<div class="row">
-
-
-  <!--
-        botonera
-
-    -->
-    <div class="col-md-3 col-lg-2 vcenter">
-        <div style="height:30em;border:10px solid #FFF">
-          
-<div class="btn-group-vertical " style="border:0px solid #fff" >
-
-
-
-
-<div class="container" style="width: 200px" >
-  
-                  
-   <ul class="nav nav-pills nav-stacked" role="tablist">
-
-    <a style='cursor: pointer;'>Inicio</a><br>
-       
-   <a type="button" data-toggle="modal"
+<a type="button" data-toggle="modal"
    data-target="#exampleModal" data-whatever="@getbootstrap" style='cursor: pointer;'>
      
-     Buscar Sala
+     / Buscar Sala
    </a>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -146,19 +116,31 @@ require "conec.php";
     </div>
   </div>
 </div>
-      
-  </ul>
-
-  
-</div>
 
 
 
+   <a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
+</ol>
+ <body>
 
-</div>
 
 
 
+
+
+
+
+
+<div class="row">
+
+
+  <!--
+        botonera
+
+    -->
+    <div class="col-md-3 col-lg-2 vcenter">
+        <div style="height:30em;border:10px solid #FFF">
+          
 
   </div>
 
@@ -238,6 +220,7 @@ require "conec.php";
       
     <div class="col-md-5  vcenter" style="background: # ;">
         <div style="height:20em;border:10px solid #fff">
+
  <h3>Piso <?php echo $piso; ?></h3>
          
       
@@ -302,19 +285,19 @@ require "conec.php";
 
  </body>
 <footer>
- <div class="container-fluid">
-    
-         <div class="row">
 
-        
+  <div class="row" >
+<div class="container" style="width: 100%;" >
+  
+<div style="background-color: #000; width: 100%; height:75px; margin-top:40px ;">
+  
+teto para footer
 
-<div class="col-md-12 " ;" style="background:#000000;">
-<div style="width: 100%; height:65px ;"></div>infomracion del footer
 </div>
 </div>
 </div>
 
- </footer>
+</footer>
  </html>
 
 
