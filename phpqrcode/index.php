@@ -1,34 +1,67 @@
 
+<?php 
+
+
+error_reporting(0);
+$varaibe=$_REQUEST['id'];
+
+
+
+ ?>
 <!DOCTYPE html>
-<html>
-<head>
-   
-   <!DOCTYPE html>
  <html>
  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
-     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
- 
+     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+
+  <?php  include('../vista3.php'); ?>
  
     <title></title>
     
- </head>
-<body>
-    
+ 
+<div class="row" >
+<div class="container" style="width: 100%;" >
+  
+
+
+<div class="col-md-12" style="background-color: #2E3D55; height:95px; margin-top:-20px ; ">
+
+  
+  <font color="white" class="left" ><h3>SISTEMA GESTION SALAS</h3></font>
 
 
 
+  </div>
+  </div>
+  </div>
+</head>
 
 
+<ol class="breadcrumb">
+ 
+
+  <?php 
+
+ echo "<li><a href='/proyectoMultimedia1/tcpdf/examples/example_021.php?id=".$_REQUEST['id']."'>Generar pdf</a></li> 
+  "; ?>
+<?php 
+
+ echo "<li><a href='http://localhost/ProyectoMultimedia1/vistasec.php?id=".$_REQUEST['id']."'>Volver</a></li> 
+  "; ?>
+
+  
+</ol>
+ <body>
 
 
+<div class="container" style="width: 100%;" >
+
+<div class="row">
+    <div class=" col-md-12  vcenter">
 
 
-
-
-
+        <h3>QR Horario <?php echo $varaibe;?></h3>
 
 
 
@@ -83,18 +116,29 @@
     echo '<center><img src="'.$PNG_WEB_DIR.basename($filename).'" /></center>'; 
 
   
-  echo "
-  
-    
- <li><a href='/proyectoMultimedia1/tcpdf/examples/example_021.php?id=".$_REQUEST['id']."'>Generar pdf</a></li> 
-  ";
-
-       
-    echo "<form action='../vistasec.php?id=".$_REQUEST['id']."' method='POST'><button>Volver</button></form>" ;
+ 
     ?> 
 
 
 
-
+</div>
+    </div>
+    </div>
     </body>
+
+
+    <footer>
+
+  <div class="row" >
+<div class="container" style="width: 100%;" >
+  
+<div style="background-color: #000; width: 100%; height:75px; margin-top:40px ;">
+  
+teto para footer
+
+</div>
+</div>
+</div>
+
+</footer>
 </html>

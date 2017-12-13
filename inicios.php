@@ -92,6 +92,7 @@ for ($i=0; $i <$var; $i++) {
     -->
 <ol class="breadcrumb">
   <li class="active">Inicio</li>
+  <li><a href="estadistica.php">Ver Estadisticas</a></li>   
   <a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
 </ol>
 

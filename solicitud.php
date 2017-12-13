@@ -40,56 +40,90 @@ $secre=$_SESSION['usuario'];
  	  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
  <?php  include('vista3.php'); ?>
 
- 	<title></title>
- 	
- </head>
- <body>
- 	
+ 	  
 <div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;">
 
   
    <div class="left" ><font color="white"><h3>SISTEMA GESTION SALAS</h3></font>
 </div>
-  <a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
+  
 
 </div>
-<div class="pull-right";><br><br>
-<?php echo "
-  
-    
- <a href='http://localhost/ProyectoMultimedia1/vistasec.php?id=".$_REQUEST['id']."'>Volver</a>
-  "; ?>
+ 	
+ </head>
 
 
-  </div>
+
+<ol class="breadcrumb">
+ 
+  <?php echo "
+
+    <li><a href='http://localhost/ProyectoMultimedia1/vistasec.php?id=".$varaibe."'>Volver</a></li>         
+";  ?>
+</ol>
+ <body>
+
+
+
 
 
 <div class="container">
  
-<h3><p class="left">Formulario Solicitud sala codsala</p></h3>
+<h3><p class="left">Formulario Solicitud sala <?php echo $varaibe;?></p></h3>
 	<div class="row">
 		
 		
 
 <div class="col-md-5 ">
 
-<form action="operaciones.php"  method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+<form action="operaciones.php?id=<?php echo $varaibe; ?>"
+    method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+
 Nombre Porfesor:<input name="nombre" type="text" value="" class="form-control" required />
 Rut Porfesor:<input name="rut" type="text"  maxlength="8" value="" class="form-control" required/>
 Asignatura:<input  name="ramo" type="text"  value="" class="form-control" required/>
-Semestre:<input name="semestre"  type="text"  value="" class="form-control" required/>
-Periodo: <select name="periodo" multiple>
+<label>
+Periodo:<select name="periodo" >
 
+  
+    <optgroup label="Periodo">
     <option value="1">08:00-09:20</option>
     <option value="2">09:20-1035</option>
     <option value="3">10:45-12:05</option>
     <option value="4">12:05-13:20</option>
     <option value="5">13:25-14:40</option>
-    
-</select>
+    </optgroup> 
+   </label>
+   </select>
 
-Dia:<input name="dia" type="text"  value="" class="form-control" required/>
-<input type="hidden" name="form">
+<label>
+Dia:<select name="dia" >
+
+    <optgroup label="Día">
+    <option value="1">Lunes</option>
+    <option value="2">Martes</option>
+    <option value="3">Miercoles</option>
+    <option value="4">Jueves</option>
+    <option value="5">Viernes</option>
+    <option value="6">Sabado</option>
+    </optgroup> 
+   </label>
+   </select>
+
+   <label> Semestre:<select name="semestre" >
+    <optgroup label="Semestre">
+    <option value="1">1° Semestre</option>
+    <option value="2">2° Semestre</option>
+    </label>
+    </optgroup> 
+   </select>
+
+Cod sala:<input type="text" name="cod" value="<?php echo $varaibe; ?>">
+    
+    </optgroup> 
+   </select>
+
+<input type="hidden" name="formu">
 
 <input type="submit" value="ENVIAR" class="btn btn-primary" ><hr/> 
 </div>
@@ -186,9 +220,9 @@ Dia:<input name="dia" type="text"  value="" class="form-control" required/>
                 		
                 	}
 
-               echo"<form action='modificar.php' method='POST'>
-                <input type='text' name='codsala'  required=''>
-                <button>Modificar</button>
+               echo"<form action='modificar.php?id=$varaibe' method='POST'>
+                <input type='text' name='codsala'  value='Ingrese Cod Solicitud' required=''>
+                <button class='btn btn-primary'>Modificar</button>
                 </form>";
 echo " </table>";
 
@@ -209,7 +243,6 @@ echo " </table>";
         <div id="collapseTwo" class="panel-collapse collapse in">
             <div class="panel-body">
                 <p>	<?php 
-                  
                 error_reporting(0);
                 	require 'conec.php';
 					$smt = $conn->prepare("SELECT * FROM Solicitud WHERE CODSALA='$varaibe'" ); 
@@ -219,22 +252,15 @@ echo " </table>";
 					
 
                 	$variable= count($resultado);
-                	
+                	echo "<table class='table table-border' style='border:1px ' >
+                	<th>Codigo Sala</th>
+						<th>Codigo Solicitud</th>
+						<th>Dia</th>
+						<th>Periodo</th>
+						<th>Rut</th>";
                 	for ($i=0; $i < $variable ; $i++) {
                 		echo " 
-                		
        
-                		<table class='table table-border' style='border:1px ' >
-     
-
-						<td>Codigo Sala</td>
-						<td>Codigo Solicitud</td>
-						<td>Dia</td>
-						<td>Periodo</td>
-						<td>Rut</td>
-      					
-   
-     <th>
        <tr>
        
 
@@ -244,31 +270,41 @@ echo " </table>";
                      <td >".$resultado[$i]['PERIODO']."</td>
                       <td >".$resultado[$i]['RUT']."</td>
         
-</th></tr>
+</tr>";
 
-      </table>";
+      
 
                 		
                 		
                 	}
+                	echo"</table>";
                 	?>
                 	<?php
-                		
+                		require 'conec.php';
+                		$cod=$_REQUEST['codsala'];
+					$smt = $conn->prepare("DELETE FROM `solicitud` WHERE `CODSOL`=$cod"); //consulta a la bd
+					$smt -> execute(); //ejecuta
+
+					$resultado= $smt->fetchall();
+					$conn=null;
+					
+
+
                 echo "<!DOCTYPE html>
                 <html>
                 <head>
                 	<title></title>
                 </head>
                 <body>
-                <form action='solicitud.php' method='POST'>
-                <input type='text' name='codsala'  required=''>
-                <button>Eliminar</button>
+                <form action='solicitud.php?id=$varaibe' method='POST'>
+                <input type='text' name='codsala' value='Ingrese Cod Solicitud' required=''>
+                <button class='btn btn-primary'>Eliminar</button>
                 </form>
                 </body>
                 </html>";
-                echo "<form action='solicitud.php' method='POST'>
+                echo "<form action='solicitud.php?id=$varaibe' method='POST'>
                 
-                <button>Actualizar lista</button>
+                <button class='btn btn-primary'>Actualizar lista</button>
                 <form>";
 
                 
@@ -294,12 +330,8 @@ echo " </table>";
     </div>
     
 </div>
-</body>
-</html>                                                                                                         
-
 </div>
 </div>
-
 </div>
 
 
@@ -311,6 +343,19 @@ echo " </table>";
 
 
 
- 
+ <footer>
+
+  <div class="row" >
+<div class="container" style="width: 100%;" >
+  
+<div style="background-color: #000; width: 100%; height:75px; margin-top:40px ;">
+  
+teto para footer
+
+</div>
+</div>
+</div>
+
+</footer>
 
  </html>

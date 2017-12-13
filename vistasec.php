@@ -83,7 +83,7 @@ $secre=$_SESSION['usuario'];
 
     <li><a href='http://localhost/proyectoMultimedia1/phpqrcode/index.php?id=".$varaibe."'>Generar Codigo QR</a></li>         
 "; ?>
-    <li><a href="estadistica.php">Ver Estadisticas</a></li>        
+         
   <?php  
   echo "
   

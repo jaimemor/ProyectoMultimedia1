@@ -45,7 +45,8 @@ $pdf->AddPage();
   
 
 //poner link de id
-$html = '<img src="/ProyectoMultimedia1/phpqrcode/temp/'.$varaibe.'.png"  />';
+
+$html = '<h1>Horario De Sala: '."$varaibe".'</h1>'.'<img src="/ProyectoMultimedia1/phpqrcode/temp/'.$varaibe.'.png"  />';
 
 // output the HTML content
 $pdf->writeHTML($html, true, 0, true, 0);

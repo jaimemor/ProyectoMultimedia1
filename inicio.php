@@ -32,7 +32,7 @@ foreach ($resultado as $row) {
 
   <?php  include('vista3.php'); ?>
  
- 	<title></title>
+
  	
  
 <div class="row" >
@@ -202,7 +202,7 @@ foreach ($resultado as $row) {
   <div class="row" >
 <div class="container" style="width: 100%;" >
   
-<div style="background-color: #000; width: 100%; height:75px; margin-top:40px ;">
+<div style="background-color: #000; width: 100%; height:75px; margin-top:px ;">
   
 teto para footer
 
