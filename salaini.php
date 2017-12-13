@@ -28,45 +28,57 @@ $varaibe=$_REQUEST['id'];
 <div class="col-md-12" style="background-color: #2E3D55; height:95px; margin-top:-20px ; ">
 
   
- 	<font color="white" class="left" ><h3>SISTEMA GESTION SALAS</h3></font>
+ <h3  style=" margin-top:20px; color:#fff; " >SISTEMA GESTION SALAS</h3>
 
  
- <div class="pull-right">
-    <a class="btn btn-primary" href="Loginsession/login.php">LOGIN</a>
-
-  </div>
-
+ 
 	</div>
 	</div>
 	</div>
 
 </head>
 
+<ol class="breadcrumb">
+  <li class="active"><a href=inicio.php>Inicio</a></li>
+  
+ 
+  
+   <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Semestre
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
 
+          <form action="<?php echo $_SERVER['proceso.php'] ?>"  
+ method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+       <li> <input type="submit" name="semestre" value="1" >Primer Semestre<br> </li> 
+        <input type="submit" name="semestre" value="2" >Segundo Semestre<br>  
+
+      </form>
+        </ul>
+      </li>
+  
+
+
+    <a class="pull-right" href="Loginsession/login.php">Ingresar</a>
+ 
+</ol>
 	
+  
+
 <body>
+
+
+
+
+
+
 	<div class="container" style="width: 100%;" >
 <div class="row" >
 
+<div class="col-md-1" style="background-color: #fff;" ></div>
 
 
-	<div class="col-md-2" style="background-color: #fff; float: left;">
-		
-          
- <ul class="nav nav-pills nav-stacked" role="tablist">
-
-    <li ><a class="btn btn-primary" href=inicio.php>Inicio</a></li>
-   
-
-
-
-        <form action="<?php echo $_SERVER['proceso.php'] ?>"   method="POST" enctype="multipart/form-data" accept-charset="utf-8">
-        <input type="radio" name="semestre" value="1" checked value="1">Primer Semestre<br>
-        <input type="radio" name="semestre" value="2" >Segundo Semestre<br>
-      <input type="submit" value="Enviar" class="btn btn" ><hr/>
-      </form>
-      </ul>
-	</div>
 
 	<div class="col-md-8" style="background-color: #fff; float: left;" >
 
@@ -192,7 +204,7 @@ style="background-color: #fff; width: 100%; height:600px;" >
 
 	</div>
 
-	<div class="col-md-2" style="background-color: #fff; margin-top:80px ; float: left;">
+	<div class="col-md-3" style="background-color: #fff; margin-top:80px ; float: left;">
 		
 <h4 ><p class="text-primary">IMPLEMENTOS</p></h4> 
   <th>Nombre</th>
@@ -248,7 +260,7 @@ $var= count ($resultado);
 	</div>
 
 		
-	
+	<div class="col-md-1" style="background-color: #fff;" ></div>
 
 	</div>
 	</div>

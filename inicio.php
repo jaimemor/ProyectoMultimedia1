@@ -55,35 +55,15 @@ foreach ($resultado as $row) {
   </div>
   </div>
 </head>
- <body>
 
-
-
-
-
-
-<div class="row">
-
-
-  <!--
-        botonera
-
-    -->
-    <div class=" col-md-3 col-lg-2 vcenter">
-        <div style="height:30em;border:5px solid #fff">
-          
-
-<div class="container" >
+<ol class="breadcrumb">
+  <li class="active">Inicio</li>
   
-                  
-  <ul class="nav nav-pills nav-stacked" role="tablist">
 
-    <a style='cursor: pointer;'>Inicio</a><br>
-       
    <a type="button" data-toggle="modal"
    data-target="#exampleModal" data-whatever="@getbootstrap" style='cursor: pointer;'>
      
-     Buscar Sala
+     / Buscar Sala
    </a>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -121,11 +101,27 @@ foreach ($resultado as $row) {
     </div>
   </div>
 </div>
-      
-  </ul>
-
   
-</div>
+  
+</ol>
+ <body>
+
+
+
+
+
+
+<div class="row">
+
+
+  <!--
+        botonera
+
+    -->
+    <div class=" col-md-3 col-lg-2 vcenter">
+        <div style="height:30em;border:5px solid #fff">
+          
+
 
 
 

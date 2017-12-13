@@ -52,43 +52,33 @@ $secre=$_SESSION['usuario'];
 
   
   <div class="left" > <font color="white"><h3>SISTEMA GESTION SALAS</h3></font></div>
-<a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
+
   
 </div>
 
 
+</head>
 
-
-<div class="row">
-
-
-  <!--
-        botonera
-
-    -->
-    <div class="col-md-4 col-lg-2 vcenter">
-        <div style="height:30em;border:5px solid #FFF">
+<ol class="breadcrumb">
+  <li class="active"><a href=inicio.php>Inicio</a></li>
+  
+ 
+  
+   <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Semestre
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
           
 
-<div class="btn-group-vertical " style="border:0px solid #fff" >
+          <form action="<?php echo $_SERVER['proceso.php'] ?>"  
+ method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+       <li> <input type="submit" name="semestre" value="1" >Primer Semestre<br> </li> 
+        <input type="submit" name="semestre" value="2" >Segundo Semestre<br>  
 
-
-
-
-<div class="container" style="width: 200px" >
- 
-                 
-
-  <ul class="nav nav-pills nav-stacked" role="tablist">
-    <li class="active"><a href=inicios.php>Inicio</a></li><br>
-
-           
-  <form action="<?php echo $_SERVER['proceso.php'] ?>"   method="POST" enctype="multipart/form-data" accept-charset="utf-8">
-        <input type="radio" name="semestre" value="1" checked value="1">Primer Semestre<br>
-        <input type="radio" name="semestre" value="2" >Segundo Semestre<br>
-      <input type="submit" value="Enviar" class="btn btn-primary" ><hr/>
       </form>
-
+        </ul>
+      </li>
+  
 <?php echo "
 
     <li><a href='http://localhost/proyectoMultimedia1/phpqrcode/index.php?id=".$varaibe."'>Generar Codigo QR</a></li>         
@@ -103,16 +93,31 @@ $secre=$_SESSION['usuario'];
 
 ";
  ?>
+
+    <a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
  
+</ol>
+<body>
+  
 
 
-  </form>
 
-</div>
+<div class="row">
+
+
+  <!--
+        botonera
+
+    -->
+    <div class="col-md-4 col-lg-2 vcenter">
+        <div style="height:30em;border:5px solid #FFF">
+          
+
+
 
 </div>
  </div>
- </div>
+ 
 
 
 
@@ -472,7 +477,20 @@ echo  $resultado[$i]['NOMBRE']." "
 
  </body>                                                                 
  
+<footer>
 
+  <div class="row" >
+<div class="container" style="width: 100%;" >
+  
+<div  class="col-md-12" style="background-color: #000; height:75px;">
+  
+texto para footer
+
+</div>
+</div>
+</div>
+
+</footer>
    
  </html>
 

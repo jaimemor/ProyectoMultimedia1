@@ -65,62 +65,46 @@ for ($i=0; $i <$var; $i++) {
 
   <?php  include('vista3.php'); ?>
  
- 	<title></title>
- 	
+ 	<div class="row" >
+<div class="container" style="width: 100%;" >
+  
+
+
+<div class="col-md-12" style="background-color: #2E3D55; height:95px; margin-top:-20px ; ">
+
+  
+  <font color="white" class="left" ><h3>SISTEMA GESTION SALAS</h3></font>
+
+ 
+
+
+  </div>
+  </div>
+  </div> 	
  </head>
 
 
  <body>
 
-
-
-
-
-
-  
- <div class="col-md-12 "  style="background-color: #2E3D55;  height:50px;" >
-
-  
-  <div class="left" > <font color="white"><h3>SISTEMA GESTION SALAS</h3></font>
-
-<a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
-  </div>
-
-
- 
-
-
-
-
-<div class="row">
-
-
-  <!--
+<!--
         botonera
 
     -->
-    <div class="col-md-4 col-lg-2 vcenter">
-        <div style="height:30em;border:10px solid #FFF">
+<ol class="breadcrumb">
+  <li class="active">Inicio</li>
+  <a href="Loginsession/cerrar_session.php" class="pull-right">Salir</a>
+</ol>
+
+
+
+
+
+<div class="container" style="width: 100%;" >
+<div class="row">
+
+ <div class="col-md-2 vcenter">
+        <div style="height:30em;border:5px solid #FFF">
           
-<div class="btn-group-vertical " style="border:0px solid #fff" >
-
-
-
-
-<div class="container" style="width: 200px" >
-  
-                  
-  <ul class="nav nav-pills nav-stacked" role="tablist">
-
-    <li ><a >Inicio</a></li>
-
-
-
-   
-      
-  </ul>
-  
-</div>
 
 
 </div>
@@ -128,24 +112,20 @@ for ($i=0; $i <$var; $i++) {
 
   </div>
 
-</div>
 
 
-<div class="col-md-6   col-lg-15" style="background:   #fff ;">
 
-<div class=" col-md-12 vcenter" >
+<div class="col-md-7   col-lg-15" style="background:   #fff ;">
+
+<div class=" col-md-7 vcenter" >
         
 
           <h1>Secretaria <?php echo $nombre; ?></h1>
           
         
         </div>
-<!--
-        aqui se muestran las salas
 
-    -->
-
-<div class="col-md-12  vcenter" style="margin-top:100px" ;">
+<div class="col-md-7  vcenter" style="margin-top:40px" ;">
         <div style="height:20em;border:10px solid #fff">
    
 
@@ -154,8 +134,6 @@ for ($i=0; $i <$var; $i++) {
 <table style="border:10px solid #ccc"  class="table table-hover">
 
   <?php 
-
-
 
    
  for ($i=0; $i < $var; $i++) { 
@@ -169,18 +147,14 @@ for ($i=0; $i <$var; $i++) {
 
       </table>
 
-  
-
 ";
 
     }
-    
-   
+ 
 
  ?>
 
  
-
  </table>
 </div>
   
@@ -190,22 +164,23 @@ for ($i=0; $i <$var; $i++) {
 
 
      </div>
+    
 
 
-</div>
 
 
-<div class="col-md-3   col-lg-15" style="background:   #fff ;">
-
- <div class="col-md-12  vcenter" style="background:   #fff ;">
+<div class="col-md-3 " style="background:#fff ; float: right;">
+  <div class="col-md-12 " style="background:#fff ; float: center;">
 
 
 <h4>Buscar salas por profesor</h4>
 <form action="inicios.php" class="navbar-form navbar-left" role="search">
+       
         <div class="form-group">
           <input name='nombre' type="text" value"" maxlength="20" class="form-control" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-default">Buscar</button>
+      
       </form>
                 
 
@@ -234,7 +209,7 @@ for ($i=0; $i <$var; $i++) {
 
 <h4>Salas solicitadas por <?php echo $nombre; ?></h4>
                 
-            <table class="table table-bordered  pull-right" style='border:1px '>
+            <table class="table table-bordered" style='border:1px '>
                 <th>Sala</th> 
                 <th>Periodo</th>
                       <th>Dia</th>
@@ -288,19 +263,19 @@ for ($i=0; $i <$var; $i++) {
 
  </body>
 <footer>
- <div class="container-fluid">
-    
-         <div class="row">
 
-        
+  <div class="row" >
+<div class="container" style="width: 100%;" >
+  
+<div  class="col-md-12" style="background-color: #000; height:75px;">
+  
+texto para footer
 
-<div class="col-md-12 " ;" style="background:#000000;">
-<div style="width: 100%; height:65px ;"></div>infomracion del footer
 </div>
 </div>
 </div>
 
- </footer>
+</footer>
  </html>
 
 
